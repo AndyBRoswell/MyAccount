@@ -13,21 +13,21 @@ typealias LabelType = String
 
 class Bookkeeper {
 	open inner class InvolvedItem {
-		var ItemName: String
-		var Place: String
-		var AccountUsed: String
-		var Label: HashSet<String>
-		var Details: String
-		var OriginalCurrency: Currency
-		var OriginalPrice: Double
-		var ExchangeRate: Double
+		var ItemName: String = ""
+		var Place: String = ""
+		var AccountUsed: String = ""
+		var Label: MutableSet<String> = HashSet()
+		var Details: String = ""
+		var OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault())
+		var OriginalPrice: Double = 0.0
+		var ExchangeRate: Double = 0.0
 	}
 
 	companion object {
 		private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()
-		private val IDByDateTime: TreeMap<ZonedDateTime, IDTypeCollection> = TreeMap()
-		private val IDByLabel: HashMap<LabelType, IDTypeCollection> = HashMap()
-		private val IDByAccount: HashMap<AccountType, IDTypeCollection> = HashMap()
-		private val DefaultCurrency: HashMap<AccountType, Currency> = HashMap()
+		private val IDByDateTime: MutableMap<ZonedDateTime, IDTypeCollection> = TreeMap()
+		private val IDByLabel: MutableMap<LabelType, IDTypeCollection> = HashMap()
+		private val IDByAccount: MutableMap<AccountType, IDTypeCollection> = HashMap()
+		private val DefaultCurrency: MutableMap<AccountType, Currency> = HashMap()
 	}
 }
