@@ -24,10 +24,10 @@ class Bookkeeper {
 	}
 
 	companion object {
-		private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()
-		private val IDByDateTime: MutableMap<ZonedDateTime, IDTypeCollection> = TreeMap()
-		private val IDByLabel: MutableMap<LabelType, IDTypeCollection> = HashMap()
-		private val IDByAccount: MutableMap<AccountType, IDTypeCollection> = HashMap()
-		private val DefaultCurrency: MutableMap<AccountType, Currency> = HashMap()
+		private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()						// ID as primary key
+		private val DefaultCurrency: MutableMap<AccountType, Currency> = HashMap()				// Default currency of accounts
+		private val IDByDateTime: MutableMap<ZonedDateTime, IDTypeCollection> = TreeMap()		// ZonedDateTime as index (special label)
+		private val IDByLabel: MutableMap<LabelType, IDTypeCollection> = HashMap()				// Label as index
+		private val IDByAccount: MutableMap<AccountType, IDTypeCollection> = HashMap()			// Account as index
 	}
 }
