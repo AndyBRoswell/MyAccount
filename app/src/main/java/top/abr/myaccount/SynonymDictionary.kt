@@ -9,11 +9,14 @@ class SynonymDictionary {
 		if (CWord == null) { // The param Word is not in the dict yet.
 			CanonicalWord[Word] = Word												// Use the param Word itself as the canonical word
 			if (Word != Synonym) NonCanonicalWords[Word] = hashSetOf(Synonym)
-			else NonCanonicalWords[Word] = HashSet()								// Elide the repeated word
+			else NonCanonicalWords[Word] = HashSet()								// Elide the repeated element Word
 		}
 		else if (CWord == Word) {
-			if (Word != Synonym) NonCanonicalWords[CWord]!!.add(Synonym)
-			else return 															// No synonyms to add.
+			if (Word != Synonym) NonCanonicalWords[CWord]!!.add(Synonym)			// Elide the repeated element Word
+			else return 															// No synonyms to add. Note: Canonical word should NOT appear in the value of the K-V pair of NonCanonicalWords
+		}
+		else if (CWord == Synonym) {
+			
 		}
 		else {
 			NonCanonicalWords[CWord]!!.add(Synonym)									// Regardless of whether Word == Synonym
