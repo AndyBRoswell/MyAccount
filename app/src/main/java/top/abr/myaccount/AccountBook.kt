@@ -11,7 +11,7 @@ typealias IDTypeCollection = TreeSet<IDType>
 typealias AccountType = String
 typealias LabelType = String
 
-class Bookkeeper {
+class AccountBook {
     open inner class InvolvedItem {
         var ItemName: String = ""
         var Place: String = ""
@@ -23,11 +23,9 @@ class Bookkeeper {
         var ExchangeRate: Double = 0.0
     }
 
-    companion object {
-        private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()						// ID as primary key
-        private val DefaultCurrency: MutableMap<AccountType, Currency> = HashMap()				// Default currency of accounts
-        private val IDByDateTime: MutableMap<ZonedDateTime, IDTypeCollection> = TreeMap()		// ZonedDateTime as index (special label)
-        private val IDByLabel: MutableMap<LabelType, IDTypeCollection> = HashMap()				// Label as index
-        private val IDByAccount: MutableMap<AccountType, IDTypeCollection> = HashMap()			// Account as index
-    }
+    private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()                        // ID as primary key
+    private val DefaultCurrency: MutableMap<AccountType, Currency> = HashMap()                // Default currency of accounts
+    private val IDByDateTime: MutableMap<ZonedDateTime, IDTypeCollection> = TreeMap()        // ZonedDateTime as index (special label)
+    private val IDByLabel: MutableMap<LabelType, IDTypeCollection> = HashMap()                // Label as index
+    private val IDByAccount: MutableMap<AccountType, IDTypeCollection> = HashMap()            // Account as index
 }
