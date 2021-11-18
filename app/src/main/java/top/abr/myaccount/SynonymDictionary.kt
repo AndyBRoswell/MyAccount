@@ -6,14 +6,17 @@ class SynonymDictionary {
 
 	fun Insert(Word: String, Synonym: String) {
 		val CWord = CanonicalWord[Word]
-		if (CWord == null) {														// The param Word is not in the dict yet.
-			CanonicalWord[Word] = Word												// Use this word itself as the canonical word
+		if (CWord == null) { // The param Word is not in the dict yet.
+			CanonicalWord[Word] = Word												// Use the param Word itself as the canonical word
 			if (Word != Synonym) NonCanonicalWords[Word] = hashSetOf(Synonym)
 			else NonCanonicalWords[Word] = HashSet()								// Elide the repeated word
 		}
+		else if (CWord == Word) {
+			if (Word != Synonym) NonCanonicalWords[CWord]!!.add(Synonym)
+			else return 															// No synonyms to add.
+		}
 		else {
-			
-			NonCanonicalWords[Word]!!.add(Synonym)
+			NonCanonicalWords[CWord]!!.add(Synonym)									// Regardless of whether Word == Synonym
 		}
 	}
 
