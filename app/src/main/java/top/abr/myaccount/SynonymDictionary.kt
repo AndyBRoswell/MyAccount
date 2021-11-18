@@ -16,7 +16,8 @@ class SynonymDictionary {
 			else return 															// No synonyms to add. Note: Canonical word should NOT appear in the value of the K-V pair of NonCanonicalWords
 		}
 		else if (CWord == Synonym) {
-			
+			if (Word != Synonym) NonCanonicalWords[CWord]!!.add(Word)				// Elide the repeated element Word
+			else return																// No synonyms to add.
 		}
 		else {
 			NonCanonicalWords[CWord]!!.add(Synonym)									// Regardless of whether Word == Synonym
