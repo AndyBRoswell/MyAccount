@@ -6,7 +6,7 @@ class SynonymDictionary {
 
     fun Insert(Word: String, Synonym: String) {
         val CWord = CanonicalWord[Word]
-        if (CWord == null) {                                                    // The param Word is not in the dict yet
+        if (CWord == null) { // The param Word is not in the dict yet
             CanonicalWord[Word] = Word                                          // Use the param Word itself as the canonical word
             if (Word != Synonym) NonCanonicalWords[Word] = hashSetOf(Synonym)   // The other word Synonym as the non-canonical aliases
             else NonCanonicalWords[Word] = HashSet()                            // Elide the repeated element Word
@@ -39,10 +39,12 @@ class SynonymDictionary {
             for (Synonym in Synonyms) {
                 if (CWord != Synonym) NCWords.add(Synonym)                      // Elide the repeated element Word
             }
-            NonCanonicalWords[CWord] = NCWords
         }
-        else {
-
+        else { // CWord != Word
+            val NCWords = NonCanonicalWords[CWord]!!
+            for (Synonym in Synonyms) {
+                if (CWord != Synonym) NCWords.add(Synonym)                      // Elide the repeated element Word
+            }
         }
     }
 
