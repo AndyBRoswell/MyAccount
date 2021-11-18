@@ -15,9 +15,8 @@ class SynonymDictionary {
             if (CWord != Synonym) NonCanonicalWords[CWord]!!.add(Synonym)       // Elide the repeated element Word
             else return                                                         // No synonyms to add. Note: Canonical word should NOT appear in the value of K-V pairs of NonCanonicalWords
         }
-        else if (CWord == Synonym) {
-            if (CWord != Word) NonCanonicalWords[CWord]!!.add(Word)             // Elide the repeated element Word
-            else return                                                         // No synonyms to add
+        else if (CWord == Synonym) { // Given CWord != Word
+            NonCanonicalWords[CWord]!!.add(Word)                                // Elide the repeated element Word
         }
         else { // CWord != Word and CWord != Synonym
             NonCanonicalWords[CWord]!!.add(Synonym)                             // Regardless of whether Word == Synonym
@@ -42,6 +41,7 @@ class SynonymDictionary {
         }
         else { // CWord != Word
             val NCWords = NonCanonicalWords[CWord]!!
+            NCWords.add(Word)
             for (Synonym in Synonyms) {
                 if (CWord != Synonym) NCWords.add(Synonym)                      // Elide the repeated element Word
             }
