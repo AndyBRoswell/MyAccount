@@ -64,7 +64,14 @@ open class SynonymDictionary {
             NonCanonicalWords[CWord]!!.remove(Synonym)
         }
         else { // CWord == Synonym
-
+            if (CWord != Word) {
+                val NCWords = NonCanonicalWords[CWord]!!
+                NCWords.remove(Word)
+                for (NCWord in NCWords) CanonicalWord[NCWord] = Word    // Use Word as the new canonical word
+            }
+            else { // CWord == Word
+                
+            }
         }
     }
 
