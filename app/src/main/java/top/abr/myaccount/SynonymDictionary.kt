@@ -32,24 +32,24 @@ open class SynonymDictionary {
     fun Insert(Word: String, Synonyms: Iterable<String>) {
         val CWord = CanonicalWord[Word]
         if (CWord == null) {
-            CanonicalWord[Word] = Word                                          // Use the param Word itself as the canonical word
-            val NCWords = HashSet<String>()                                     // Synonyms as the non-canonical synonyms
+            CanonicalWord[Word] = Word                      // Use the param Word itself as the canonical word
+            val NCWords = HashSet<String>()                 // Synonyms as the non-canonical synonyms
             for (Synonym in Synonyms) {
-                if (Word != Synonym) NCWords.add(Synonym)                       // Elide the repeated element Word
+                if (Word != Synonym) NCWords.add(Synonym)   // Elide the repeated element Word
             }
             NonCanonicalWords[Word] = NCWords
         }
         else if (CWord == Word) {
-            val NCWords = NonCanonicalWords[CWord]!!                            // Get the existed set of non-canonical words
-            for (Synonym in Synonyms) {                                         // Synonyms as the non-canonical synonyms
-                if (CWord != Synonym) NCWords.add(Synonym)                      // Elide the repeated element Word
+            val NCWords = NonCanonicalWords[CWord]!!        // Get the existed set of non-canonical words
+            for (Synonym in Synonyms) {                     // Synonyms as the non-canonical synonyms
+                if (CWord != Synonym) NCWords.add(Synonym)  // Elide the repeated element Word
             }
         }
         else { // CWord != Word
             val NCWords = NonCanonicalWords[CWord]!!
             NCWords.add(Word)
-            for (Synonym in Synonyms) {                                         // Synonyms as the non-canonical synonyms
-                if (CWord != Synonym) NCWords.add(Synonym)                      // Elide the repeated element Word
+            for (Synonym in Synonyms) {                     // Synonyms as the non-canonical synonyms
+                if (CWord != Synonym) NCWords.add(Synonym)  // Elide the repeated element Word
             }
         }
     }
@@ -62,7 +62,7 @@ open class SynonymDictionary {
         if (CWord != Synonym) {
 
         }
-        else { // CWord == Word
+        else { // CWord == Synonym
 
         }
     }
