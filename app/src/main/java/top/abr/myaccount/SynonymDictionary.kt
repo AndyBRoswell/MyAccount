@@ -1,6 +1,6 @@
 package top.abr.myaccount
 
-class SynonymDictionary {
+open class SynonymDictionary {
     private val CanonicalWord: MutableMap<String, String> = HashMap()
     private val NonCanonicalWords: MutableMap<String, HashSet<String>> = HashMap()
 

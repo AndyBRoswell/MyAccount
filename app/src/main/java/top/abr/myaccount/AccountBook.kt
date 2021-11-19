@@ -11,7 +11,7 @@ typealias IDTypeCollection = TreeSet<IDType>
 typealias AccountType = String
 typealias LabelType = String
 
-class AccountBook {
+open class AccountBook {
     open inner class InvolvedItem {
         var ItemName: String = ""
         var Place: String = ""

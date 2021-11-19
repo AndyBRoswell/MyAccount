@@ -1,4 +1,4 @@
 package top.abr.myaccount
 
-class StorageAccessor {
+open class StorageAccessor {
 }
