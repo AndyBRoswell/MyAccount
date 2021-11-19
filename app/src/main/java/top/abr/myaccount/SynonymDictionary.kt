@@ -60,10 +60,11 @@ open class SynonymDictionary {
     fun Delete(Word: String, Synonym: String) {
         val CWord = CanonicalWord[Word]
         if (CWord != Synonym) {
-
+            CanonicalWord.remove(Synonym)
+            NonCanonicalWords[CWord]!!.remove(Synonym)
         }
         else { // CWord == Synonym
-
+            
         }
     }
 
