@@ -101,6 +101,11 @@ open class SynonymsDictionary {
 
     fun Find(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
 
+    fun SynonymsCount(Word: String): Int {
+        val CID = CanonicalID[Word] ?: return 0
+        return Synonyms[CID]!!.size - 1
+    }
+
     fun GetCanonicalID(Word: String) = CanonicalID[Word]
 
     private fun GenerateCanonicalID(): Long = System.nanoTime()
