@@ -22,9 +22,13 @@ open class SynonymsDictionary {
         if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
             CID = GenerateCanonicalID()
             CanonicalID[Word] = CID
+            CanonicalID[Synonym] = CID                      // The canonical ID of the synonym is identical to the canonical ID of the specified word
+            this.Synonyms[CID] = hashSetOf(Word, Synonym)
         }
-        CanonicalID[Synonym] = CID      // The canonical ID of the synonym is identical to the canonical ID of the specified word
-        Synonyms[CID]!!.add(Synonym)
+        else {
+            CanonicalID[Synonym] = CID                      // The canonical ID of the synonym is identical to the canonical ID of the specified word
+            Synonyms[CID]!!.add(Synonym)
+        }
     }
 
     /**
@@ -37,10 +41,15 @@ open class SynonymsDictionary {
         if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
             CID = GenerateCanonicalID()
             CanonicalID[Word] = CID
+            this.Synonyms[CID] = hashSetOf(Word)
+            this.Synonyms[CID]!!.addAll(Synonyms)
         }
-        for (Synonym in Synonyms) {
-            CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
-            this.Synonyms[CID]!!.add(Synonym)
+        else {
+            val ExistedSynonyms = this.Synonyms[CID]!!
+            for (Synonym in Synonyms) {
+                CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
+                ExistedSynonyms.add(Synonym)
+            }
         }
     }
 
@@ -49,6 +58,7 @@ open class SynonymsDictionary {
      * @param Word The word you want to delete a synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
      * @return The original canonical ID of <code>Word</code> if all of its synonyms are deleted from this dictionary.
+     * This ID won't exist in this dictionary any more.
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
      * Otherwise return NO_ID.
      */
@@ -62,6 +72,7 @@ open class SynonymsDictionary {
      * @param Word The word you want to delete synonyms for.
      * @param Synonyms The group of synonyms you want to delete for <code>Word</code>.
      * @return The original canonical ID of <code>Word</code> if all of its synonyms are deleted from this dictionary.
+     * This ID won't exist in this dictionary any more.
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
      * Otherwise return NO_ID.
      */
