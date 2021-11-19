@@ -85,7 +85,18 @@ open class SynonymsDictionary {
      * Otherwise return NO_ID.
      */
     fun Delete(Word: String, Synonyms: Iterable<String>): Long {
-
+        val CID = CanonicalID[Word] ?: return NO_ID
+        val ExistedSynonyms = this.Synonyms[CID]!!
+        for (Synonym in Synonyms) {
+            CanonicalID.remove(Synonym)
+            ExistedSynonyms.remove(Synonym)
+            if (ExistedSynonyms.size < 2) {
+                CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
+                this.Synonyms.remove(CID)                               // Remove the set which has only one existed element
+                return CID
+            }
+        }
+        return NO_ID
     }
 
     fun Find(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
