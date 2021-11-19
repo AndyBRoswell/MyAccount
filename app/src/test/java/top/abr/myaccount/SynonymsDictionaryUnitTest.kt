@@ -1,17 +1,22 @@
 package top.abr.myaccount
 
+import java.util.*
+import org.apache.commons.lang3.RandomStringUtils
 import org.junit.Assert.*
 import org.junit.Test
-import java.util.*
 
 class SynonymsDictionaryUnitTest {
     val RandomSource = Random()
 
     @Test fun InsertTest() {
         val SDict = SynonymsDictionary()
-        assertEquals(0, SDict.GetSize())
-        val InsertSingleSynonymTestCount = 1
-        val InsertGroupOfSynonymsTestCount = 1
-        
+        val InsertSingleSynonymTestCount = 10
+        val InsertGroupOfSynonymsTestCount = 10
+        for (i in 0..InsertSingleSynonymTestCount) {
+
+        }
+        for (i in 0..InsertGroupOfSynonymsTestCount) {
+
+        }
     }
 }
