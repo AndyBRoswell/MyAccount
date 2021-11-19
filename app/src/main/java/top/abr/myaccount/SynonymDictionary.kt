@@ -14,16 +14,23 @@ open class SynonymDictionary {
 
     fun Insert(Word: String, Synonym: String) {
         var CID = CanonicalID[Word]
-        if (CID == null) CID = GenerateCanonicalID()    // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
-        CanonicalID[Synonym] = CID                      // The canonical ID of the synonym is identical to the canonical ID of the specified word
+        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
+            CID = GenerateCanonicalID()
+            CanonicalID[Word] = CID
+        }
+        CanonicalID[Synonym] = CID  // The canonical ID of the synonym is identical to the canonical ID of the specified word
         Synonyms[CID]!!.add(Synonym)
     }
 
     fun Insert(Word: String, Synonyms: Iterable<String>) {
         var CID = CanonicalID[Word]
-        if (CID == null) CID = GenerateCanonicalID()    // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
+        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
+            CID = GenerateCanonicalID()
+            CanonicalID[Word] = CID
+        }
         for (Synonym in Synonyms) {
-            
+            CanonicalID[Synonym] = CID  // The canonical ID of the synonym is identical to the canonical ID of the specified word
+            this.Synonyms[CID]!!.add(Synonym)
         }
     }
 
