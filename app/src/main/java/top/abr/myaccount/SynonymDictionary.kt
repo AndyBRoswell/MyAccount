@@ -82,14 +82,20 @@ open class SynonymDictionary {
     fun Delete(Word: String, Synonyms: Iterable<String>) {
         val CWord = CanonicalWord[Word]
         val NCWords = NonCanonicalWords[CWord]!!
+        var FoundCWordInDeletionList = false
         for (Synonym in Synonyms) {
             if (CWord != Synonym) {
-                
+                CanonicalWord.remove(Synonym)
+                NCWords.remove(Synonym)
+                if (NCWords.isEmpty()) {
+                    NonCanonicalWords.remove(CWord)
+                    return
+                }
             }
-            else {
-
-            }
+            else FoundCWordInDeletionList = true    // CWord == Synonym
         }
+        if (!FoundCWordInDeletionList) return
+
     }
 
     fun Modify(Word: String, OldSynonym: String, NewSynonym: String) {
