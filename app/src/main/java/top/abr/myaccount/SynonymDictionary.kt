@@ -67,17 +67,14 @@ open class SynonymDictionary {
         }
         else { // CWord == Synonym
             val NCWords = NonCanonicalWords[CWord]!!
-            if (CWord != Word) { // TODO:
-                NCWords.remove(Word)
-                if (NCWords.isEmpty()) NonCanonicalWords.remove(CWord)
-                for (NCWord in NCWords) CanonicalWord[NCWord] = Word    // Use Word as the new canonical word
+            val NewCWord = NCWords.iterator().next()    // Use the 1st non-canonical word as the new canonical word
+            CanonicalWord.remove(NewCWord)
+            NCWords.remove(NewCWord)
+            if (NCWords.isEmpty()) {
+                NonCanonicalWords.remove(CWord)
+                return
             }
-            else { // CWord == Synonym, Synonym == Word
-                val NewCWord = NCWords.iterator().next()    // Use the 1st non-canonical word as the new canonical word
-                CanonicalWord.remove(NewCWord)
-                NCWords.remove(NewCWord)
-                for (NCWord in NCWords) CanonicalWord[NCWord] = NewCWord
-            }
+            for (NCWord in NCWords) CanonicalWord[NCWord] = NewCWord
         }
     }
 
