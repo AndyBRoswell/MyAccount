@@ -19,7 +19,7 @@ open class SynonymDictionary {
             else return                                                         // No synonyms to add. Note: Canonical word should NOT appear in the value of K-V pairs of NonCanonicalWords
         }
         else if (CWord == Synonym) { // Given CWord != Word
-            return                                                              // Elide the repeated element Word
+            return                                                              // Elide the repeated element Word. No synonyms to add.
         }
         else { // CWord != Word and CWord != Synonym
             NonCanonicalWords[CWord]!!.add(Synonym)                             // Regardless of whether Word == Synonym
@@ -59,7 +59,8 @@ open class SynonymDictionary {
      */
     fun Delete(Word: String, Synonym: String) {
         val CWord = CanonicalWord[Word]
-        if (CWord != Synonym) { // Regardless of whether CWord == Word, just delete Synonym
+        if (CWord == null) return // No results
+        else if (CWord != Synonym) { // Regardless of whether CWord == Word, just delete Synonym
             CanonicalWord.remove(Synonym)
             val NCWords = NonCanonicalWords[CWord]!!
             NCWords.remove(Synonym)
@@ -70,11 +71,8 @@ open class SynonymDictionary {
             val NewCWord = NCWords.iterator().next()    // Use the 1st non-canonical word as the new canonical word
             CanonicalWord.remove(NewCWord)
             NCWords.remove(NewCWord)
-            if (NCWords.isEmpty()) {
-                NonCanonicalWords.remove(CWord)
-                return
-            }
-            for (NCWord in NCWords) CanonicalWord[NCWord] = NewCWord
+            if (NCWords.isEmpty()) NonCanonicalWords.remove(CWord)
+            else for (NCWord in NCWords) CanonicalWord[NCWord] = NewCWord
         }
     }
 
@@ -82,7 +80,16 @@ open class SynonymDictionary {
      * Delete a collection of synonyms for the specified word.
      */
     fun Delete(Word: String, Synonyms: Iterable<String>) {
+        val CWord = CanonicalWord[Word]
+        val NCWords = NonCanonicalWords[CWord]!!
+        for (Synonym in Synonyms) {
+            if (CWord != Synonym) {
+                
+            }
+            else {
 
+            }
+        }
     }
 
     fun Modify(Word: String, OldSynonym: String, NewSynonym: String) {
