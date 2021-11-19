@@ -19,7 +19,7 @@ open class SynonymDictionary {
             else return                                                         // No synonyms to add. Note: Canonical word should NOT appear in the value of K-V pairs of NonCanonicalWords
         }
         else if (CWord == Synonym) { // Given CWord != Word
-            NonCanonicalWords[CWord]!!.add(Word)                                // Elide the repeated element Word
+            return                                                              // Elide the repeated element Word
         }
         else { // CWord != Word and CWord != Synonym
             NonCanonicalWords[CWord]!!.add(Synonym)                             // Regardless of whether Word == Synonym
@@ -64,7 +64,7 @@ open class SynonymDictionary {
             NonCanonicalWords[CWord]!!.remove(Synonym)
         }
         else { // CWord == Synonym
-            
+
         }
     }
 
