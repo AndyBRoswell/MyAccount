@@ -13,7 +13,7 @@ open class SynonymDictionary {
     private val Synonyms: MutableMap<Long, HashSet<String>> = TreeMap()
 
     fun Insert(Word: String, Synonym: String) {
-        
+
     }
 
     fun Insert(Word: String, Synonyms: Iterable<String>) {
@@ -28,5 +28,7 @@ open class SynonymDictionary {
 
     }
 
-    fun Find(Word: String): HashSet<String>? = Synonyms[CanonicalID[Word]]
+    fun Find(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
+
+    fun GetCanonicalID(Word: String) = CanonicalID[Word]
 }
