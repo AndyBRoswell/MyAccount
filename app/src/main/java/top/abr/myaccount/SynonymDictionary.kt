@@ -4,6 +4,9 @@ open class SynonymDictionary {
     private val CanonicalWord: MutableMap<String, String> = HashMap()
     private val NonCanonicalWords: MutableMap<String, HashSet<String>> = HashMap()
 
+    /**
+     * Add a synonym for the specified word.
+     */
     fun Insert(Word: String, Synonym: String) {
         val CWord = CanonicalWord[Word]
         if (CWord == null) { // The param Word is not in the dict yet
@@ -23,6 +26,9 @@ open class SynonymDictionary {
         }
     }
 
+    /**
+     * Add a collection of synonyms for the specified word.
+     */
     fun Insert(Word: String, Synonyms: Iterable<String>) {
         val CWord = CanonicalWord[Word]
         if (CWord == null) {
@@ -48,10 +54,22 @@ open class SynonymDictionary {
         }
     }
 
+    /**
+     * Delete a synonym for the specified word.
+     */
     fun Delete(Word: String, Synonym: String) {
+        val CWord = CanonicalWord[Word]
+        if (CWord != Synonym) {
 
+        }
+        else { // CWord == Word
+
+        }
     }
 
+    /**
+     * Delete a collection of synonyms for the specified word.
+     */
     fun Delete(Word: String, Synonyms: Iterable<String>) {
 
     }
