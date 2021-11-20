@@ -10,8 +10,10 @@ class SynonymDictionaryUnitTest {
 
     private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
     private fun NextLong(Min: Long, Max: Long) = RandomSource.longs(1, Min, Max).iterator().next()
-    private fun NextIntInclusive(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
-    private fun NextLongInclusive(Min: Long, Max: Long) = RandomSource.longs(1, Min, Max + 1).iterator().next()
+    private fun NextIntRInclusive(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
+    private fun NextLongRInclusive(Min: Long, Max: Long) = RandomSource.longs(1, Min, Max + 1).iterator().next()
+    private fun RandomString(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax)
+    private fun RandomStringRInclusive(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
 
     @Test fun InsertTest() {
         // Range parameters of random data
@@ -20,10 +22,9 @@ class SynonymDictionaryUnitTest {
         val MAX_SYNONYM_COUNT = 4
         val MIN_SYNONYM_COUNT = 2
         val MAX_WORD_LENGTH = 8
-        val MAX_WORD_LENGTH_EXCLUSIVE = 9
         val MIN_WORD_LENGTH = 1
 
-        val SynonymGroupCount = NextLongInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
+        val SynonymGroupCount = NextLongRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
         val SynonymCounts = RandomSource.ints(MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT)
 
         // Round 1: Insert(Word: String, Synonym: String)
@@ -33,7 +34,7 @@ class SynonymDictionaryUnitTest {
         for (SynonymCount in SynonymCounts) {
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
-                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH_EXCLUSIVE)
+                val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                 SList.add(Synonym)
                 SDict.Insert(SList[NextInt(0, SList.size)], Synonym)
             }
@@ -57,7 +58,7 @@ class SynonymDictionaryUnitTest {
         for (SynonymCount in SynonymCounts) {
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
-                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH_EXCLUSIVE)
+                val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                 SList.add(Synonym)
             }
             SDict.Insert(SList[NextInt(0, SynonymCount)], SList)
