@@ -22,7 +22,7 @@ class SynonymDictionaryUnitTest {
         val MIN_SYNONYM_GROUP_COUNT = 10L
         val MAX_SYNONYM_COUNT = 20
         val MIN_SYNONYM_COUNT = 10
-        val MAX_WORD_LENGTH = 32
+        val MAX_WORD_LENGTH = 8
         val MIN_WORD_LENGTH = 1
 
         val SynonymGroupCount = NextLongRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
@@ -58,7 +58,13 @@ class SynonymDictionaryUnitTest {
                         println("================ ERROR OCCURRED ================")
                         println("FoundedSynonym = $FoundedSynonym")
                         println("SSet = $SSet")
+                        val CIDs = ArrayList<Long?>()
+                        for (Synonym in SSet) CIDs.add(SDict.GetCanonicalID(Synonym))
+                        println("Their canonical IDs: $CIDs")
                         println("QueryResult[$i] = " + QueryResult[i])
+                        CIDs.clear()
+                        for (Synonym in QueryResult[i]) CIDs.add(SDict.GetCanonicalID(Synonym))
+                        println("Their canonical IDs: $CIDs")
                         println("================ ERROR OCCURRED ================")
                         throw AssertionError()
                     }
