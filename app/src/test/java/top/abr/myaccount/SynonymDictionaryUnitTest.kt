@@ -39,9 +39,14 @@ class SynonymDictionaryUnitTest {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                 SSet.add(Synonym)
                 SList.add(Synonym)
-                SDict.Insert(SList[NextInt(0, SList.size)], Synonym)
+                val Word = SList[NextInt(0, SList.size)]
+                SDict.Insert(Word, Synonym)
+                println(SDict.GetCanonicalID(Word))
+                println(SDict.GetCanonicalID(Synonym))
+                println("----------------")
             }
             SSets.add(SSet)
+            println()
         }
         // Find test
         for (SSet in SSets) {
