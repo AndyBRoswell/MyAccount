@@ -22,7 +22,7 @@ class SynonymDictionaryUnitTest {
         val MIN_SYNONYM_GROUP_COUNT = 10L
         val MAX_SYNONYM_COUNT = 20
         val MIN_SYNONYM_COUNT = 10
-        val MAX_WORD_LENGTH = 8
+        val MAX_WORD_LENGTH = 1
         val MIN_WORD_LENGTH = 1
 
         val SynonymGroupCount = NextLongRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
@@ -35,12 +35,16 @@ class SynonymDictionaryUnitTest {
         for (SynonymCount in SynonymCounts) {
             val SSet = HashSet<String>()
             val SList = ArrayList<String>()
-            for (i in 1..SynonymCount) {
+            val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+            SDict.Insert(Synonym, Synonym)
+            SSet.add(Synonym)
+            SList.add(Synonym)
+            for (i in 2..SynonymCount) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
-                SSet.add(Synonym)
-                SList.add(Synonym)
                 val Word = SList[NextInt(0, SList.size)]
                 SDict.Insert(Word, Synonym)
+                SSet.add(Synonym)
+                SList.add(Synonym)
                 println(SDict.GetCanonicalID(Word))
                 println(SDict.GetCanonicalID(Synonym))
                 println("----------------")
