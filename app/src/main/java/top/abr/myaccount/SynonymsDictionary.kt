@@ -108,7 +108,9 @@ open class SynonymsDictionary {
 
     fun GetCanonicalID(Word: String) = CanonicalID[Word]
 
-    fun GetSize() = CanonicalID.size
+    fun GetTotalWordCount() = CanonicalID.size
+
+    fun GetWordGroupCount() = Synonyms.size
 
     private fun GenerateCanonicalID(): Long = System.nanoTime()
 }
