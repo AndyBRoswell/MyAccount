@@ -25,27 +25,25 @@ class SynonymDictionaryUnitTest {
 
         // Round 1: Insert(Word: String, Synonym: String)
         val SDict1 = SynonymDictionary()
-        val SSets = HashSet<HashSet<String>>()
+        val SLists = ArrayList<ArrayList<String>>()
         // Add test data
         for (SynonymCount in SynonymCounts) {
-            val SSet = HashSet<String>()
-            val SArray = ArrayList<String>()
+            val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
                 val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
-                SSet.add(Synonym)
-                SArray.add(Synonym)
-                SDict1.Insert(SArray[NextInt(0, SArray.size)], )
+                SList.add(Synonym)
+                SDict1.Insert(SList[NextInt(0, SList.size)], Synonym)
             }
-            SSets.add(SSet)
+            SLists.add(SList)
         }
         // Find test
-        for (SSet in SSets) {
+        for (SList in SLists) {
             val FindResult = ArrayList<Iterable<String>>()
-            for (Synonym in SSet) { // The query result must be the same when finding with synonyms in the identical synonym group.
+            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group.
                 FindResult.add(SDict1.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until FindResult.size) {
-
+                
             }
         }
     }
