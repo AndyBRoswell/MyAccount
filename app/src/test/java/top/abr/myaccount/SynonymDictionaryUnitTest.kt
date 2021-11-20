@@ -29,26 +29,25 @@ class SynonymDictionaryUnitTest {
         // MAX_SYNONYM_COUNT must be less than (C ^ MIN_WORD_LENGTH), should be MUCH LESS THAN (C ^ MIN_WORD_LENGTH), C = 52 when randomAlphabetic() is used
         assertTrue(MAX_SYNONYM_COUNT < 52.0.pow(MIN_WORD_LENGTH.toDouble()))
         val SynonymGroupCount = NextIntRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
-        val SynonymCounts = RandomSource.ints(SynonymGroupCount.toLong(), MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT).toArray()
+        val SynonymCount = RandomSource.ints(SynonymGroupCount.toLong(), MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT).toArray()
 
         // Round 1: Insert(Word: String, Synonym: String)
         val SDict = SynonymDictionary()
-        val SSets = ArrayList<HashSet<String>>()
+        val SynonymsForTest = HashSet<String>()
         val SList = ArrayList<ArrayList<String>>()
         val TestCount = ArrayList<ArrayList<Int>>()
         val UncoveredSynonymCount = ArrayList<Int>()
         // Prepare test data
-        for (SynonymCount in SynonymCounts) {
-            val SSet = HashSet<String>()
-            while (SSet.size < SynonymCount) SSet.add(RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH))
-            SSets.add(SSet)
-            val CurrentSList = ArrayList<String>(SSet)
-            SList.add(CurrentSList)
-            UncoveredSynonymCount.add(CurrentSList.size)
-            TestCount.add(ArrayList<Int>().apply { for (i in 1..CurrentSList.size) add(0) })
+        for (i in SynonymCount.indices) {
+            while (SList[i].size < i) {
+                val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added is different from others
+            }
+            UncoveredSynonymCount.add(SList[i].size)
+            TestCount.add(ArrayList<Int>().apply { for (i in 1..SList[i].size) add(0) })
         }
         // Start to insert
-        for (i in SList.indices) {
+        for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
             while (UncoveredSynonymCount[i] > 0) {
                 val WordIndex = NextInt(0, SList[i].size)
                 val SynonymIndex = NextInt(0, SList[i].size)
@@ -60,6 +59,12 @@ class SynonymDictionaryUnitTest {
             }
         }
         // Start to verify
-        
+        for (i in SList.indices) {
+            for (QuerySynonym in SList[i]) {
+                val QueryResult = SDict.GetSynonyms(QuerySynonym)
+                for (ExpectedSynonym in SList[i]) assertTrue(QueryResult!!.contains(ExpectedSynonym))
+                assertEquals(QueryResult!!.size, SList[i].size)
+            }
+        }
     }
 }

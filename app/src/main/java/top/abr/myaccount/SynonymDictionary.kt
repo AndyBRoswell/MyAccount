@@ -127,7 +127,7 @@ open class SynonymDictionary {
         Synonyms.clear()
     }
 
-    fun GetSynonyms(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
+    fun GetSynonyms(Word: String): HashSet<String>? = Synonyms[CanonicalID[Word]]
 
     fun SynonymsCount(Word: String): Int {
         val CID = CanonicalID[Word] ?: return 0
