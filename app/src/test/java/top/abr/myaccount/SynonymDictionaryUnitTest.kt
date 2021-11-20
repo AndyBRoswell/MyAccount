@@ -1,11 +1,15 @@
 package top.abr.myaccount
 
 import org.apache.commons.lang3.RandomStringUtils
+import org.junit.Assert.*
 import org.junit.Test
 import java.security.SecureRandom
 
 class SynonymDictionaryUnitTest {
-    val RandomSource = SecureRandom.getInstanceStrong()
+    private val RandomSource = SecureRandom.getInstanceStrong()
+
+    private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
+    private fun NextLong(Min: Long, Max: Long) = RandomSource.longs(1, Min, Max).iterator().next()
 
     @Test fun InsertTest() {
         // Range parameters of random data
@@ -16,24 +20,33 @@ class SynonymDictionaryUnitTest {
         val MAX_WORD_LENGTH = 32
         val MIN_WORD_LENGTH = 1
 
-        val SynonymGroupCount = RandomSource.longs(1, MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT).iterator().next()
-        val SynonymCounts = RandomSource.ints(SynonymGroupCount, MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT)
+        val SynonymGroupCount = NextLong(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
+        val SynonymCounts = RandomSource.ints(MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT)
 
-        // Round 1
+        // Round 1: Insert(Word: String, Synonym: String)
         val SDict1 = SynonymDictionary()
-        val SLists = ArrayList<ArrayList<String>>()
+        val SSets = HashSet<HashSet<String>>()
         // Add test data
         for (SynonymCount in SynonymCounts) {
-            val SList = ArrayList<String>()
+            val SSet = HashSet<String>()
+            val SArray = ArrayList<String>()
             for (i in 1..SynonymCount) {
-                SList.add(RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH))
-                SDict1.Insert(SList[0], SList[i])
+                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                SSet.add(Synonym)
+                SArray.add(Synonym)
+                SDict1.Insert(SArray[NextInt(0, SArray.size)], )
             }
-            SLists.add(SList)
+            SSets.add(SSet)
         }
         // Find test
-        for (SList in SLists) {
-            
+        for (SSet in SSets) {
+            val FindResult = ArrayList<Iterable<String>>()
+            for (Synonym in SSet) { // The query result must be the same when finding with synonyms in the identical synonym group.
+                FindResult.add(SDict1.Find(Synonym)!!)
+            }
+            for (i in 0 until FindResult.size) {
+
+            }
         }
     }
 }

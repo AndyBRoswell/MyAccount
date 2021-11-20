@@ -16,8 +16,10 @@ open class SynonymDictionary {
      * Add a synonym for the specified word.
      * @param Word The word you want to add a new synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
+     * <code>Word</code> must be different from <code>Synonym</code>
      */
     fun Insert(Word: String, Synonym: String) {
+        if (Word == Synonym) return
         var CID = CanonicalID[Word]
         if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
             CID = GenerateCanonicalID()
@@ -35,6 +37,7 @@ open class SynonymDictionary {
      * Add a group of synonyms for the specified word.
      * @param Word The word you want to add a new synonym for.
      * @param Synonyms The group of synonyms you want to add for <code>Word</code>.
+     * If <code>Synonyms.size == 1</code> and <code>Word</code> is identical to this only synonym, then the insertion is skipped.
      */
     fun Insert(Word: String, Synonyms: Iterable<String>) {
         var CID = CanonicalID[Word]
