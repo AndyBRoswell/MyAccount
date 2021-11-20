@@ -99,6 +99,14 @@ open class SynonymDictionary {
         return NO_ID
     }
 
+    /**
+     * **`<DESTRUCTIVE`>** Delete all entries in the dictionary.
+     */
+    fun DeleteAll() {
+        CanonicalID.clear()
+        Synonyms.clear()
+    }
+
     fun GetSynonyms(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
 
     fun SynonymsCount(Word: String): Int {
