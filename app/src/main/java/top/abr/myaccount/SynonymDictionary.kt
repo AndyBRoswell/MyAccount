@@ -19,7 +19,6 @@ open class SynonymDictionary {
      * <code>Word</code> must be different from <code>Synonym</code>
      */
     fun Insert(Word: String, Synonym: String) {
-        if (Word == Synonym) return
         var CID = CanonicalID[Word]
         if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
             CID = GenerateCanonicalID()
@@ -70,9 +69,8 @@ open class SynonymDictionary {
         CanonicalID.remove(Synonym)
         val ExistedSynonyms = Synonyms[CID]!!
         ExistedSynonyms.remove(Synonym)
-        if (ExistedSynonyms.size < 2) {
+        if (ExistedSynonyms.size < 1) {
             CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-            Synonyms.remove(CID)                                    // Remove the set which has only one existed element
             return CID
         }
         return NO_ID
@@ -93,9 +91,8 @@ open class SynonymDictionary {
         for (Synonym in Synonyms) {
             CanonicalID.remove(Synonym)
             ExistedSynonyms.remove(Synonym)
-            if (ExistedSynonyms.size < 2) {
+            if (ExistedSynonyms.size < 1) {
                 CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-                this.Synonyms.remove(CID)                               // Remove the set which has only one existed element
                 return CID
             }
         }
