@@ -3,6 +3,7 @@ package top.abr.myaccount
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.Assert.*
 import org.junit.Test
+import java.lang.AssertionError
 import java.security.SecureRandom
 
 class SynonymDictionaryUnitTest {
@@ -50,7 +51,18 @@ class SynonymDictionaryUnitTest {
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
                 val I = QueryResult[i].iterator()
-                while (I.hasNext()) assertTrue(SSet.contains(I.next()))
+                while (I.hasNext()) {
+//                    assertTrue(SSet.contains(I.next()))
+                    val FoundedSynonym = I.next()
+                    if (!SSet.contains(FoundedSynonym)) {
+                        println("================ ERROR OCCURRED ================")
+                        println("FoundedSynonym = $FoundedSynonym")
+                        println("SSet = $SSet")
+                        println("QueryResult[$i] = " + QueryResult[i])
+                        println("================ ERROR OCCURRED ================")
+                        throw AssertionError()
+                    }
+                }
             }
         }
 //        // Round 2: Insert(Word: String, Synonyms: Iterable<String>)
