@@ -29,50 +29,57 @@ class SynonymDictionaryUnitTest {
 
         // Round 1: Insert(Word: String, Synonym: String)
         val SDict = SynonymDictionary()
-        val SLists = ArrayList<ArrayList<String>>()
+        val SSets = ArrayList<HashSet<String>>() // Test data
         // Add test data
         for (SynonymCount in SynonymCounts) {
+            val SSet = HashSet<String>()
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                SSet.add(Synonym)
                 SList.add(Synonym)
                 SDict.Insert(SList[NextInt(0, SList.size)], Synonym)
             }
-            SLists.add(SList)
+            SSets.add(SSet)
         }
         // Find test
-        for (SList in SLists) {
+        for (SSet in SSets) {
             val QueryResult = ArrayList<Iterable<String>>()
-            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group
+            for (Synonym in SSet) { // The query result must be the same when finding with synonyms in the identical synonym group
                 QueryResult.add(SDict.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
-                for (Synonym in SList) assertEquals(Synonym, QueryResult[i].iterator().next())
-                assertFalse(QueryResult[i].iterator().hasNext())
+                while (QueryResult[i].iterator().hasNext()) {
+                    assertTrue(SSet.contains(QueryResult[i].iterator().next()))
+                }
             }
         }
         // Round 2: Insert(Word: String, Synonyms: Iterable<String>)
         SDict.DeleteAll()
-        SLists.clear()
+        SSets.clear()
         // Add test data
         for (SynonymCount in SynonymCounts) {
+            val SSet = HashSet<String>()
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                SSet.add(Synonym)
                 SList.add(Synonym)
             }
             SDict.Insert(SList[NextInt(0, SynonymCount)], SList)
-            SLists.add(SList)
+            SSets.add(SSet)
         }
         // Find test
-        for (SList in SLists) {
+        for (SSet in SSets) {
             val QueryResult = ArrayList<Iterable<String>>()
-            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group
+            for (Synonym in SSet) { // The query result must be the same when finding with synonyms in the identical synonym group
                 QueryResult.add(SDict.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
-                for (Synonym in SList) assertEquals(Synonym, QueryResult[i].iterator().next())
-                assertFalse(QueryResult[i].iterator().hasNext())
+                for (Synonym in SSet) assertEquals(Synonym, QueryResult[i].iterator().next())
+                while (QueryResult[i].iterator().hasNext()) {
+                    assertTrue(SSet.contains(QueryResult[i].iterator().next()))
+                }
             }
         }
     }
