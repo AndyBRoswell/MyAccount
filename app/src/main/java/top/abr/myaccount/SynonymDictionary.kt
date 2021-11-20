@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
-open class SynonymsDictionary {
+open class SynonymDictionary {
     companion object {
         const val NO_ID = 0L
     }
