@@ -39,6 +39,7 @@ class SynonymDictionaryUnitTest {
         val UncoveredSynonymCount = ArrayList<Int>()
         // Prepare test data
         for (i in SynonymCount.indices) {
+            SList.add(ArrayList())
             while (SList[i].size < SynonymCount[i]) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                 if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added is different from others
