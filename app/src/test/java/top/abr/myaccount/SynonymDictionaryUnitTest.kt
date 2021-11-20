@@ -42,7 +42,7 @@ class SynonymDictionaryUnitTest {
         for (SSet in SSets) {
             val FindResult = ArrayList<Iterable<String>>()
             for (Synonym in SSet) { // The query result must be the same when finding with synonyms in the identical synonym group.
-                FindResult.add(SDict1.Find(Synonym)!!)
+                FindResult.add(SDict1.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until FindResult.size) {
 

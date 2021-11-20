@@ -102,7 +102,7 @@ open class SynonymDictionary {
         return NO_ID
     }
 
-    fun Find(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
+    fun GetSynonyms(Word: String): Iterable<String>? = Synonyms[CanonicalID[Word]]
 
     fun SynonymsCount(Word: String): Int {
         val CID = CanonicalID[Word] ?: return 0
