@@ -19,7 +19,8 @@ class SynonymDictionaryUnitTest {
         val MIN_SYNONYM_GROUP_COUNT = 10L
         val MAX_SYNONYM_COUNT = 20
         val MIN_SYNONYM_COUNT = 10
-        val MAX_WORD_LENGTH = 32 + 1
+        val MAX_WORD_LENGTH = 32
+        val MAX_WORD_LENGTH_EXCLUSIVE = 33
         val MIN_WORD_LENGTH = 1
 
         val SynonymGroupCount = NextLongInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
@@ -32,7 +33,7 @@ class SynonymDictionaryUnitTest {
         for (SynonymCount in SynonymCounts) {
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
-                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH_EXCLUSIVE)
                 SList.add(Synonym)
                 SDict.Insert(SList[NextInt(0, SList.size)], Synonym)
             }
@@ -56,12 +57,22 @@ class SynonymDictionaryUnitTest {
         for (SynonymCount in SynonymCounts) {
             val SList = ArrayList<String>()
             for (i in 1..SynonymCount) {
-                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                val Synonym = RandomStringUtils.randomAlphabetic(MIN_WORD_LENGTH, MAX_WORD_LENGTH_EXCLUSIVE)
                 SList.add(Synonym)
             }
             SDict.Insert(SList[NextInt(0, SynonymCount)], SList)
             SLists.add(SList)
         }
         // Find test
+        for (SList in SLists) {
+            val QueryResult = ArrayList<Iterable<String>>()
+            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group
+                QueryResult.add(SDict.GetSynonyms(Synonym)!!)
+            }
+            for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
+                for (Synonym in SList) assertEquals(Synonym, QueryResult[i].iterator().next())
+                assertFalse(QueryResult[i].iterator().hasNext())
+            }
+        }
     }
 }
