@@ -18,7 +18,7 @@ open class SynonymDictionary {
      * @param Synonym The synonym you want to add for <code>Word</code>.
      * <code>Word</code> must be different from <code>Synonym</code>
      */
-    fun Insert(Word: String, Synonym: String) {
+    fun Insert(Word: String, Synonym: String) { // Regardless of Word == Synonym
         var CID = CanonicalID[Word]
         if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
             CID = GenerateCanonicalID()
@@ -48,7 +48,7 @@ open class SynonymDictionary {
         }
         else {
             val ExistedSynonyms = this.Synonyms[CID]!!
-            for (Synonym in Synonyms) {
+            for (Synonym in Synonyms) { // Regardless of Word == Synonym
                 CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
                 ExistedSynonyms.add(Synonym)
             }

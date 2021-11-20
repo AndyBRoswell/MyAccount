@@ -39,12 +39,14 @@ class SynonymDictionaryUnitTest {
         // Find test
         for (SList in SLists) {
             val FindResult = ArrayList<Iterable<String>>()
-            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group.
+            for (Synonym in SList) { // The query result must be the same when finding with synonyms in the identical synonym group
                 FindResult.add(SDict1.GetSynonyms(Synonym)!!)
             }
-            for (i in 0 until FindResult.size) {
-                
+            for (i in 0 until FindResult.size) { // Verify the consistency of each find result
+                for (Synonym in SList) assertEquals(Synonym, FindResult[i].iterator().next())
+                assertFalse(FindResult[i].iterator().hasNext())
             }
         }
+        
     }
 }
