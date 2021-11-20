@@ -25,7 +25,7 @@ class SynonymDictionaryUnitTest {
         val MIN_WORD_LENGTH = 1
 
         val SynonymGroupCount = NextLongRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
-        val SynonymCounts = RandomSource.ints(MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT)
+        val SynonymCounts = RandomSource.ints(SynonymGroupCount, MIN_SYNONYM_COUNT, MAX_SYNONYM_COUNT)
 
         // Round 1: Insert(Word: String, Synonym: String)
         val SDict = SynonymDictionary()
