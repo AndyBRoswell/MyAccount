@@ -76,7 +76,6 @@ class SynonymDictionaryUnitTest {
                 QueryResult.add(SDict.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
-                for (Synonym in SSet) assertEquals(Synonym, QueryResult[i].iterator().next())
                 while (QueryResult[i].iterator().hasNext()) {
                     assertTrue(SSet.contains(QueryResult[i].iterator().next()))
                 }
