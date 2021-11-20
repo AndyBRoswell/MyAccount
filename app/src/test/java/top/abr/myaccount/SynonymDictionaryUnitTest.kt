@@ -5,6 +5,9 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.lang.AssertionError
 import java.security.SecureRandom
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 import kotlin.math.pow
 
 class SynonymDictionaryUnitTest {
@@ -38,7 +41,7 @@ class SynonymDictionaryUnitTest {
         val SLists = ArrayList<ArrayList<String>>()
         val TestCount = ArrayList<ArrayList<Int>>()
         var UncoveredSynonymCount = 0
-        // Add test data
+        // Prepare test data
         for (SynonymCount in SynonymCounts) {
             val SSet = HashSet<String>()
             while (SSet.size < SynonymCount) SSet.add(RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH))
@@ -46,7 +49,9 @@ class SynonymDictionaryUnitTest {
             val SList = ArrayList<String>(SSet)
             SLists.add(SList)
             UncoveredSynonymCount += SList.size
-            
+            TestCount.add(ArrayList<Int>().apply { for (i in 1..SList.size) add(0) })
         }
+        // Start to insert
+        
     }
 }
