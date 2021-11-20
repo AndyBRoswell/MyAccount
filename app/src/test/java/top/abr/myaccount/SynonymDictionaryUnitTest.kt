@@ -15,12 +15,12 @@ class SynonymDictionaryUnitTest {
 
     @Test fun InsertTest() {
         // Range parameters of random data
-        val MAX_SYNONYM_GROUP_COUNT = 20L
-        val MIN_SYNONYM_GROUP_COUNT = 10L
-        val MAX_SYNONYM_COUNT = 20
-        val MIN_SYNONYM_COUNT = 10
-        val MAX_WORD_LENGTH = 32
-        val MAX_WORD_LENGTH_EXCLUSIVE = 33
+        val MAX_SYNONYM_GROUP_COUNT = 4L
+        val MIN_SYNONYM_GROUP_COUNT = 2L
+        val MAX_SYNONYM_COUNT = 4
+        val MIN_SYNONYM_COUNT = 2
+        val MAX_WORD_LENGTH = 8
+        val MAX_WORD_LENGTH_EXCLUSIVE = 9
         val MIN_WORD_LENGTH = 1
 
         val SynonymGroupCount = NextLongInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
