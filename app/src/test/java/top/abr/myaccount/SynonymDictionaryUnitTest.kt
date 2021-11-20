@@ -15,6 +15,10 @@ class SynonymDictionaryUnitTest {
     private fun RandomString(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax)
     private fun RandomStringRInclusive(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
 
+//    @Test fun Demo() {
+//
+//    }
+
     @Test fun InsertTest() {
         // Range parameters of random data
         val MAX_SYNONYM_GROUP_COUNT = 4L
@@ -49,9 +53,8 @@ class SynonymDictionaryUnitTest {
                 QueryResult.add(SDict.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
-                while (QueryResult[i].iterator().hasNext()) {
-                    assertTrue(SSet.contains(QueryResult[i].iterator().next()))
-                }
+                val I = QueryResult[i].iterator()
+                while (I.hasNext()) assertTrue(SSet.contains(I.next()))
             }
         }
         // Round 2: Insert(Word: String, Synonyms: Iterable<String>)
@@ -76,9 +79,8 @@ class SynonymDictionaryUnitTest {
                 QueryResult.add(SDict.GetSynonyms(Synonym)!!)
             }
             for (i in 0 until QueryResult.size) { // Verify the consistency of each query result
-                while (QueryResult[i].iterator().hasNext()) {
-                    assertTrue(SSet.contains(QueryResult[i].iterator().next()))
-                }
+                val I = QueryResult[i].iterator()
+                while (I.hasNext()) assertTrue(SSet.contains(I.next()))
             }
         }
     }
