@@ -45,7 +45,7 @@ class SynonymDictionaryUnitTest {
                 if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added is different from others
             }
             UncoveredSynonymCount.add(SList[i].size)
-            TestCount.add(ArrayList<Int>().apply { for (i in 1..SList[i].size) add(0) })
+            TestCount.add(ArrayList<Int>().apply { for (j in 1..SList[i].size) add(0) })
         }
         // Start to insert
         for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
