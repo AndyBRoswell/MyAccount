@@ -40,7 +40,7 @@ class SynonymDictionaryUnitTest {
         val SSets = ArrayList<HashSet<String>>()
         val SLists = ArrayList<ArrayList<String>>()
         val TestCount = ArrayList<ArrayList<Int>>()
-        var UncoveredSynonymCount = 0
+        val UncoveredSynonymCount = ArrayList<Int>()
         // Prepare test data
         for (SynonymCount in SynonymCounts) {
             val SSet = HashSet<String>()
@@ -48,10 +48,13 @@ class SynonymDictionaryUnitTest {
             SSets.add(SSet)
             val SList = ArrayList<String>(SSet)
             SLists.add(SList)
-            UncoveredSynonymCount += SList.size
+            UncoveredSynonymCount.add(SList.size)
             TestCount.add(ArrayList<Int>().apply { for (i in 1..SList.size) add(0) })
         }
         // Start to insert
-        
+        for (SList in SLists) {
+            
+        }
+        // Start to verify
     }
 }
