@@ -110,7 +110,7 @@ open class SynonymDictionary {
 
     fun GetTotalWordCount() = CanonicalID.size
 
-    fun GetWordGroupCount() = Synonyms.size
+    fun GetSynonymGroupCount() = Synonyms.size
 
     private fun GenerateCanonicalID(): Long = System.nanoTime()
 }
