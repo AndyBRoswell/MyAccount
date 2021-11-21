@@ -14,6 +14,7 @@ class SynonymDictionaryUnitTest {
 
     private fun NextIntRClosed(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
     private fun RandomStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
+    private fun RandomIntArray(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max).toArray()
     private fun RandomIntArrayRClosed(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
 
     @Test fun InsertTest() {
@@ -64,7 +65,7 @@ class SynonymDictionaryUnitTest {
 //                ++TestCount[i][WordIndex]
 //                ++TestCount[i][SynonymIndex]
 //            }
-
+            val REnds = RandomIntArray((0.1 * SList.size).toLong(), 0, SList.size)
         }
         // Start to verify
         for (i in SList.indices) {
