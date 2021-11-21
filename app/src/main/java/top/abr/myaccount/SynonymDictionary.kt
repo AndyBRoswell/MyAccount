@@ -19,17 +19,6 @@ open class SynonymDictionary {
      * <code>Word</code> must be different from <code>Synonym</code>
      */
     fun Insert(Word: String, Synonym: String) { // Regardless of Word == Synonym
-//        var CID = CanonicalID[Word]
-//        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
-//            CID = GenerateCanonicalID()
-//            CanonicalID[Word] = CID
-//            CanonicalID[Synonym] = CID                      // The canonical ID of the synonym is identical to the canonical ID of the specified word
-//            this.Synonyms[CID] = hashSetOf(Word, Synonym)
-//        }
-//        else {
-//            CanonicalID[Synonym] = CID                      // The canonical ID of the synonym is identical to the canonical ID of the specified word
-//            Synonyms[CID]!!.add(Synonym)
-//        }
         var IW = CanonicalID[Word]
         var IS = CanonicalID[Synonym]
         when (((if (IW != null) 1 else 0) shl 1) + (if (IS != null) 1 else 0)) {
