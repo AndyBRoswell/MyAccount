@@ -24,7 +24,7 @@ class SynonymDictionaryUnitTest {
         val MIN_SYNONYM_GROUP_COUNT = 10
         val MAX_SYNONYM_GROUP_SIZE = 20
         val MIN_SYNONYM_GROUP_SIZE = 10
-        val MAX_WORD_LENGTH = 8
+        val MAX_WORD_LENGTH = 2
         val MIN_WORD_LENGTH = 1
         // MAX_SYNONYM_GROUP_SIZE must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
         val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
@@ -53,25 +53,37 @@ class SynonymDictionaryUnitTest {
 //            for (j in 1..SynonymCount[i]) CurrentTestCount.add(0)
 //            TestCount.add(CurrentTestCount)
         }
-//        // Start to insert
-//        for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
-//            while (UncoveredSynonymCount[i] > 0) {
-//                val WordIndex = NextInt(0, SList[i].size)
-//                val SynonymIndex = NextInt(0, SList[i].size)
-//                if (TestCount[i][WordIndex] == 0) --UncoveredSynonymCount[i]
-//                if (TestCount[i][SynonymIndex] == 0) --UncoveredSynonymCount[i]
-//                SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
-//                ++TestCount[i][WordIndex]
-//                ++TestCount[i][SynonymIndex]
-//            }
-//        }
-//        // Start to verify
-//        for (i in SList.indices) {
-//            for (QuerySynonym in SList[i]) {
-//                val QueryResult = SDict.GetSynonyms(QuerySynonym)
-//                for (ExpectedSynonym in SList[i]) assertTrue(QueryResult!!.contains(ExpectedSynonym))
-//                assertEquals(QueryResult!!.size, SList[i].size)
-//            }
-//        }
+        // Start to insert
+        for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
+            while (UncoveredSynonymCount[i] > 0) {
+                val WordIndex = NextInt(0, SList[i].size)
+                val SynonymIndex = NextInt(0, SList[i].size)
+                if (TestCount[i][WordIndex] == 0) --UncoveredSynonymCount[i]
+                if (TestCount[i][SynonymIndex] == 0) --UncoveredSynonymCount[i]
+                SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
+                ++TestCount[i][WordIndex]
+                ++TestCount[i][SynonymIndex]
+            }
+        }
+        // Start to verify
+        for (i in SList.indices) {
+            for (QuerySynonym in SList[i]) {
+                val QueryResult = SDict.GetSynonyms(QuerySynonym)
+                for (ExpectedSynonym in SList[i]) {
+//                    assertTrue(QueryResult!!.contains(ExpectedSynonym))
+                    if (!QueryResult!!.contains(ExpectedSynonym)) {
+                        println("ExpectedSynonym = $ExpectedSynonym")
+                        println("CID = " + SDict.GetCanonicalID(ExpectedSynonym))
+                        println("SList[$i] = " + SList[i])
+                        var CIDs = SList[i].map { SDict.GetCanonicalID(it) }
+                        println("CIDs = $CIDs")
+                        println("QueryResult = $QueryResult")
+                        CIDs = QueryResult.map { SDict.GetCanonicalID(it) }
+                        println("CIDs = $CIDs")
+                    }
+                }
+                assertEquals(QueryResult!!.size, SList[i].size)
+            }
+        }
     }
 }
