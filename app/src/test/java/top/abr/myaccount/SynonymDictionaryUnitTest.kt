@@ -3,6 +3,7 @@ package top.abr.myaccount
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.Assert.*
 import org.junit.Test
+import java.lang.AssertionError
 import java.security.SecureRandom
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -80,6 +81,7 @@ class SynonymDictionaryUnitTest {
                         println("QueryResult = $QueryResult")
                         CIDs = QueryResult.map { SDict.GetCanonicalID(it) }
                         println("CIDs = $CIDs")
+                        throw AssertionError()
                     }
                 }
                 assertEquals(QueryResult!!.size, SList[i].size)

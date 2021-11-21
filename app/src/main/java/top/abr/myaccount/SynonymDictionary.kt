@@ -58,22 +58,22 @@ open class SynonymDictionary {
      * @param Synonyms The group of synonyms you want to add for <code>Word</code>.
      * If <code>Synonyms.size == 1</code> and <code>Word</code> is identical to this only synonym, then the insertion is skipped.
      */
-    fun Insert(Word: String, Synonyms: Iterable<String>) {
-        var CID = CanonicalID[Word]
-        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
-            CID = GenerateCanonicalID()
-            CanonicalID[Word] = CID
-            this.Synonyms[CID] = hashSetOf(Word)
-            this.Synonyms[CID]!!.addAll(Synonyms)
-        }
-        else {
-            val ExistedSynonyms = this.Synonyms[CID]!!
-            for (Synonym in Synonyms) { // Regardless of Word == Synonym
-                CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
-                ExistedSynonyms.add(Synonym)
-            }
-        }
-    }
+//    fun Insert(Word: String, Synonyms: Iterable<String>) {
+//        var CID = CanonicalID[Word]
+//        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
+//            CID = GenerateCanonicalID()
+//            CanonicalID[Word] = CID
+//            this.Synonyms[CID] = hashSetOf(Word)
+//            this.Synonyms[CID]!!.addAll(Synonyms)
+//        }
+//        else {
+//            val ExistedSynonyms = this.Synonyms[CID]!!
+//            for (Synonym in Synonyms) { // Regardless of Word == Synonym
+//                CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
+//                ExistedSynonyms.add(Synonym)
+//            }
+//        }
+//    }
 
     /**
      * Delete a synonym for the specified word.
@@ -105,19 +105,19 @@ open class SynonymDictionary {
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
      * Otherwise return NO_ID.
      */
-    fun Delete(Word: String, Synonyms: Iterable<String>): Long {
-        val CID = CanonicalID[Word] ?: return NO_ID
-        val ExistedSynonyms = this.Synonyms[CID]!!
-        for (Synonym in Synonyms) {
-            CanonicalID.remove(Synonym)
-            ExistedSynonyms.remove(Synonym)
-            if (ExistedSynonyms.size < 1) {
-                CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-                return CID
-            }
-        }
-        return NO_ID
-    }
+//    fun Delete(Word: String, Synonyms: Iterable<String>): Long {
+//        val CID = CanonicalID[Word] ?: return NO_ID
+//        val ExistedSynonyms = this.Synonyms[CID]!!
+//        for (Synonym in Synonyms) {
+//            CanonicalID.remove(Synonym)
+//            ExistedSynonyms.remove(Synonym)
+//            if (ExistedSynonyms.size < 1) {
+//                CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
+//                return CID
+//            }
+//        }
+//        return NO_ID
+//    }
 
     /**
      * **`<DESTRUCTIVE`>** Delete all entries in the dictionary.
