@@ -37,7 +37,7 @@ open class SynonymDictionary {
                 Synonyms[IW]!!.add(Synonym)
             }
             0b11 -> {
-                if (IW == IS) return                                    // Word and Synonym are both existed in this dict
+                if (IW == IS) return                                    // Word and Synonym are both existed in the same synonym group
                 else {
                     when (MergeEnabled) {
                         true -> {
