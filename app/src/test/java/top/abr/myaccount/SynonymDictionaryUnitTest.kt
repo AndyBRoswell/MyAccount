@@ -24,10 +24,10 @@ class SynonymDictionaryUnitTest {
         val MIN_SYNONYM_GROUP_COUNT = 10
         val MAX_SYNONYM_GROUP_SIZE = 20
         val MIN_SYNONYM_GROUP_SIZE = 10
-        val MAX_WORD_LENGTH = 1
+        val MAX_WORD_LENGTH = 8
         val MIN_WORD_LENGTH = 1
-        // MAX_SYNONYM_GROUP_SIZE must be less than pow(C, MIN_WORD_LENGTH), should be MUCH LESS THAN pow(C, MIN_WORD_LENGTH), C = 52 when randomAlphabetic() is used
-        val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MIN_WORD_LENGTH.toDouble()).toInt()
+        // MAX_SYNONYM_GROUP_SIZE must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
+        val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
         assertTrue(MAX_SYNONYM_GROUP_SIZE < MAX_ALL_SYNONYMS_COUNT)
         val SynonymGroupCount = NextIntRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
         val SynonymCount = RandomSource.ints(SynonymGroupCount.toLong(), MIN_SYNONYM_GROUP_SIZE, MAX_SYNONYM_GROUP_SIZE).toArray()
@@ -43,8 +43,8 @@ class SynonymDictionaryUnitTest {
             SList.add(ArrayList())
             while (SList[i].size < SynonymCount[i]) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                // SynonymsForTest.size must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
                 if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added is different from others
-                // SynonymsForTest.size must be less than pow(C, MIN_WORD_LENGTH), should be MUCH LESS THAN pow(C, MIN_WORD_LENGTH), C = 52 when randomAlphabetic() is used
                 else assertTrue(SynonymsForTest.size < MAX_ALL_SYNONYMS_COUNT)
             }
             UncoveredSynonymCount.add(SynonymCount[i])
