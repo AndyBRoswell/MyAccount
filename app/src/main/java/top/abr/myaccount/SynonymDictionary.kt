@@ -18,7 +18,7 @@ open class SynonymDictionary {
      * @param Synonym The synonym you want to add for <code>Word</code>.
      * <code>Word</code> must be different from <code>Synonym</code>
      */
-    fun Insert(Word: String, Synonym: String) { // Regardless of Word == Synonym
+    fun Insert(Word: String, Synonym: String, MergeEnabled: Boolean = false) { // Regardless of Word == Synonym
         var IW = CanonicalID[Word]
         var IS = CanonicalID[Synonym]
         when (((if (IW != null) 1 else 0) shl 1) + (if (IS != null) 1 else 0)) {
@@ -36,7 +36,17 @@ open class SynonymDictionary {
                 CanonicalID[Synonym] = IW!!
                 Synonyms[IW]!!.add(Synonym)
             }
-            // 0b11: if IW == IS then ignore else error
+            0b11 -> {
+                if (IW == IS) return // Word and Synonym are both existed in this dict
+                else {
+                    when (MergeEnabled) {
+                        true -> {
+                            val CW = Synonyms[Word]!!.size
+                            val CS = Synonyms[Synonym]!!.size
+                        }
+                    }
+                }
+            }
         }
     }
 

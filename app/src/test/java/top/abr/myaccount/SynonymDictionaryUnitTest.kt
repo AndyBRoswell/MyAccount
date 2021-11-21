@@ -56,7 +56,8 @@ class SynonymDictionaryUnitTest {
         }
         // Start to insert
         for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
-            if (SList[i].size == 1) SDict.Insert(SList[i][0], SList[i][0])
+            // Either select "Disable merge" part or select "Enable merge" part
+            if (SList[i].size == 1) SDict.Insert(SList[i][0], SList[i][0]) // Disable merge
             else for (j in 1 until SList[i].size) { // Disable merge
                 SDict.Insert(SList[i][j - 1], SList[i][j])
             }
