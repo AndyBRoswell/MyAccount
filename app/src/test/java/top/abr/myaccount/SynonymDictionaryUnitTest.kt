@@ -14,7 +14,7 @@ class SynonymDictionaryUnitTest {
 
     private fun NextIntRInclusive(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
     private fun RandomStringRInclusive(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
-    private fun RandomIntSequenceRInclusive(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
+    private fun RandomIntArrayRInclusive(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
 
     @Test fun InsertTest() {
         // Range parameters of random data
@@ -28,7 +28,7 @@ class SynonymDictionaryUnitTest {
         val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
         assertTrue(MAX_SYNONYM_GROUP_SIZE < MAX_ALL_SYNONYMS_COUNT)
         val SynonymGroupCount = NextIntRInclusive(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
-        val SynonymCount = RandomIntSequenceRInclusive(SynonymGroupCount.toLong(), MIN_SYNONYM_GROUP_SIZE, MAX_SYNONYM_GROUP_SIZE)
+        val SynonymCount = RandomIntArrayRInclusive(SynonymGroupCount.toLong(), MIN_SYNONYM_GROUP_SIZE, MAX_SYNONYM_GROUP_SIZE)
 
         // Round 1: Insert(Word: String, Synonym: String)
         val SDict = SynonymDictionary()
@@ -64,7 +64,7 @@ class SynonymDictionaryUnitTest {
 //                ++TestCount[i][WordIndex]
 //                ++TestCount[i][SynonymIndex]
 //            }
-            
+
         }
         // Start to verify
         for (i in SList.indices) {
