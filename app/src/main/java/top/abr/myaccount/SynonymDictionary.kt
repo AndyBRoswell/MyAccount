@@ -25,7 +25,7 @@ open class SynonymDictionary {
             0b00 -> {
                 IW = GenerateCanonicalID()
                 CanonicalID[Word] = IW
-                CanonicalID[Synonym] = IW   // The canonical ID of the synonym is identical to the canonical ID of the specified word
+                CanonicalID[Synonym] = IW               // The canonical ID of the synonym is identical to the canonical ID of the specified word
                 Synonyms[IW] = hashSetOf(Word, Synonym)
             }
             0b01 -> {
@@ -37,15 +37,13 @@ open class SynonymDictionary {
                 Synonyms[IW]!!.add(Synonym)
             }
             0b11 -> {
-                if (IW == IS) return                                // Word and Synonym are both existed in this dict
+                if (IW == IS) return                                    // Word and Synonym are both existed in this dict
                 else {
                     when (MergeEnabled) {
                         true -> {
                             val SW = Synonyms[IW]!!
                             val SS = Synonyms[IS]!!
-                            val CW = SW.size;
-                            val CS = SS.size
-                            if (CW >= CS) {
+                            if (SW.size >= SS.size) {
                                 for (CurrentSynonym in SS) {
                                     CanonicalID[CurrentSynonym] = IW!!
                                     SW.add(CurrentSynonym)

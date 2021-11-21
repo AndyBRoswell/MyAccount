@@ -21,11 +21,11 @@ class SynonymDictionaryUnitTest {
 
     @Test fun InsertTest() {
         // Range parameters of random data
-        val MAX_SYNONYM_GROUP_COUNT = 4096
-        val MIN_SYNONYM_GROUP_COUNT = 4096
-        val MAX_SYNONYM_GROUP_SIZE = 1024
-        val MIN_SYNONYM_GROUP_SIZE = 1
-        val MAX_WORD_LENGTH = 64
+        val MAX_SYNONYM_GROUP_COUNT = 20
+        val MIN_SYNONYM_GROUP_COUNT = 10
+        val MAX_SYNONYM_GROUP_SIZE = 20
+        val MIN_SYNONYM_GROUP_SIZE = 10
+        val MAX_WORD_LENGTH = 2
         val MIN_WORD_LENGTH = 1
         // MAX_SYNONYM_GROUP_SIZE must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
         val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
