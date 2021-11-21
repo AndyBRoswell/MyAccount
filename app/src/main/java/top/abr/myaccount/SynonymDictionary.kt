@@ -19,11 +19,13 @@ open class SynonymDictionary {
      * <code>Word</code> must be different from <code>Synonym</code>
      */
     fun Insert(Word: String, Synonym: String, MergeEnabled: Boolean = false) {
-        var IW = CanonicalID[Word]; var IS = CanonicalID[Synonym]
+        var IW = CanonicalID[Word]
+        var IS = CanonicalID[Synonym]
         when (((if (IW != null) 1 else 0) shl 1) + (if (IS != null) 1 else 0)) {
             0b00 -> {
                 IW = GenerateCanonicalID()
-                CanonicalID[Word] = IW; CanonicalID[Synonym] = IW   // The canonical ID of the synonym is identical to the canonical ID of the specified word
+                CanonicalID[Word] = IW
+                CanonicalID[Synonym] = IW   // The canonical ID of the synonym is identical to the canonical ID of the specified word
                 Synonyms[IW] = hashSetOf(Word, Synonym)
             }
             0b01 -> {
@@ -39,13 +41,23 @@ open class SynonymDictionary {
                 else {
                     when (MergeEnabled) {
                         true -> {
-                            val SW = Synonyms[IW]!!; val SS = Synonyms[IS]!!
-                            val CW = SW.size; val CS = SS.size
+                            val SW = Synonyms[IW]!!
+                            val SS = Synonyms[IS]!!
+                            val CW = SW.size;
+                            val CS = SS.size
                             if (CW >= CS) {
-                                
+                                for (CurrentSynonym in SS) {
+                                    CanonicalID[CurrentSynonym] = IW!!
+                                    SW.add(CurrentSynonym)
+                                }
+                                Synonyms.remove(IS)
                             }
                             else {
-
+                                for (CurrentSynonym in SW) {
+                                    CanonicalID[CurrentSynonym] = IS!!
+                                    SS.add(CurrentSynonym)
+                                }
+                                Synonyms.remove(IW)
                             }
                         }
                     }
