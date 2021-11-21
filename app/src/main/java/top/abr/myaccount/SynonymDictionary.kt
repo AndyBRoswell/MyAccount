@@ -47,7 +47,7 @@ open class SynonymDictionary {
                 CanonicalID[Synonym] = IW!!
                 Synonyms[IW]!!.add(Synonym)
             }
-            // Ob11: if IW == IS then ignore else error
+            // 0b11: if IW == IS then ignore else error
         }
 
     }
@@ -141,4 +141,6 @@ open class SynonymDictionary {
     fun GetSynonymGroupCount() = Synonyms.size
 
     private fun GenerateCanonicalID(): Long = System.nanoTime()
+
+    fun AllSynonyms() = Synonyms
 }

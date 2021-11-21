@@ -45,7 +45,7 @@ class SynonymDictionaryUnitTest {
             while (SList[i].size < SynonymCount[i]) {
                 val Synonym = RandomStringRInclusive(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                 // SynonymsForTest.size must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
-                if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added is different from others
+                if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)                 // Each synonym which will be added for tests is different from others
                 else assertTrue(SynonymsForTest.size < MAX_ALL_SYNONYMS_COUNT)
             }
             UncoveredSynonymCount.add(SynonymCount[i])
@@ -59,8 +59,8 @@ class SynonymDictionaryUnitTest {
             while (UncoveredSynonymCount[i] > 0) {
                 val WordIndex = NextInt(0, SList[i].size)
                 val SynonymIndex = NextInt(0, SList[i].size)
-                if (TestCount[i][WordIndex] == 0) --UncoveredSynonymCount[i]
-                if (TestCount[i][SynonymIndex] == 0) --UncoveredSynonymCount[i]
+                if (TestCount[i][WordIndex] == 0) --UncoveredSynonymCount[i]    // Now this word (synonym) has been covered
+                if (TestCount[i][SynonymIndex] == 0) --UncoveredSynonymCount[i] // Now this word (synonym) has been covered
                 SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
                 ++TestCount[i][WordIndex]
                 ++TestCount[i][SynonymIndex]
@@ -75,12 +75,15 @@ class SynonymDictionaryUnitTest {
                     if (!QueryResult!!.contains(ExpectedSynonym)) {
                         println("ExpectedSynonym = $ExpectedSynonym")
                         println("CID = " + SDict.GetCanonicalID(ExpectedSynonym))
-                        println("SList[$i] = " + SList[i])
+                        println("SList[$i] = ${SList[i]}")
                         var CIDs = SList[i].map { SDict.GetCanonicalID(it) }
                         println("CIDs = $CIDs")
                         println("QueryResult = $QueryResult")
                         CIDs = QueryResult.map { SDict.GetCanonicalID(it) }
                         println("CIDs = $CIDs")
+                        println("================================================================")
+                        println("SList = $SList")
+                        println("AllSynonyms() = ${SDict.AllSynonyms()}")
                         throw AssertionError()
                     }
                 }
