@@ -19,13 +19,11 @@ open class SynonymDictionary {
      * <code>Word</code> must be different from <code>Synonym</code>
      */
     fun Insert(Word: String, Synonym: String, MergeEnabled: Boolean = false) {
-        var IW = CanonicalID[Word]
-        var IS = CanonicalID[Synonym]
+        var IW = CanonicalID[Word]; var IS = CanonicalID[Synonym]
         when (((if (IW != null) 1 else 0) shl 1) + (if (IS != null) 1 else 0)) {
             0b00 -> {
                 IW = GenerateCanonicalID()
-                CanonicalID[Word] = IW
-                CanonicalID[Synonym] = IW                       // The canonical ID of the synonym is identical to the canonical ID of the specified word
+                CanonicalID[Word] = IW; CanonicalID[Synonym] = IW   // The canonical ID of the synonym is identical to the canonical ID of the specified word
                 Synonyms[IW] = hashSetOf(Word, Synonym)
             }
             0b01 -> {
@@ -37,12 +35,12 @@ open class SynonymDictionary {
                 Synonyms[IW]!!.add(Synonym)
             }
             0b11 -> {
-                if (IW == IS) return                            // Word and Synonym are both existed in this dict
+                if (IW == IS) return                                // Word and Synonym are both existed in this dict
                 else {
                     when (MergeEnabled) {
                         true -> {
-                            val CW = Synonyms[IW]!!.size
-                            val CS = Synonyms[IS]!!.size
+                            val SW = Synonyms[IW]!!; val SS = Synonyms[IS]!!
+                            val CW = SW.size; val CS = SS.size
                             if (CW >= CS) {
                                 
                             }
