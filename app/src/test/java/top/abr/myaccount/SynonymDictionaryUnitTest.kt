@@ -66,6 +66,8 @@ class SynonymDictionaryUnitTest {
 //                ++TestCount[i][SynonymIndex]
 //            }
             val REnds = RandomIntArray((0.1 * SList.size).toLong(), 0, SList.size)
+            val Intervals = ArrayList<Pair<Int, Int>>()
+            
         }
         // Start to verify
         for (i in SList.indices) {
