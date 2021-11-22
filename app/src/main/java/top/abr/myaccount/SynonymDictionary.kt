@@ -92,10 +92,11 @@ open class SynonymDictionary {
             }
         }
         QueryResult.add(NonexistentSynonyms)
+        if (!MergeEnabled and (QueryResult.size > 2)) return    // Merge disabled and found 2 or more existed synonym groups
         QueryResult.sortByDescending { it!!.size }
         val IndexOfNonexistentSynonyms = QueryResult.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
         val IndexOfBiggestSynonymGroup = if (IndexOfNonexistentSynonyms == 0) 1 else 0
-
+        
     }
 
     /**
