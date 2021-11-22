@@ -5,6 +5,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.lang.AssertionError
 import java.security.SecureRandom
+import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 import kotlin.math.max
@@ -13,6 +14,7 @@ import kotlin.math.pow
 class SynonymDictionaryUnitTest {
     private val RandomSource = SecureRandom.getInstanceStrong()
 
+    private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
     private fun NextIntRClosed(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
     private fun RandomStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
     private fun RandomIntArray(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max).toArray()
@@ -49,10 +51,11 @@ class SynonymDictionaryUnitTest {
         for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
             val k = max((0.1 * SList[i].size).toLong(), 2L)
             val Interval = ArrayList<Pair<Int, Int>>()
-            println("SList[i].size = ${SList.size}")
+//            println("SList[i].size = ${SList.size}")
             if (SList[i].size > 1) {
-                val REnd = RandomIntArray(k - 1, 0, SList[i].size - 1)
-                REnd.sort()                                                                 // Ascending order
+                val REndTreeSet = TreeSet<Int>()
+                while (REndTreeSet.size < k - 1) REndTreeSet.add(NextInt(0, SList[i].size - 1))
+                val REnd = REndTreeSet.toIntArray()
 //                println("REnd = $REnd")
                 Interval.apply {                                                            // generate k closed intervals, k >= 2
                     add(Pair(0, REnd[0]))
@@ -61,14 +64,14 @@ class SynonymDictionaryUnitTest {
                 }
             }
             else Interval.add(Pair(0, 0))
-            println("Interval = $Interval")
+//            println("Interval = $Interval")
             for (CurrentInterval in Interval) { // Usual insertion test
                 for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1])
             }
             for (j in 0 until Interval.size - 1) { // Merge test
                 val WordIndex = NextIntRClosed(Interval[j].first, Interval[j].second)
                 val SynonymIndex = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
-                println("[WordIndex, SynonymIndex] = [$WordIndex, $SynonymIndex]")
+//                println("[WordIndex, SynonymIndex] = [$WordIndex, $SynonymIndex]")
                 SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
             }
         }
