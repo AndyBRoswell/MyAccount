@@ -34,12 +34,10 @@ class SynonymDictionaryUnitTest {
         for (RepeatCount in 1..10) { // Repeat Count of this test
             val SynonymGroupCount = NextIntRClosed(MIN_SYNONYM_GROUP_COUNT, MAX_SYNONYM_GROUP_COUNT)
             val SynonymCount = RandomIntArrayRClosed(SynonymGroupCount.toLong(), MIN_SYNONYM_GROUP_SIZE, MAX_SYNONYM_GROUP_SIZE)
-
-            // Round 1: Insert(Word: String, Synonym: String); Delete(Word: String, Synonym: String)
+            // Prepare test data
             val SDict = SynonymDictionary()
             val SynonymsForTest = HashSet<String>()
             val SList = ArrayList<ArrayList<String>>()
-            // Prepare test data
             for (i in SynonymCount.indices) {
                 SList.add(ArrayList())
                 while (SList[i].size < SynonymCount[i]) {
@@ -98,5 +96,9 @@ class SynonymDictionaryUnitTest {
                 SList[i].removeAt(0)
             }
         }
+    }
+
+    @Test fun GroupInsertionAndGroupDeletion() {
+
     }
 }
