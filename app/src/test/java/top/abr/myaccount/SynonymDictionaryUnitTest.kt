@@ -17,16 +17,15 @@ class SynonymDictionaryUnitTest {
     private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
     private fun NextIntRClosed(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
     private fun RandomStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
-    private fun RandomIntArray(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max).toArray()
     private fun RandomIntArrayRClosed(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
 
     @Test fun InsertTest() {
         // Range parameters of random data
-        val MAX_SYNONYM_GROUP_COUNT = 64
-        val MIN_SYNONYM_GROUP_COUNT = 16
-        val MAX_SYNONYM_GROUP_SIZE = 64
-        val MIN_SYNONYM_GROUP_SIZE = 16
-        val MAX_WORD_LENGTH = 32
+        val MAX_SYNONYM_GROUP_COUNT = 1024
+        val MIN_SYNONYM_GROUP_COUNT = 64
+        val MAX_SYNONYM_GROUP_SIZE = 1024
+        val MIN_SYNONYM_GROUP_SIZE = 64
+        val MAX_WORD_LENGTH = 64
         val MIN_WORD_LENGTH = 1
         // MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH), C = 52 when randomAlphabetic() is used
         val MAX_ALL_SYNONYMS_COUNT = 52.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
