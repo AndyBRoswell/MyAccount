@@ -82,14 +82,15 @@ open class SynonymDictionary {
      * Add a group of synonyms.
      */
     fun Insert(Synonyms: Iterable<String>, MergeEnabled: Boolean = false) {
-        val SynonymGroup = ArrayList<Pair<Long, HashSet<String>?>>()
+        val SynonymGroupSet = HashSet<Pair<Long, HashSet<String>?>>()
         val NonexistentSynonyms = HashSet<String>()
         for (Synonym in Synonyms) {
             when (val CID = CanonicalID[Synonym]) {
                 null -> NonexistentSynonyms.add(Synonym)
-                else -> SynonymGroup.add(Pair(CID, this.Synonyms[CID]))
+                else -> SynonymGroupSet.add(Pair(CID, this.Synonyms[CID]))
             }
         }
+        val SynonymGroup = SynonymGroupSet.toTypedArray()
         if (SynonymGroup.size > 0) {
             if (!MergeEnabled and (SynonymGroup.size > 1)) return    // Merge disabled and found 2 or more existed synonym groups
             SynonymGroup.sortByDescending { it.second!!.size }
