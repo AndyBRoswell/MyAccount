@@ -102,6 +102,10 @@ open class SynonymDictionary {
                 }
                 this.Synonyms.remove(SynonymGroup[i].first)
             }
+            for (Synonym in NonexistentSynonyms) { // Add nonexistent synonyms (i.e. new synonyms)
+                CanonicalID[Synonym] = CID
+                BiggestSynonymGroup.second.add(Synonym)
+            }
         }
     }
 
