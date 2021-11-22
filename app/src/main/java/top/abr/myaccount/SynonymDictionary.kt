@@ -23,7 +23,7 @@ open class SynonymDictionary {
      */
     fun Insert(Word: String, Synonym: String, MergeEnabled: Boolean = false) {
         var IW = CanonicalID[Word]
-        var IS = CanonicalID[Synonym]
+        val IS = CanonicalID[Synonym]
         when (((if (IW != null) 1 else 0) shl 1) + (if (IS != null) 1 else 0)) {
             0b00 -> {
                 IW = GenerateCanonicalID()
@@ -61,6 +61,7 @@ open class SynonymDictionary {
                                 Synonyms.remove(IW)
                             }
                         }
+                        false -> {}
                     }
                 }
             }
