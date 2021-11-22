@@ -78,6 +78,26 @@ open class SynonymDictionary {
     }
 
     /**
+     * Add a group of synonyms.
+     */
+    fun Insert(SynonymGroup: Iterable<String>) {
+        val QueryResult = ArrayList<HashSet<String>?>()
+        val NonexistentSynonyms = HashSet<String>()
+        for (Synonym in SynonymGroup) {
+            val CID = CanonicalID[Synonym]
+            when (CID) {
+                null -> NonexistentSynonyms.add(Synonym)
+                else -> QueryResult.add(Synonyms[CID])
+            }
+        }
+        QueryResult.add(NonexistentSynonyms)
+        QueryResult.sortBy { it!!.size }
+        val IndexOfNonexistentSynonyms = QueryResult.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
+        val IndexOfBiggestSynonymGroup = if (IndexOfNonexistentSynonyms == 0) 1 else 0
+        
+    }
+
+    /**
      * Delete a synonym for the specified word.
      * @param Word The word you want to delete a synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.

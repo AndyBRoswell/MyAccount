@@ -52,7 +52,7 @@ class SynonymDictionaryUnitTest {
                 if (SList[i].size > 1) {
                     val k = max((0.1 * SList[i].size).toLong(), 2L)
                     val Interval = ArrayList<Pair<Int, Int>>()
-                    val REndTreeSet = TreeSet<Int>()
+                    val REndTreeSet = TreeSet<Int>() // Each right end should be unique
                     while (REndTreeSet.size < k - 1) REndTreeSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndTreeSet.toIntArray()
                     Interval.apply { // generate k closed intervals, k >= 2
