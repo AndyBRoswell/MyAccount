@@ -102,13 +102,13 @@ open class SynonymDictionary {
      */
     fun Delete(Word: String, Synonym: String): Long {
         val IW = CanonicalID[Word] ?: return NO_ID
-        val IS = CanonicalID[Synonym] ?: return NO_ID
+        CanonicalID[Synonym] ?: return NO_ID
         CanonicalID.remove(Synonym)
         val ExistedSynonyms = Synonyms[IW]!!
         ExistedSynonyms.remove(Synonym)
         if (ExistedSynonyms.size < 1) {
             CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-            return IW
+            return IW                                               // This ID won't exist in this dictionary any more.
         }
         return NO_ID
     }
