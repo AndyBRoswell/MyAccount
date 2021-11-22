@@ -81,22 +81,27 @@ open class SynonymDictionary {
     /**
      * Add a group of synonyms.
      */
-    fun Insert(SynonymGroup: Iterable<String>, MergeEnabled: Boolean = false) {
-        val QueryResult = ArrayList<HashSet<String>?>()
+    fun Insert(Synonyms: Iterable<String>, MergeEnabled: Boolean = false) {
+        val SynonymGroup = ArrayList<HashSet<String>?>()
         val NonexistentSynonyms = HashSet<String>()
-        for (Synonym in SynonymGroup) {
-            val CID = CanonicalID[Synonym]
-            when (CID) {
+        for (Synonym in Synonyms) {
+            when (val CID = CanonicalID[Synonym]) {
                 null -> NonexistentSynonyms.add(Synonym)
-                else -> QueryResult.add(Synonyms[CID])
+                else -> SynonymGroup.add(this.Synonyms[CID])
             }
         }
-        QueryResult.add(NonexistentSynonyms)
-        if (!MergeEnabled and (QueryResult.size > 2)) return    // Merge disabled and found 2 or more existed synonym groups
-        QueryResult.sortByDescending { it!!.size }
-        val IndexOfNonexistentSynonyms = QueryResult.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
+        SynonymGroup.add(NonexistentSynonyms)
+        if (!MergeEnabled and (SynonymGroup.size > 2)) return    // Merge disabled and found 2 or more existed synonym groups
+        SynonymGroup.sortByDescending { it!!.size }
+        val IndexOfNonexistentSynonyms = SynonymGroup.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
         val IndexOfBiggestSynonymGroup = if (IndexOfNonexistentSynonyms == 0) 1 else 0
-        
+        val CID = CanonicalID[IndexOfBiggestSynonymGroup[0]]
+        for (i in SynonymGroup.indices) { // Merge
+            if ((i == IndexOfNonexistentSynonyms) or (i == IndexOfBiggestSynonymGroup)) continue
+            for (Synonym in SynonymGroup[i]!!) {
+                
+            }
+        }
     }
 
     /**
