@@ -7,6 +7,7 @@ import java.lang.AssertionError
 import java.security.SecureRandom
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
+import kotlin.math.max
 import kotlin.math.pow
 
 class SynonymDictionaryUnitTest {
@@ -65,8 +66,13 @@ class SynonymDictionaryUnitTest {
 //                ++TestCount[i][WordIndex]
 //                ++TestCount[i][SynonymIndex]
 //            }
-            val REnds = RandomIntArray((0.1 * SList.size).toLong(), 0, SList.size)
-            val Intervals = ArrayList<Pair<Int, Int>>()
+            val k = max((0.1 * SList.size).toLong(), 2L)                        // k >= 2
+            val REnd = RandomIntArray(k - 1, 0, SList.size)
+            val Intervals = ArrayList<Pair<Int, Int>>().apply {                     // generate k intervals
+                add(Pair(0, REnd[0]))
+                for (j in 0 until (k - 2).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                add(Pair(REnd[k - 2], SList.size - 1))
+            }
             
         }
         // Start to verify
