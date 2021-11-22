@@ -18,7 +18,7 @@ class SynonymDictionaryUnitTest {
     private fun RandomStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAscii(Lmin, Lmax + 1)
     private fun RandomIntArrayRClosed(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
 
-    @Test fun InsertionAndDeletion() {
+    fun InsertionAndDeletion() {
         // Range parameters of random data
         val MAX_SYNONYM_GROUP_COUNT = 1024
         val MIN_SYNONYM_GROUP_COUNT = 1024
@@ -67,7 +67,7 @@ class SynonymDictionaryUnitTest {
                         SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex], true)
                     }
                 }
-                else SDict.Insert(SList[i][0], SList[i][0])
+                else SDict.Insert(SList[i][0], SList[i][0], true)
             }
             // Start to verify
             for (i in SList.indices) {
@@ -98,7 +98,7 @@ class SynonymDictionaryUnitTest {
         }
     }
 
-    fun GroupInsertionAndGroupDeletion() {
+    @Test fun GroupInsertionAndGroupDeletion() {
         // Range parameters of random data
         val MAX_SYNONYM_GROUP_COUNT = 20
         val MIN_SYNONYM_GROUP_COUNT = 10
@@ -147,7 +147,7 @@ class SynonymDictionaryUnitTest {
                         val Right = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
                         SDict.Insert(SList[i].subList(Left, Right + 1))
                     }
-
+                    SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
                 }
                 else SDict.Insert(SList[i], true)
             }
