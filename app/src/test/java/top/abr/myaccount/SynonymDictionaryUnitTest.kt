@@ -3,7 +3,6 @@ package top.abr.myaccount
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.Assert.*
 import org.junit.Test
-import java.lang.AssertionError
 import java.security.SecureRandom
 import java.util.*
 import kotlin.collections.ArrayList
@@ -50,27 +49,23 @@ class SynonymDictionaryUnitTest {
             }
             // Start to insert
             for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
-//            println("SList[i].size = ${SList.size}")
                 if (SList[i].size > 1) {
                     val k = max((0.1 * SList[i].size).toLong(), 2L)
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndTreeSet = TreeSet<Int>()
                     while (REndTreeSet.size < k - 1) REndTreeSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndTreeSet.toIntArray()
-//                println("REnd = $REnd")
                     Interval.apply { // generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
                         for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - 1))
                     }
-//                println("Interval = $Interval")
                     for (CurrentInterval in Interval) { // Usual insertion test
                         for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1])
                     }
                     for (j in 0 until Interval.size - 1) { // Merge test
                         val WordIndex = NextIntRClosed(Interval[j].first, Interval[j].second)
                         val SynonymIndex = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
-//                    println("[WordIndex, SynonymIndex] = [$WordIndex, $SynonymIndex]")
                         SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
                     }
                 }
@@ -82,20 +77,6 @@ class SynonymDictionaryUnitTest {
                     val QueryResult = SDict.GetSynonyms(QuerySynonym)
                     for (ExpectedSynonym in SList[i]) {
                         assertTrue(QueryResult!!.contains(ExpectedSynonym))
-//                    if (!QueryResult!!.contains(ExpectedSynonym)) {
-//                        println("ExpectedSynonym = $ExpectedSynonym")
-//                        println("CID = " + SDict.GetCanonicalID(ExpectedSynonym))
-//                        println("SList[$i] = ${SList[i]}")
-//                        var CIDs = SList[i].map { SDict.GetCanonicalID(it) }
-//                        println("CIDs = $CIDs")
-//                        println("QueryResult = $QueryResult")
-//                        CIDs = QueryResult.map { SDict.GetCanonicalID(it) }
-//                        println("CIDs = $CIDs")
-//                        println("================================================================")
-//                        println("SList = $SList")
-//                        println("AllSynonyms() = ${SDict.AllSynonyms()}")
-//                        throw AssertionError()
-//                    }
                     }
                     assertEquals(QueryResult!!.size, SList[i].size)
                 }
@@ -113,8 +94,6 @@ class SynonymDictionaryUnitTest {
                     assertEquals(QueryResult!!.size, SList[i].size)
                 }
                 assertEquals(SDict.Delete(SList[i][0], SList[i][0]), CID)
-//                println("SList[$i][0] = ${SList[i][0]}")
-//                SDict.GetSynonyms(SList[i][0])
                 assertNull(SDict.GetSynonyms(SList[i][0]))
                 SList[i].removeAt(0)
             }

@@ -73,22 +73,9 @@ open class SynonymDictionary {
      * @param Synonyms The group of synonyms you want to add for <code>Word</code>.
      * If <code>Synonyms.size == 1</code> and <code>Word</code> is identical to this only synonym, then the insertion is skipped.
      */
-//    fun Insert(Word: String, Synonyms: Iterable<String>) {
-//        var CID = CanonicalID[Word]
-//        if (CID == null) { // Allocate a new canonical ID for the specified word if it doesn't appear in this dict
-//            CID = GenerateCanonicalID()
-//            CanonicalID[Word] = CID
-//            this.Synonyms[CID] = hashSetOf(Word)
-//            this.Synonyms[CID]!!.addAll(Synonyms)
-//        }
-//        else {
-//            val ExistedSynonyms = this.Synonyms[CID]!!
-//            for (Synonym in Synonyms) { // Regardless of Word == Synonym
-//                CanonicalID[Synonym] = CID          // The canonical ID of the synonym is identical to the canonical ID of the specified word
-//                ExistedSynonyms.add(Synonym)
-//            }
-//        }
-//    }
+    fun Insert(Word: String, Synonyms: Iterable<String>) {
+        // TODO
+    }
 
     /**
      * Delete a synonym for the specified word.
