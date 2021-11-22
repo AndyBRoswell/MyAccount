@@ -80,7 +80,7 @@ open class SynonymDictionary {
     /**
      * Add a group of synonyms.
      */
-    fun Insert(SynonymGroup: Iterable<String>) {
+    fun Insert(SynonymGroup: Iterable<String>, MergeEnabled: Boolean = false) {
         val QueryResult = ArrayList<HashSet<String>?>()
         val NonexistentSynonyms = HashSet<String>()
         for (Synonym in SynonymGroup) {
@@ -91,10 +91,10 @@ open class SynonymDictionary {
             }
         }
         QueryResult.add(NonexistentSynonyms)
-        QueryResult.sortBy { it!!.size }
+        QueryResult.sortByDescending { it!!.size }
         val IndexOfNonexistentSynonyms = QueryResult.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
         val IndexOfBiggestSynonymGroup = if (IndexOfNonexistentSynonyms == 0) 1 else 0
-        
+
     }
 
     /**
