@@ -106,10 +106,7 @@ open class SynonymDictionary {
         CanonicalID.remove(Synonym)
         val ExistedSynonyms = Synonyms[IW]!!
         ExistedSynonyms.remove(Synonym)
-        if (ExistedSynonyms.size < 1) {
-            CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-            return IW                                               // This ID won't exist in this dictionary any more.
-        }
+        if (ExistedSynonyms.size < 1) return IW // This ID won't exist in this dictionary any more.
         return NO_ID
     }
 
