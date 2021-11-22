@@ -95,7 +95,7 @@ open class SynonymDictionary {
             SynonymGroup.sortByDescending { it.second!!.size }
             val BiggestSynonymGroup = SynonymGroup[0]
             val CID = CanonicalID[SynonymGroup[0].second!!.iterator().next()]!!   // Canonical ID of any one synonym in this synonym group (Their canonical IDs are all identical)
-            for (i in 1 until SynonymGroup.size) { // Merge
+            for (i in 1 until SynonymGroup.size) { // Merge into 1 synonym group
                 for (Synonym in SynonymGroup[i].second!!) {
                     CanonicalID[Synonym] = CID
                     BiggestSynonymGroup.second!!.add(Synonym)
@@ -106,6 +106,11 @@ open class SynonymDictionary {
                 CanonicalID[Synonym] = CID
                 BiggestSynonymGroup.second!!.add(Synonym)
             }
+        }
+        else { // No existent synonyms. Directly add new synonyms.
+            val CID = GenerateCanonicalID()
+            for (Synonym in NonexistentSynonyms) CanonicalID[Synonym] = CID
+            this.Synonyms[CID] = NonexistentSynonyms
         }
     }
 
