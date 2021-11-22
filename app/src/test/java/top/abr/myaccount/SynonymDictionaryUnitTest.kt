@@ -71,9 +71,14 @@ class SynonymDictionaryUnitTest {
             val Intervals = ArrayList<Pair<Int, Int>>().apply {                     // generate k intervals
                 add(Pair(0, REnd[0]))
                 for (j in 0 until (k - 2).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                add(Pair(REnd[k - 2], SList.size - 1))
+                add(Pair(REnd[(k - 2).toInt()], SList.size - 1))
             }
-            
+            for (Interval in Intervals) {                                           // Insertion test
+                for (j in 0 until Interval.second - 1) SDict.Insert(SList[i][j], SList[i][j + 1])
+            }
+            for (j in 0 until Intervals.size - 1) {                                 // Merge test
+
+            }
         }
         // Start to verify
         for (i in SList.indices) {
