@@ -53,7 +53,7 @@ class SynonymDictionaryUnitTest {
                     val REndSet = TreeSet<Int>() // Each right end should be unique
                     while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndSet.toIntArray()
-                    Interval.apply { // generate k closed intervals, k >= 2
+                    Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
                         for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - 1))
@@ -134,7 +134,7 @@ class SynonymDictionaryUnitTest {
                     val REndSet = TreeSet<Int>() // Each right end should be unique
                     while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - l))
                     val REnd = REndSet.toIntArray()
-                    Interval.apply { // generate k closed intervals, k >= 2
+                    Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
                         for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - l))
