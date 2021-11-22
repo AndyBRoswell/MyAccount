@@ -16,7 +16,10 @@ open class SynonymDictionary {
      * Add a synonym for the specified word.
      * @param Word The word you want to add a new synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
-     * <code>Word</code> must be different from <code>Synonym</code>
+     * You may swap <code>Word</code> and <code>Synonym</code>. This function will recognize that.
+     * @param MergeEnabled <code>True</code>: If <code>Word</code> and <code>Synonym</code> respectively exist in different synonym groups,
+     * then these 2 groups will be merged into 1 group which includes every synonym from the original 2 groups.
+     * <code>False</code>: Does nothing in this situation.
      */
     fun Insert(Word: String, Synonym: String, MergeEnabled: Boolean = false) {
         var IW = CanonicalID[Word]
