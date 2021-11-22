@@ -51,33 +51,26 @@ class SynonymDictionaryUnitTest {
             TestCount.add(ArrayList<Int>().apply { for (j in 1..SynonymCount[i]) add(0) })
         }
         // Start to insert
-        for (i in SList.indices) { // Try as many as it can. Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
+        for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
             // Either select "Disable merge" part or select "Enable merge" part
 //            if (SList[i].size == 1) SDict.Insert(SList[i][0], SList[i][0]) // Disable merge
 //            else for (j in 1 until SList[i].size) { // Disable merge
 //                SDict.Insert(SList[i][j - 1], SList[i][j])
 //            }
-//            while (UncoveredSynonymCount[i] > 0) { // Enable merge
-//                val WordIndex = NextInt(0, SList[i].size)
-//                val SynonymIndex = NextInt(0, SList[i].size)
-//                if (TestCount[i][WordIndex] == 0) --UncoveredSynonymCount[i]    // Now this word (synonym) has been covered
-//                if (TestCount[i][SynonymIndex] == 0) --UncoveredSynonymCount[i] // Now this word (synonym) has been covered
-//                SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex], true)
-//                ++TestCount[i][WordIndex]
-//                ++TestCount[i][SynonymIndex]
-//            }
-            val k = max((0.1 * SList.size).toLong(), 2L)                        // k >= 2
+            val k = max((0.1 * SList.size).toLong(), 2L)                        // Enable merge
             val REnd = RandomIntArray(k - 1, 0, SList.size)
-            val Intervals = ArrayList<Pair<Int, Int>>().apply {                     // generate k intervals
+            val Interval = ArrayList<Pair<Int, Int>>().apply {                     // generate k closed intervals, k >= 2
                 add(Pair(0, REnd[0]))
                 for (j in 0 until (k - 2).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
                 add(Pair(REnd[(k - 2).toInt()], SList.size - 1))
             }
-            for (Interval in Intervals) {                                           // Insertion test
-                for (j in 0 until Interval.second - 1) SDict.Insert(SList[i][j], SList[i][j + 1])
+            for (I in Interval) {                                                   // Usual insertion test
+                for (j in 0 until I.second - 1) SDict.Insert(SList[i][j], SList[i][j + 1])
             }
-            for (j in 0 until Intervals.size - 1) {                                 // Merge test
-
+            for (j in 0 until Interval.size - 1) {                                 // Merge test
+                val WordIndex = NextIntRClosed(0, Interval[j].second)
+                val SynonymIndex = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
+                SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
             }
         }
         // Start to verify
