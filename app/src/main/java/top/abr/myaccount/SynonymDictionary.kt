@@ -82,24 +82,25 @@ open class SynonymDictionary {
      * Add a group of synonyms.
      */
     fun Insert(Synonyms: Iterable<String>, MergeEnabled: Boolean = false) {
-        val SynonymGroup = ArrayList<HashSet<String>?>()
+        val SynonymGroup = ArrayList<Pair<Long, HashSet<String>?>>()
         val NonexistentSynonyms = HashSet<String>()
         for (Synonym in Synonyms) {
             when (val CID = CanonicalID[Synonym]) {
                 null -> NonexistentSynonyms.add(Synonym)
-                else -> SynonymGroup.add(this.Synonyms[CID])
+                else -> SynonymGroup.add(Pair(CID, this.Synonyms[CID]))
             }
         }
-        SynonymGroup.add(NonexistentSynonyms)
-        if (!MergeEnabled and (SynonymGroup.size > 2)) return    // Merge disabled and found 2 or more existed synonym groups
-        SynonymGroup.sortByDescending { it!!.size }
-        val IndexOfNonexistentSynonyms = SynonymGroup.binarySearchBy(NonexistentSynonyms.size, selector = { it!!.size })
-        val IndexOfBiggestSynonymGroup = if (IndexOfNonexistentSynonyms == 0) 1 else 0
-        val CID = CanonicalID[IndexOfBiggestSynonymGroup[0]]
-        for (i in SynonymGroup.indices) { // Merge
-            if ((i == IndexOfNonexistentSynonyms) or (i == IndexOfBiggestSynonymGroup)) continue
-            for (Synonym in SynonymGroup[i]!!) {
-                
+        if (SynonymGroup.size > 0) {
+            if (!MergeEnabled and (SynonymGroup.size > 1)) return    // Merge disabled and found 2 or more existed synonym groups
+            SynonymGroup.sortByDescending { it.second!!.size }
+            val BiggestSynonymGroup = SynonymGroup[0]
+            val CID = CanonicalID[SynonymGroup[0].second!!.iterator().next()]!!   // Canonical ID of any one synonym in this synonym group (Their canonical IDs are all identical)
+            for (i in 1 until SynonymGroup.size) { // Merge
+                for (Synonym in SynonymGroup[i].second!!) {
+                    CanonicalID[Synonym] = CID
+                    BiggestSynonymGroup.second!!.add(Synonym)
+                }
+                this.Synonyms.remove(SynonymGroup[i].first)
             }
         }
     }
