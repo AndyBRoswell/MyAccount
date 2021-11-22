@@ -53,8 +53,9 @@ class SynonymDictionaryUnitTest {
         // Start to insert
         for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
             val k = max((0.1 * SList[i].size).toLong(), 2L)
-            println("SList.size = ${SList.size}")
+            println("SList.size = ${SList[i].size}")
             val REnd = RandomIntArray(k - 1, 0, SList[i].size)
+            println("REnd = $REnd")
             val Interval = ArrayList<Pair<Int, Int>>().apply {                              // generate k closed intervals, k >= 2
                 add(Pair(0, REnd[0]))
                 for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
