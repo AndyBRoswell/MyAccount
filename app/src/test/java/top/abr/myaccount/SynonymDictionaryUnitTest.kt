@@ -49,9 +49,10 @@ class SynonymDictionaryUnitTest {
         for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
             val k = max((0.1 * SList[i].size).toLong(), 2L)
             val Interval = ArrayList<Pair<Int, Int>>()
-//            println("SList[i].size = ${SList.size}")
+            println("SList[i].size = ${SList.size}")
             if (SList[i].size > 1) {
-                val REnd = RandomIntArray(k - 1, 0, SList[i].size - 1).sortedArray()
+                val REnd = RandomIntArray(k - 1, 0, SList[i].size - 1)
+                REnd.sort()                                                                 // Ascending order
 //                println("REnd = $REnd")
                 Interval.apply {                                                            // generate k closed intervals, k >= 2
                     add(Pair(0, REnd[0]))
@@ -60,14 +61,14 @@ class SynonymDictionaryUnitTest {
                 }
             }
             else Interval.add(Pair(0, 0))
-//            println("Interval = $Interval")
+            println("Interval = $Interval")
             for (CurrentInterval in Interval) { // Usual insertion test
                 for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1])
             }
             for (j in 0 until Interval.size - 1) { // Merge test
                 val WordIndex = NextIntRClosed(Interval[j].first, Interval[j].second)
                 val SynonymIndex = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
-//                println("[WordIndex, SynonymIndex] = [$WordIndex, $SynonymIndex]")
+                println("[WordIndex, SynonymIndex] = [$WordIndex, $SynonymIndex]")
                 SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
             }
         }
