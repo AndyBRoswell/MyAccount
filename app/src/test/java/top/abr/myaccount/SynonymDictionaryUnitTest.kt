@@ -140,12 +140,12 @@ class SynonymDictionaryUnitTest {
                         add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - l))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
-                        for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1])
+                        SDict.Insert(SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1))
                     }
                     for (j in 0 until Interval.size - 1) { // Merge test
-                        val WordIndex = NextIntRClosed(Interval[j].first, Interval[j].second)
-                        val SynonymIndex = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
-                        SDict.Insert(SList[i][WordIndex], SList[i][SynonymIndex])
+                        val Left = NextIntRClosed(Interval[j].first, Interval[j].second)
+                        val Right = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
+                        SDict.Insert(SList[i].subList(Left, Right + 1))
                     }
 
                 }
