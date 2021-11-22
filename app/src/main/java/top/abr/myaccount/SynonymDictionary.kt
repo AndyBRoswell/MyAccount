@@ -104,7 +104,7 @@ open class SynonymDictionary {
             }
             for (Synonym in NonexistentSynonyms) { // Add nonexistent synonyms (i.e. new synonyms)
                 CanonicalID[Synonym] = CID
-                BiggestSynonymGroup.second.add(Synonym)
+                BiggestSynonymGroup.second!!.add(Synonym)
             }
         }
     }
