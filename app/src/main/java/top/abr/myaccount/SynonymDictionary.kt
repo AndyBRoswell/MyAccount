@@ -91,7 +91,7 @@ open class SynonymDictionary {
             }
         }
         val SynonymGroup = SynonymGroupSet.toTypedArray()
-        if (SynonymGroup.size > 0) {
+        if (SynonymGroup.isNotEmpty()) {
             if (!MergeEnabled and (SynonymGroup.size > 1)) return    // Merge disabled and found 2 or more existed synonym groups
             SynonymGroup.sortByDescending { it.second!!.size }
             val BiggestSynonymGroup = SynonymGroup[0]
