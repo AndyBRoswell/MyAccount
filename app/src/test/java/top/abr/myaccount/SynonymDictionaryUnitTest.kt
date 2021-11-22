@@ -21,12 +21,12 @@ class SynonymDictionaryUnitTest {
 
     @Test fun InsertionAndDeletion() {
         // Range parameters of random data
-        val MAX_SYNONYM_GROUP_COUNT = 20
-        val MIN_SYNONYM_GROUP_COUNT = 10
-        val MAX_SYNONYM_GROUP_SIZE = 20
-        val MIN_SYNONYM_GROUP_SIZE = 10
-        val MAX_WORD_LENGTH = 2
-        val MIN_WORD_LENGTH = 1
+        val MAX_SYNONYM_GROUP_COUNT = 1024
+        val MIN_SYNONYM_GROUP_COUNT = 1024
+        val MAX_SYNONYM_GROUP_SIZE = 1024
+        val MIN_SYNONYM_GROUP_SIZE = 1024
+        val MAX_WORD_LENGTH = 256
+        val MIN_WORD_LENGTH = 256
         // MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH)
         // C = 10 when randomNumeric() is used; C = 52 when randomAlphabetic() is used
         // C = 62 when randomAlphanumeric() is used; C = 95 when randomAscii() is used
@@ -105,14 +105,16 @@ class SynonymDictionaryUnitTest {
                 val CID = SDict.GetCanonicalID(SList[i][0])
                 for (j in SList[i].size - 1 downTo 1) {
                     assertEquals(SDict.Delete(SList[i][0], SList[i][j]), 0)
+                    SList[i].removeAt(j)
                     val QueryResult = SDict.GetSynonyms(SList[i][0])
                     for (ExpectedSynonym in SList[i]) {
                         assertTrue(QueryResult!!.contains(ExpectedSynonym))
                     }
                     assertEquals(QueryResult!!.size, SList[i].size)
-                    SList[i].removeAt(j)
                 }
                 assertEquals(SDict.Delete(SList[i][0], SList[i][0]), CID)
+//                println("SList[$i][0] = ${SList[i][0]}")
+//                SDict.GetSynonyms(SList[i][0])
                 assertNull(SDict.GetSynonyms(SList[i][0]))
                 SList[i].removeAt(0)
             }
