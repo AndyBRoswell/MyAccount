@@ -17,7 +17,7 @@ open class SynonymDictionary {
      * @param Word The word you want to add a new synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
      * You may swap <code>Word</code> and <code>Synonym</code>. This function will recognize that.
-     * @param MergeEnabled <code>True</code>: If <code>Word</code> and <code>Synonym</code> respectively exist in different synonym groups,
+     * @param MergeEnabled <code>True</code>: If <code>Word</code> and <code>Synonym</code> respectively exist in different synonym groups of this dictionary,
      * then these 2 groups will be merged into 1 group which includes every synonym from the original 2 groups.
      * <code>False</code>: Does nothing in this situation.
      */
@@ -94,19 +94,21 @@ open class SynonymDictionary {
      * Delete a synonym for the specified word.
      * @param Word The word you want to delete a synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
+     * If <code>Word</code> or <code>Synonym</code> doesn't exist in this dictionary, this function does nothing.
      * @return The original canonical ID of <code>Word</code> if all of its synonyms are deleted from this dictionary.
      * This ID won't exist in this dictionary any more.
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
      * Otherwise return NO_ID.
      */
     fun Delete(Word: String, Synonym: String): Long {
-        val CID = CanonicalID[Word] ?: return NO_ID
+        val IW = CanonicalID[Word] ?: return NO_ID
+        val IS = CanonicalID[Synonym] ?: return NO_ID
         CanonicalID.remove(Synonym)
-        val ExistedSynonyms = Synonyms[CID]!!
+        val ExistedSynonyms = Synonyms[IW]!!
         ExistedSynonyms.remove(Synonym)
         if (ExistedSynonyms.size < 1) {
             CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-            return CID
+            return IW
         }
         return NO_ID
     }
