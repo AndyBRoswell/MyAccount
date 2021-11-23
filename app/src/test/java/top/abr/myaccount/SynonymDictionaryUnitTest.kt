@@ -7,6 +7,7 @@ import java.security.SecureRandom
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
+import kotlin.math.E
 import kotlin.math.max
 import kotlin.math.pow
 
@@ -156,7 +157,18 @@ class SynonymDictionaryUnitTest {
                 for (QuerySynonym in SList[i]) {
                     val QueryResult = SDict.GetSynonyms(QuerySynonym)
                     for (ExpectedSynonym in SList[i]) {
-                        assertTrue(QueryResult!!.contains(ExpectedSynonym))
+//                        assertTrue(QueryResult!!.contains(ExpectedSynonym))
+                        if (!QueryResult!!.contains(ExpectedSynonym)) {
+                            println("ExpectedSynonym = $ExpectedSynonym")
+                            println("================================")
+                            println("SList[$i] = ${SList[i]}")
+                            println("================================")
+                            println("CIDs = " + SList[i].map { SDict.GetCanonicalID(it) })
+                            println("================================")
+                            println("QueryResult = $QueryResult")
+                            println("================================")
+                            println("CIDs = " + QueryResult.map { SDict.GetCanonicalID(it) })
+                        }
                     }
                     assertEquals(QueryResult!!.size, SList[i].size)
                 }
