@@ -144,13 +144,17 @@ class SynonymDictionaryUnitTest {
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         SDict.Insert(SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1))
+                        print("<${CurrentInterval.first}, ${CurrentInterval.second}> ")
                     }
+                    println()
                     for (j in 0 until Interval.size - 1) { // Merge test
                         val Left = NextIntRClosed(Interval[j].first, Interval[j].second)
                         val Right = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
                         SDict.Insert(SList[i].subList(Left, Right + 1))
+                        println("<$Left, $Right>")
                     }
                     SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
+                    println("k = $k, l = $l")
                 }
                 else SDict.Insert(SList[i], true)
             }
@@ -163,11 +167,11 @@ class SynonymDictionaryUnitTest {
                         if (!QueryResult!!.contains(ExpectedSynonym)) {
                             println("ExpectedSynonym = $ExpectedSynonym")
                             println("================================")
-                            println("SList[$i] = ${SList[i]}")
+                            println("SList[$i] (size = ${SList[i].size}) = ${SList[i]}")
                             println("================================")
                             println("CIDs = " + SList[i].map { SDict.GetCanonicalID(it) })
                             println("================================")
-                            println("QueryResult = $QueryResult")
+                            println("QueryResult (size = ${QueryResult.size}) = $QueryResult")
                             println("================================")
                             println("CIDs = " + QueryResult.map { SDict.GetCanonicalID(it) })
                             throw AssertionError()
