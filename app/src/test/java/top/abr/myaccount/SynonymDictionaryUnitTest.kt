@@ -3,11 +3,11 @@ package top.abr.myaccount
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.Assert.*
 import org.junit.Test
+import java.lang.AssertionError
 import java.security.SecureRandom
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
-import kotlin.math.E
 import kotlin.math.max
 import kotlin.math.pow
 
@@ -168,6 +168,7 @@ class SynonymDictionaryUnitTest {
                             println("QueryResult = $QueryResult")
                             println("================================")
                             println("CIDs = " + QueryResult.map { SDict.GetCanonicalID(it) })
+                            throw AssertionError()
                         }
                     }
                     assertEquals(QueryResult!!.size, SList[i].size)
