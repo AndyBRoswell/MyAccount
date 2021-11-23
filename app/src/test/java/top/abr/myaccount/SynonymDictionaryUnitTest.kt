@@ -154,6 +154,7 @@ class SynonymDictionaryUnitTest {
                         println("<$Left, $Right>")
                     }
                     SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
+                    println("<${SList[i].size - l}, ${SList[i].size - 1}>")
                     println("k = $k, l = $l")
                 }
                 else SDict.Insert(SList[i], true)
