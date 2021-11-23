@@ -16,7 +16,8 @@ class SynonymDictionaryUnitTest {
 
     private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
     private fun NextIntRClosed(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
-    private fun RandomStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAscii(Lmin, Lmax + 1)
+    private fun RandomAlphabeticStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax +1)
+    private fun RandomASCIIRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAscii(Lmin, Lmax + 1)
     private fun RandomIntArrayRClosed(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
 
     fun InsertionAndDeletion() {
@@ -42,7 +43,7 @@ class SynonymDictionaryUnitTest {
             for (i in SynonymCount.indices) {
                 SList.add(ArrayList())
                 while (SList[i].size < SynonymCount[i]) {
-                    val Synonym = RandomStringRClosed(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                    val Synonym = RandomASCIIRClosed(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                     if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)             // Each synonym which will be added for tests is different from others
                 }
             }
@@ -122,7 +123,8 @@ class SynonymDictionaryUnitTest {
             for (i in SynonymCount.indices) {
                 SList.add(ArrayList())
                 while (SList[i].size < SynonymCount[i]) {
-                    val Synonym = RandomStringRClosed(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+                    val Synonym = RandomAlphabeticStringRClosed(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
+//                    val Synonym = RandomASCIIRClosed(MIN_WORD_LENGTH, MAX_WORD_LENGTH)
                     if (SynonymsForTest.add(Synonym)) SList[i].add(Synonym)             // Each synonym which will be added for tests is different from others
                 }
             }
