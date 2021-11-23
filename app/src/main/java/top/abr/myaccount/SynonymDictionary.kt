@@ -163,6 +163,15 @@ open class SynonymDictionary {
     }
 
     /**
+     * Delete a group of synonyms.
+     * @param Synonyms The group of synonyms you want to delete.
+     * @return The original canonical IDs of each group which contains no ID after the deletion.
+     */
+//    fun Delete(Synonyms: Iterable<String>): Long {
+//        // TODO
+//    }
+
+    /**
      * **`<DESTRUCTIVE`>** Delete all entries in the dictionary.
      */
     fun DeleteAll() {

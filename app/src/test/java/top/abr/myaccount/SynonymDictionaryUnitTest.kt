@@ -106,7 +106,11 @@ class SynonymDictionaryUnitTest {
         }
     }
 
-    @Test fun GroupInsertionAndGroupDeletion() {
+    @Test fun GroupInsertionAndDeletion() {
+
+    }
+
+    fun GroupInsertionAndGroupDeletion2() {
         // Range parameters of random data
         val MAX_SYNONYM_GROUP_COUNT = 20
         val MIN_SYNONYM_GROUP_COUNT = 10
@@ -193,7 +197,7 @@ class SynonymDictionaryUnitTest {
                 while (SList[i].size > 0) {
                     val Interval = NextIntInterval(0, SList[i].size)
                     SList[i].subList(Interval.first, Interval.second).clear()
-                    
+                    // TODO
                 }
             }
         }
