@@ -132,7 +132,10 @@ open class SynonymDictionary {
         CanonicalID.remove(Synonym)
         val ExistedSynonyms = Synonyms[IW]!!
         ExistedSynonyms.remove(Synonym)
-        if (ExistedSynonyms.size < 1) return IW     // This ID won't exist in this dictionary any more.
+        if (ExistedSynonyms.size < 1) {
+            Synonyms.remove(IW)
+            return IW                               // This ID won't exist in this dictionary any more.
+        }
         return NO_ID
     }
 
@@ -145,19 +148,19 @@ open class SynonymDictionary {
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
      * Otherwise return NO_ID.
      */
-//    fun Delete(Word: String, Synonyms: Iterable<String>): Long {
-//        val CID = CanonicalID[Word] ?: return NO_ID
-//        val ExistedSynonyms = this.Synonyms[CID]!!
-//        for (Synonym in Synonyms) {
-//            CanonicalID.remove(Synonym)
-//            ExistedSynonyms.remove(Synonym)
-//            if (ExistedSynonyms.size < 1) {
-//                CanonicalID.remove(ExistedSynonyms.iterator().next())   // Remove the only one existed element
-//                return CID
-//            }
-//        }
-//        return NO_ID
-//    }
+    fun Delete(Word: String, Synonyms: Iterable<String>): Long {
+        val CID = CanonicalID[Word] ?: return NO_ID
+        val ExistedSynonyms = this.Synonyms[CID]!!
+        for (Synonym in Synonyms) {
+            CanonicalID.remove(Synonym)
+            ExistedSynonyms.remove(Synonym)
+            if (ExistedSynonyms.size < 1) {
+                this.Synonyms.remove(CID)           // Remove the only one existed element
+                return CID
+            }
+        }
+        return NO_ID
+    }
 
     /**
      * **`<DESTRUCTIVE`>** Delete all entries in the dictionary.
