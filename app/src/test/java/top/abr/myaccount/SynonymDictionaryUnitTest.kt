@@ -150,7 +150,7 @@ class SynonymDictionaryUnitTest {
                     for (j in 0 until Interval.size - 1) { // Merge test
                         val Left = NextIntRClosed(Interval[j].first, Interval[j].second)
                         val Right = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
-                        SDict.Insert(SList[i].subList(Left, Right + 1))
+                        SDict.Insert(SList[i].subList(Left, Right + 1), true)
                         println("<$Left, $Right>")
                     }
                     SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
