@@ -92,9 +92,12 @@ open class SynonymDictionary {
                 else -> {
                     when (MergeEnabled) {
                         true -> {
-                            
+                            val SynonymsToBeMerged = this.Synonyms[IS]!!
+                            for (SynonymToBeMerged in SynonymsToBeMerged) {
+                                
+                            }
                         }
-                        false -> {}
+                        false -> {} // Merge is disabled. Skip this insertion.
                     }
                 }
             }
