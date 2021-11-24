@@ -94,8 +94,10 @@ open class SynonymDictionary {
                         true -> {
                             val SynonymsToBeMerged = this.Synonyms[IS]!!
                             for (SynonymToBeMerged in SynonymsToBeMerged) {
-                                
+                                CanonicalID[SynonymToBeMerged] = IW
+                                TargetedSynonyms.add(SynonymToBeMerged)
                             }
+                            this.Synonyms.remove(IS)
                         }
                         false -> {} // Merge is disabled. Skip this insertion.
                     }
