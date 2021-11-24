@@ -89,15 +89,15 @@ class SynonymDictionaryUnitTest {
             // Start to insert
             for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
                 if (SList[i].size > 1) {
-                    val k = max((0.1 * SList[i].size).toLong(), 2L) // k >= 2
+                    val k = max((0.1 * SList[i].size).toInt(), 2) // k >= 2
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>() // Each right end should be unique
                     while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                        add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - 1))
+                        for (j in 0 until (k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        add(Pair(REnd[(k - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1], true)
@@ -141,16 +141,16 @@ class SynonymDictionaryUnitTest {
             // Start to insert
             for (i in SList.indices) {
                 if (SList[i].size > 3) { // SList[i].size >= 4
-                    val k = max((0.1 * SList[i].size).toLong(), 2L) // k >= 2
-                    val l = NextInt(3, SList[i].size)           // 3 <= l <= SList[i].size - 1
+                    val k = max((0.1 * SList[i].size).toInt(), 2) // k >= 2
+                    val l = NextIntRClosed(1, SList[i].size - k)           // 1 <= l <= SList[i].size - k
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>() // Each right end should be unique
                     while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - l))
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (k - 3).toInt()) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                        add(Pair(REnd[(k - 2).toInt()] + 1, SList[i].size - l))
+                        for (j in 0 until (k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        add(Pair(REnd[(k - 2)] + 1, SList[i].size - l))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         SDict.Insert(SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1))
