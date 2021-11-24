@@ -72,10 +72,33 @@ open class SynonymDictionary {
      * Add a group of synonyms for the specified word.
      * @param Word The word you want to add a new synonym for.
      * @param Synonyms The group of synonyms you want to add for <code>Word</code>.
-     * If <code>Synonyms.size == 1</code> and <code>Word</code> is identical to this only synonym, then the insertion is skipped.
+     * If any one synonym in <code>Synonyms</code> has been added as a synonym of <code>Word</code>, then the insertion of this synonym is skipped.
      */
-    fun Insert(Word: String, Synonyms: Iterable<String>) {
-        // TODO
+    fun Insert(Word: String, Synonyms: Iterable<String>, MergeEnabled: Boolean = false) {
+        var IW = CanonicalID[Word]
+        if (IW == null) { // Word doesn't exist. Add it first.
+            IW = GenerateCanonicalID()
+            CanonicalID[Word] = IW
+            this.Synonyms[IW] = hashSetOf(Word)
+        }
+        val TargetedSynonyms = this.Synonyms[IW]!!
+        for (Synonym in Synonyms) {
+            when (val IS = CanonicalID[Synonym]) {
+                null -> { // Add Synonym as a new synonym of Word directly
+                    CanonicalID[Synonym] = IW
+                    TargetedSynonyms.add(Synonym)
+                }
+                IW -> {} // Synonym already exists as a synonym of Word. Skip this insertion.
+                else -> {
+                    when (MergeEnabled) {
+                        true -> {
+                            
+                        }
+                        false -> {}
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -92,7 +115,7 @@ open class SynonymDictionary {
         }
         val SynonymGroup = SynonymGroupSet.toTypedArray()
         if (SynonymGroup.isNotEmpty()) {
-            if (!MergeEnabled and (SynonymGroup.size > 1)) return    // Merge disabled and found 2 or more existed synonym groups
+            if (!MergeEnabled and (SynonymGroup.size > 1)) return // Merge disabled and found 2 or more existed synonym groups
             SynonymGroup.sortByDescending { it.second!!.size }
             val BiggestSynonymGroup = SynonymGroup[0]
             val CID = CanonicalID[SynonymGroup[0].second!!.iterator().next()]!!   // Canonical ID of any one synonym in this synonym group (Their canonical IDs are all identical)
