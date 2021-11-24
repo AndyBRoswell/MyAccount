@@ -134,7 +134,7 @@ class SynonymDictionaryUnitTest {
 
     }
 
-    fun GroupInsertionAndGroupDeletion2() {
+    @Test fun GroupInsertionAndGroupDeletion2() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
         for (RepeatCount in 1..10) {
             PrepareTestData()
@@ -161,7 +161,7 @@ class SynonymDictionaryUnitTest {
                         val Left = NextIntRClosed(Interval[j].first, Interval[j].second)
                         val Right = NextIntRClosed(Interval[j + 1].first, Interval[j + 1].second)
                         SDict.Insert(SList[i].subList(Left, Right + 1), true)
-                        println("<$Left, $Right>")
+//                        println("<$Left, $Right>")
                     }
                     SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
 //                    println("<${SList[i].size - l}, ${SList[i].size - 1}>")
@@ -171,14 +171,14 @@ class SynonymDictionaryUnitTest {
             }
             VerifyInsertion()
             // Start to delete and verify
-            for (i in SList.indices) {
-                val CID = SDict.GetCanonicalID(SList[i][0])
-                while (SList[i].size > 0) {
-                    val Interval = NextIntInterval(0, SList[i].size)
-                    SList[i].subList(Interval.first, Interval.second).clear()
-                    // TODO
-                }
-            }
+//            for (i in SList.indices) {
+//                val CID = SDict.GetCanonicalID(SList[i][0])
+//                while (SList[i].size > 0) {
+//                    val Interval = NextIntInterval(0, SList[i].size)
+//                    SList[i].subList(Interval.first, Interval.second).clear()
+//                    // TODO
+//                }
+//            }
         }
     }
 }
