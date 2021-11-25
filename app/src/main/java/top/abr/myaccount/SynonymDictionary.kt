@@ -212,6 +212,8 @@ open class SynonymDictionary {
         return Synonyms[CID]
     }
 
+    fun GetSynonyms(CanonicalID: Long) = Synonyms[CanonicalID]
+
     fun SynonymsCount(Word: String): Int {
         val CID = CanonicalID[Word] ?: return 0
         return Synonyms[CID]!!.size - 1         // exclude Word itself

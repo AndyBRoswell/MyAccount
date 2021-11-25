@@ -81,7 +81,7 @@ class SynonymDictionaryUnitTest {
             }
         }
     }
-//  ================================================================
+    //  ================================================================
     @Test fun InsertionAndDeletion() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
         for (RepeatCount in 1..10) { // Repeat Count of this test
@@ -117,11 +117,9 @@ class SynonymDictionaryUnitTest {
                 for (j in SList[i].size - 1 downTo 1) {
                     assertEquals(SDict.Delete(SList[i][0], SList[i][j]), 0)
                     SList[i].removeAt(j)
-                    val QueryResult = SDict.GetSynonyms(SList[i][0])
-                    for (ExpectedSynonym in SList[i]) {
-                        assertTrue(QueryResult!!.contains(ExpectedSynonym))
-                    }
-                    assertEquals(QueryResult!!.size, SList[i].size)
+                    val QueryResult = SDict.GetSynonyms(SList[i][0])!!
+                    for (ExpectedSynonym in SList[i]) assertTrue(QueryResult.contains(ExpectedSynonym))
+                    assertEquals(QueryResult.size, SList[i].size)
                 }
                 assertEquals(SDict.Delete(SList[i][0], SList[i][0]), CID)
                 assertNull(SDict.GetSynonyms(SList[i][0]))
@@ -176,14 +174,23 @@ class SynonymDictionaryUnitTest {
                 }
                 // Start to delete and verify
                 for (i in SList.indices) {
-                    val CID = SDict.GetCanonicalID(SList[i][0])
-                    while (SList[i].size > 0) {
+                    val CID = SDict.GetCanonicalID(SList[i][0])!!
+                    while (true) {
                         val LIndex = NextInt(0, SList[i].size)
                         SList[i].subList(LIndex, SList[i].size).clear()
                         val Ret = SDict.Delete(SList[i][0], SList[i].subList(LIndex, SList[i].size)) // Delete several synonyms of the word SList[i][0]
-                        // Delete() should return the original canonical ID of this synonym group for other possible essential usages if all synonyms in this group are deleted.
-                        assertTrue(if (SList[i].size == 0) Ret == SynonymDictionary.NO_ID else Ret == CID)
-                        
+                        // SynonymDictionary.Delete() should return the original canonical ID of this synonym group for other possible essential usages if all synonyms in this group are deleted.
+                        if (SList[i].size > 0) {
+                            assertEquals(Ret, SynonymDictionary.NO_ID)
+                            val QueryResult = SDict.GetSynonyms(SList[i][0])!!
+                            for (ExpectedSynonym in SList[i]) assertTrue(QueryResult.contains(ExpectedSynonym))
+                            assertEquals(QueryResult.size, SList[i].size)
+                        }
+                        else {
+                            assertEquals(Ret, CID)
+                            assertEquals(SDict.GetSynonyms(CID), null)
+                            break
+                        }
                     }
                 }
             }
