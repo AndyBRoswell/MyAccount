@@ -16,7 +16,7 @@ class SynonymDictionaryUnitTest {
 
     private fun NextInt(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max).iterator().next()
     private fun NextIntRClosed(Min: Int, Max: Int) = RandomSource.ints(1, Min, Max + 1).iterator().next()
-    private fun RandomAlphabeticStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax +1)
+    private fun RandomAlphabeticStringRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAlphabetic(Lmin, Lmax + 1)
     private fun RandomASCIIRClosed(Lmin: Int, Lmax: Int) = RandomStringUtils.randomAscii(Lmin, Lmax + 1)
     private fun RandomIntArray(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max).toArray()
     private fun RandomIntArrayRClosed(Length: Long, Min: Int, Max: Int) = RandomSource.ints(Length, Min, Max + 1).toArray()
@@ -148,8 +148,15 @@ class SynonymDictionaryUnitTest {
                         add(Pair(REnd[(k - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
-                        for (j in 0 until CurrentInterval.second) {
-                            SDict.Insert(SList[i][j], SList[i][j + 1], true)
+                        SDict.Insert(SList[i][CurrentInterval.first], SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1), true)
+                    }
+                    val k0 = NextIntRClosed(1, k)
+                    for (j in Interval.indices) { // Merge test
+                        if (j == k0) { // Should not perform any addition cause evert synonym in this interval are already in this dict
+                            SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
+                        }
+                        else {
+                            
                         }
                     }
                 }
