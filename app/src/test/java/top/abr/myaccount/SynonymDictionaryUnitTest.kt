@@ -35,8 +35,8 @@ class SynonymDictionaryUnitTest {
     val MAX_WORD_LENGTH = 256
     val MIN_WORD_LENGTH = 256
     // MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT must be less than pow(C, MAX_WORD_LENGTH), should be MUCH LESS THAN pow(C, MAX_WORD_LENGTH)
-    // C = 10 when randomNumeric() is used; C = 52 when randomAlphabetic() is used
-    // C = 62 when randomAlphanumeric() is used; C = 95 when randomAscii() is used
+    // C = 10 when randomNumeric() is used;         C = 52 when randomAlphabetic() is used
+    // C = 62 when randomAlphanumeric() is used;    C = 95 when randomAscii() is used
     val MAX_ALL_SYNONYMS_COUNT = 95.0.pow(MAX_WORD_LENGTH.toDouble()).toInt()
 
     // Shared test data
