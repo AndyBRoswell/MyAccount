@@ -239,9 +239,13 @@ open class SynonymDictionary {
      * @param ID If this ID has been already acquired by other synonym(s), does nothing.
      */
     fun SetCanonicalID(Word: String, ID: Long) {
-        val CID = CanonicalID[Word] ?: return
-        if (CID == ID) return
-        
+        val CID = CanonicalID[Word] ?: return               // If param Word doesn't exist, does nothing.
+        if (CID == ID) return                               // The new ID is identical to the old one. No need to modify.
+        if (this.Synonyms[ID] != null) return               // This ID is already used
+        val Synonyms = this.Synonyms[CID]!!
+        for (Synonym in Synonyms) CanonicalID[Synonym] = ID // Replace their canonical ID with this new ID
+        this.Synonyms[ID] = Synonyms                        // Add the new mappings
+        this.Synonyms.remove(CID)                           // Remove the old mappings
     }
 
     fun GetTotalWordCount() = CanonicalID.size
