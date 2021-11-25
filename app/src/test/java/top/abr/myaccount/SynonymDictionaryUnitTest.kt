@@ -81,7 +81,7 @@ class SynonymDictionaryUnitTest {
             }
         }
     }
-
+//  ================================================================
     fun InsertionAndDeletion() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
         for (RepeatCount in 1..10) { // Repeat Count of this test
@@ -158,11 +158,11 @@ class SynonymDictionaryUnitTest {
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
                         }
                         else { // Check situations where merge is disabled or enabled respectively
-                            SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), false)
+                            SDict.Insert(SList[i][Interval[K0].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), false)
                             val CID_j = SDict.GetCanonicalID(SList[i][Interval[j].second])
                             for (k in Interval[j].first until Interval[j].second) assertEquals(SDict.GetCanonicalID(SList[i][k]), CID_j)
                             assertNotEquals(CID_j, CID_K0) // When merge is disabled, all the insertions above should be skipped.
-                            SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
+                            SDict.Insert(SList[i][Interval[K0].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
                             // When merge is enabled, all the synonyms in Interval[i] should be in the same synonym group with all the synonyms in Interval[K0] after the insertions above.
                             for (k in Interval[j].first until Interval[j].second) assertEquals(SDict.GetCanonicalID(SList[i][k]), CID_K0)
                         }
@@ -174,6 +174,7 @@ class SynonymDictionaryUnitTest {
                     assertEquals(QueryResult!!.size, 1)
                     assertEquals(SList[i][0], QueryResult.iterator().next())
                 }
+                // Start to delete and verify
             }
         }
     }
