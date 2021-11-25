@@ -177,14 +177,14 @@ class SynonymDictionaryUnitTest {
                     val CID = SDict.GetCanonicalID(SList[i][0])!!
                     while (true) {
                         val LIndex = NextInt(0, SList[i].size)
-                        SList[i].subList(LIndex, SList[i].size).clear()
-                        val Ret = SDict.Delete(SList[i][0], SList[i].subList(LIndex, SList[i].size)) // Delete several synonyms of the word SList[i][0]
+                        val Ret = SDict.Delete(SList[i][0], SList[i].subList(LIndex, SList[i].size))    // Delete several synonyms of the word SList[i][0]
+                        while (SList[i].size > LIndex) SList[i].removeLast()                            // Sync the deletion to the test data
                         // SynonymDictionary.Delete() should return the original canonical ID of this synonym group for other possible essential usages if all synonyms in this group are deleted.
                         if (SList[i].size > 0) {
                             assertEquals(Ret, SynonymDictionary.NO_ID)
                             val QueryResult = SDict.GetSynonyms(SList[i][0])!!
                             for (ExpectedSynonym in SList[i]) assertTrue(QueryResult.contains(ExpectedSynonym))
-                            assertEquals(QueryResult.size, SList[i].size)
+                            assertEquals(SList[i].size, QueryResult.size)
                         }
                         else {
                             assertEquals(Ret, CID)
@@ -238,7 +238,6 @@ class SynonymDictionaryUnitTest {
 //                val CID = SDict.GetCanonicalID(SList[i][0])
 //                while (SList[i].size > 0) {
 //                    val Interval = NextIntInterval(0, SList[i].size)
-//                    SList[i].subList(Interval.first, Interval.second).clear()
 //                    // TODO
 //                }
 //            }
