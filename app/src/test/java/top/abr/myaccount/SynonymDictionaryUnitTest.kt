@@ -152,7 +152,7 @@ class SynonymDictionaryUnitTest {
                     }
                     val k0 = NextIntRClosed(1, k)
                     for (j in Interval.indices) { // Merge test
-                        if (j == k0) { // Should not perform any addition cause evert synonym in this interval are already in this dict
+                        if (j == k0) { // Should not perform any addition cause every synonym in this interval are already in this dict
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
                         }
                         else {
