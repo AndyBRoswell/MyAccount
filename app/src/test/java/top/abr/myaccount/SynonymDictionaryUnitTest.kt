@@ -85,7 +85,7 @@ class SynonymDictionaryUnitTest {
     //  ================================================================
     @Test fun InsertionAndDeletion() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
-        for (RepeatCount in 1..REPETITION_COUNT) { // Repeat Count of this test
+        for (CurrentCount in 1..REPETITION_COUNT) { // Repeat Count of this test
             PrepareTestData()
             // Start to insert
             for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
@@ -131,7 +131,7 @@ class SynonymDictionaryUnitTest {
 
     @Test fun GroupInsertionAndDeletion() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
-        for (RepeatCount in 1..REPETITION_COUNT) {
+        for (CurrentCount in 1..REPETITION_COUNT) {
             PrepareTestData()
             // Start to insert and verify
             for (i in SList.indices) {
@@ -200,7 +200,7 @@ class SynonymDictionaryUnitTest {
 
     @Test fun GroupInsertionAndGroupDeletion2() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
-        for (RepeatCount in 1..REPETITION_COUNT) {
+        for (CurrentCount in 1..REPETITION_COUNT) {
             PrepareTestData()
             // Start to insert
             for (i in SList.indices) {
