@@ -82,7 +82,7 @@ class SynonymDictionaryUnitTest {
         }
     }
 //  ================================================================
-    fun InsertionAndDeletion() {
+    @Test fun InsertionAndDeletion() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
         for (RepeatCount in 1..10) { // Repeat Count of this test
             PrepareTestData()
@@ -175,11 +175,12 @@ class SynonymDictionaryUnitTest {
                     assertEquals(SList[i][0], QueryResult.iterator().next())
                 }
                 // Start to delete and verify
+                
             }
         }
     }
 
-    fun GroupInsertionAndGroupDeletion2() {
+    @Test fun GroupInsertionAndGroupDeletion2() {
         assertTrue(MAX_SYNONYM_GROUP_SIZE * MAX_SYNONYM_GROUP_COUNT < MAX_ALL_SYNONYMS_COUNT)
         for (RepeatCount in 1..10) {
             PrepareTestData()
