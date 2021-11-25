@@ -89,15 +89,15 @@ class SynonymDictionaryUnitTest {
             // Start to insert
             for (i in SList.indices) { // Every synonym in SList is guaranteed to be the arg of SynonymDictionary.insert() at least once.
                 if (SList[i].size > 1) {
-                    val k = max((0.1 * SList[i].size).toInt(), 2)   // k >= 2
+                    val K = max((0.1 * SList[i].size).toInt(), 2)   // K >= 2
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>()                        // Each right end should be unique
-                    while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - 1))
+                    while (REndSet.size < K - 1) REndSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndSet.toIntArray()
-                    Interval.apply { // Generate k closed intervals, k >= 2
+                    Interval.apply { // Generate k closed intervals, K >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0..(k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                        add(Pair(REnd[(k - 2)] + 1, SList[i].size - 1))
+                        for (j in 0..(K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        add(Pair(REnd[(K - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         for (j in 0 until CurrentInterval.second) SDict.Insert(SList[i][j], SList[i][j + 1], true)
@@ -168,14 +168,24 @@ class SynonymDictionaryUnitTest {
                         }
                     }
                 }
-                else {
+                else { // SList[i].size == 1
                     SDict.Insert(SList[i][0], SList[i][0], true)
                     val QueryResult = SDict.GetSynonyms(SList[i][0])
                     assertEquals(QueryResult!!.size, 1)
                     assertEquals(SList[i][0], QueryResult.iterator().next())
                 }
                 // Start to delete and verify
-                
+                for (i in SList.indices) {
+                    val CID = SDict.GetCanonicalID(SList[i][0])
+                    while (SList[i].size > 0) {
+                        val LIndex = NextInt(0, SList[i].size)
+                        SList[i].subList(LIndex, SList[i].size).clear()
+                        val Ret = SDict.Delete(SList[i][0], SList[i].subList(LIndex, SList[i].size)) // Delete several synonyms of the word SList[i][0]
+                        // Delete() should return the original canonical ID of this synonym group for other possible essential usages if all synonyms in this group are deleted.
+                        assertTrue(if (SList[i].size == 0) Ret == SynonymDictionary.NO_ID else Ret == CID)
+                        
+                    }
+                }
             }
         }
     }
