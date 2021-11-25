@@ -137,25 +137,29 @@ class SynonymDictionaryUnitTest {
             // Start to insert and verify
             for (i in SList.indices) {
                 if (SList[i].size > 1) {
-                    val k = max((0.1 * SList[i].size).toInt(), 2)   // k >= 2
+                    val K = max((0.1 * SList[i].size).toInt(), 2)   // k >= 2
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>()                        // Each right end should be unique
-                    while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - 1))
+                    while (REndSet.size < K - 1) REndSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                        add(Pair(REnd[(k - 2)] + 1, SList[i].size - 1))
+                        for (j in 0 until (K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        add(Pair(REnd[(K - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         SDict.Insert(SList[i][CurrentInterval.first], SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1), true)
                     }
-                    val k0 = NextIntRClosed(1, k)
+                    val K0 = NextIntRClosed(1, K)
+                    val CIDK0 = SDict.GetCanonicalID(SList[i][Interval[K0].second])
+                    for (j in Interval[K0].first until Interval[K0].second) assertEquals(SDict.GetCanonicalID(SList[i][j]), CIDK0)
                     for (j in Interval.indices) { // Merge test
-                        if (j == k0) { // Should not perform any addition cause every synonym in this interval are already in this dict
+                        if (j == K0) { // Should not perform any addition cause every synonym in this interval are already in this dict
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
                         }
-                        else {
+                        else { // Check situations where merge is disabled or enabled respectively
+                            SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), false)
+                            val CIDj = SDict.GetCanonicalID(SList[i][Interval[j].second])
                             
                         }
                     }
