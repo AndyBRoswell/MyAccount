@@ -150,7 +150,7 @@ class SynonymDictionaryUnitTest {
                     for (CurrentInterval in Interval) { // Usual insertion test
                         SDict.Insert(SList[i][CurrentInterval.first], SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1), true)
                     }
-                    val K0 = NextIntRClosed(1, K)
+                    val K0 = NextInt(0, K)
                     val CID_K0 = SDict.GetCanonicalID(SList[i][Interval[K0].second])
                     for (j in Interval[K0].first until Interval[K0].second) assertEquals(SDict.GetCanonicalID(SList[i][j]), CID_K0)
                     for (j in Interval.indices) { // Merge test
