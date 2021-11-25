@@ -137,12 +137,12 @@ class SynonymDictionaryUnitTest {
             // Start to insert and verify
             for (i in SList.indices) {
                 if (SList[i].size > 1) {
-                    val K = max((0.1 * SList[i].size).toInt(), 2)   // k >= 2
+                    val K = max((0.1 * SList[i].size).toInt(), 2)   // K >= 2
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>()                        // Each right end should be unique
                     while (REndSet.size < K - 1) REndSet.add(NextInt(0, SList[i].size - 1))
                     val REnd = REndSet.toIntArray()
-                    Interval.apply { // Generate k closed intervals, k >= 2
+                    Interval.apply { // Generate K closed intervals, K >= 2
                         add(Pair(0, REnd[0]))
                         for (j in 0 until (K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(K - 2)] + 1, SList[i].size - 1))
@@ -151,16 +151,17 @@ class SynonymDictionaryUnitTest {
                         SDict.Insert(SList[i][CurrentInterval.first], SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1), true)
                     }
                     val K0 = NextIntRClosed(1, K)
-                    val CIDK0 = SDict.GetCanonicalID(SList[i][Interval[K0].second])
-                    for (j in Interval[K0].first until Interval[K0].second) assertEquals(SDict.GetCanonicalID(SList[i][j]), CIDK0)
+                    val CID_K0 = SDict.GetCanonicalID(SList[i][Interval[K0].second])
+                    for (j in Interval[K0].first until Interval[K0].second) assertEquals(SDict.GetCanonicalID(SList[i][j]), CID_K0)
                     for (j in Interval.indices) { // Merge test
                         if (j == K0) { // Should not perform any addition cause every synonym in this interval are already in this dict
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
                         }
                         else { // Check situations where merge is disabled or enabled respectively
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), false)
-                            val CIDj = SDict.GetCanonicalID(SList[i][Interval[j].second])
-                            
+                            val CID_j = SDict.GetCanonicalID(SList[i][Interval[j].second])
+                            for (k in Interval[j].first until Interval[j].second) assertEquals(SDict.GetCanonicalID(SList[i][k]), CID_j)
+                            assertNotEquals(CID_j, CID_K0)
                         }
                     }
                 }
@@ -176,16 +177,16 @@ class SynonymDictionaryUnitTest {
             // Start to insert
             for (i in SList.indices) {
                 if (SList[i].size > 3) { // SList[i].size >= 4
-                    val k = max((0.1 * SList[i].size).toInt(), 2)           // k >= 2
-                    val l = NextIntRClosed(1, SList[i].size - k)    // 1 <= l <= SList[i].size - k
+                    val K = max((0.1 * SList[i].size).toInt(), 2)           // K >= 2
+                    val L = NextIntRClosed(1, SList[i].size - K)    // 1 <= L <= SList[i].size - K
                     val Interval = ArrayList<Pair<Int, Int>>()
                     val REndSet = TreeSet<Int>()                                // Each right end should be unique
-                    while (REndSet.size < k - 1) REndSet.add(NextInt(0, SList[i].size - l))
+                    while (REndSet.size < K - 1) REndSet.add(NextInt(0, SList[i].size - L))
                     val REnd = REndSet.toIntArray()
-                    Interval.apply { // Generate k closed intervals, k >= 2
+                    Interval.apply { // Generate K closed intervals, K >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
-                        add(Pair(REnd[(k - 2)] + 1, SList[i].size - l))
+                        for (j in 0 until (K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        add(Pair(REnd[(K - 2)] + 1, SList[i].size - L))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
                         SDict.Insert(SList[i].subList(CurrentInterval.first, CurrentInterval.second + 1))
@@ -198,9 +199,9 @@ class SynonymDictionaryUnitTest {
                         SDict.Insert(SList[i].subList(Left, Right + 1), true)
 //                        println("<$Left, $Right>")
                     }
-                    SDict.Insert(SList[i].subList(SList[i].size - l, SList[i].size), true)
+                    SDict.Insert(SList[i].subList(SList[i].size - L, SList[i].size), true)
 //                    println("<${SList[i].size - l}, ${SList[i].size - 1}>")
-//                    println("k = $k, l = $l")
+//                    println("K = $K, L = $L")
                 }
                 else SDict.Insert(SList[i], true)
             }
