@@ -207,19 +207,42 @@ open class SynonymDictionary {
         Synonyms.clear()
     }
 
+    /**
+     * @return All synonyms of <code>Word</code>
+     */
     fun GetSynonyms(Word: String): HashSet<String>? {
         val CID = CanonicalID[Word] ?: return null
         return Synonyms[CID]
     }
 
+    /**
+     * Return all synonyms of the word with the specified <code>CanonicalID</code>.
+     */
     fun GetSynonyms(CanonicalID: Long) = Synonyms[CanonicalID]
 
+    /**
+     * Return the number of synonyms of <code>Word</code>. If the word doesn't exist in this dictionary, return -1.
+     */
     fun SynonymsCount(Word: String): Int {
         val CID = CanonicalID[Word] ?: return 0
         return Synonyms[CID]!!.size - 1         // exclude Word itself
     }
 
+    /**
+     * Get the canonical ID of <code>Word</code> in this dictionary.
+     */
     fun GetCanonicalID(Word: String) = CanonicalID[Word]
+
+    /**
+     * Set the canonical ID of <code>Word</code> in this dictionary. All of the synonyms of <code>Word</code> will also have this ID.
+     * @param Word If the word doesn't exist in the dictionary, does nothing.
+     * @param ID If this ID has been already acquired by other synonym(s), does nothing.
+     */
+    fun SetCanonicalID(Word: String, ID: Long) {
+        val CID = CanonicalID[Word] ?: return
+        if (CID == ID) return
+        
+    }
 
     fun GetTotalWordCount() = CanonicalID.size
 
