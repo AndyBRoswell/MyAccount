@@ -96,7 +96,7 @@ class SynonymDictionaryUnitTest {
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate k closed intervals, k >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        for (j in 0..(k - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(k - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
@@ -144,7 +144,7 @@ class SynonymDictionaryUnitTest {
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate K closed intervals, K >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        for (j in 0..K - 3) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(K - 2)] + 1, SList[i].size - 1))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
@@ -194,7 +194,7 @@ class SynonymDictionaryUnitTest {
                     val REnd = REndSet.toIntArray()
                     Interval.apply { // Generate K closed intervals, K >= 2
                         add(Pair(0, REnd[0]))
-                        for (j in 0 until (K - 3)) add(Pair(REnd[j] + 1, REnd[j + 1]))
+                        for (j in 0..K - 3) add(Pair(REnd[j] + 1, REnd[j + 1]))
                         add(Pair(REnd[(K - 2)] + 1, SList[i].size - L))
                     }
                     for (CurrentInterval in Interval) { // Usual insertion test
