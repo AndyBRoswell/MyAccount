@@ -161,11 +161,19 @@ class SynonymDictionaryUnitTest {
                             SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), false)
                             val CID_j = SDict.GetCanonicalID(SList[i][Interval[j].second])
                             for (k in Interval[j].first until Interval[j].second) assertEquals(SDict.GetCanonicalID(SList[i][k]), CID_j)
-                            assertNotEquals(CID_j, CID_K0)
+                            assertNotEquals(CID_j, CID_K0) // When merge is disabled, all the insertions above should be skipped.
+                            SDict.Insert(SList[i][Interval[j].first], SList[i].subList(Interval[j].first, Interval[j].second + 1), true)
+                            // When merge is enabled, all the synonyms in Interval[i] should be in the same synonym group with all the synonyms in Interval[K0] after the insertions above.
+                            for (k in Interval[j].first until Interval[j].second) assertEquals(SDict.GetCanonicalID(SList[i][k]), CID_K0)
                         }
                     }
                 }
-                else SDict.Insert(SList[i][0], SList[i][0], true)
+                else {
+                    SDict.Insert(SList[i][0], SList[i][0], true)
+                    val QueryResult = SDict.GetSynonyms(SList[i][0])
+                    assertEquals(QueryResult!!.size, 1)
+                    assertEquals(SList[i][0], QueryResult.iterator().next())
+                }
             }
         }
     }
