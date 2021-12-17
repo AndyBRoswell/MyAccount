@@ -13,14 +13,14 @@ typealias LabelType = String
 
 open class AccountBook {
     open inner class InvolvedItem {
-        var ItemName: String = ""
-        var Place: String = ""
-        var AccountUsed: String = ""
-        var Label: MutableSet<String> = HashSet()
-        var Details: String = ""
-        var OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault())
-        var OriginalPrice: Double = 0.0
-        var ExchangeRate: Double = 0.0
+        var Name: String = ""                                                           // The name of the item purchased
+        var Details: String = ""                                                        // The details of this item
+        var Labels: MutableSet<String> = HashSet()                                      // The labels of this item. These labels are used for quick search.
+        var Place: String = ""                                                          //
+        var Account: String = ""                                                        // The account used to pay for this purchase
+        var OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault())      // The currency used by the vendor of this item
+        var OriginalPrice: Double = 0.0                                                 // The nominal price given by the vendor using the specific (original) currency
+        var ExchangeRate: Double = 1.0                                                  // The exchange rate from the original currency to the default currency of the account used
     }
 
     private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()                  // ID as primary key
