@@ -6,9 +6,9 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
-typealias IDType = Long
-typealias IDCollection = TreeSet<IDType>
-typealias AccountIDType = Long
+typealias ID = Long
+typealias IDCollection = TreeSet<ID>
+typealias AccountID = Long
 typealias LabelType = String
 
 open class AccountBook {
@@ -23,9 +23,9 @@ open class AccountBook {
         var ExchangeRate: Double = 1.0                                                  // The exchange rate from the original currency to the default currency of the account used
     }
 
-    private val ItemByID: MutableMap<IDType, InvolvedItem> = TreeMap()                  // ID as primary key
-    private val DefaultCurrency: MutableMap<AccountIDType, Currency> = HashMap()        // Default currency of accounts
+    private val ItemByID: MutableMap<ID, InvolvedItem> = TreeMap()                      // ID as primary key
+    private val DefaultCurrency: MutableMap<AccountID, Currency> = HashMap()            // Default currency of accounts
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // ZonedDateTime as index (special label)
+    private val IDByAccount: MutableMap<AccountID, IDCollection> = HashMap()            // Account as index (special label)
     private val IDByLabel: MutableMap<LabelType, IDCollection> = HashMap()              // Label as index
-    private val IDByAccount: MutableMap<AccountIDType, IDCollection> = HashMap()        // Account as index
 }
