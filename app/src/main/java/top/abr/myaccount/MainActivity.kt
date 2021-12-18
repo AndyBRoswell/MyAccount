@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         NavDrawerListener.syncState() // Synchronize the indicator with the state of the linked DrawerLayout after onRestoreInstanceState has occurred.
     }
 
-    // Open and close the navigation drawer when the icon is clicked
+    // Open and close the navigation drawer when the ≡ icon is clicked
     override fun onOptionsItemSelected(MenuItem: MenuItem): Boolean {
         if (NavDrawerListener.onOptionsItemSelected(MenuItem)) return true
         return super.onOptionsItemSelected(MenuItem)
