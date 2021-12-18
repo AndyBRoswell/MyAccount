@@ -6,4 +6,10 @@
 	<item
 		android:id="@+id/NavDrawerAccountSearch"
 		android:title="@string/account_search" />
+	<item
+		android:id="@+id/NavDrawerAccountStat"
+		android:title="@string/account_stat" />
+	<item
+		android:id="@+id/NavDrawerSettings"
+		android:title="@string/settings" />
 </menu>

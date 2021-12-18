@@ -1,7 +1,0 @@
-<resources>
-	<string name="app_name">我要记账</string>
-	<string name="account_browser">账目浏览</string>
-	<string name="account_search">账目搜索</string>
-	<string name="account_stat">账目分析与统计</string>
-	<string name="settings">设置</string>
-</resources>

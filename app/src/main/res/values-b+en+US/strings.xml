@@ -4,4 +4,6 @@
 	<string name="account_search">Account Search</string>
 	<string name="account_stat">Analysis and Statistics of Accounts</string>
 	<string name="settings">Settings</string>
+	<string name="open_nav_drawer">Open Navigation Drawer</string>
+	<string name="close_nav_drawer">Close Navigation Drawer</string>
 </resources>
