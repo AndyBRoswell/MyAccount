@@ -4,6 +4,8 @@
 	<string name="account_search">账目搜索</string>
 	<string name="account_stat">账目分析与统计</string>
 	<string name="settings">设置</string>
+<!-- 按照 Google 官方的指示，必须提供这 2 个字符串，供无障碍服务使用 -->
 	<string name="open_nav_drawer">打开滑动导航菜单</string>
 	<string name="close_nav_drawer">关闭滑动导航菜单</string>
+<!--	-->
 </resources>
