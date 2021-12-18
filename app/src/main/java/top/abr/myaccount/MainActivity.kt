@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(ActivityMain.root)
         MainDrawerLayout = ActivityMain.MainDrawerLayout.apply {
             NavDrawerListener = ActionBarDrawerToggle(this@MainActivity, this, R.string.open_nav_drawer, R.string.close_nav_drawer)
-            addDrawerListener(NavDrawerListener) // pass the Open and Close toggle for the drawer layout listener to toggle the button
+            addDrawerListener(NavDrawerListener) // Pass the Open and Close toggle for the drawer layout listener to toggle the button
         }
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true) // To make the Navigation drawer icon always appear on the action bar
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true) // To make the navigation drawer icon always appear on the action bar
 
         // Theme
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
