@@ -22,7 +22,22 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
 
+			<EditText
+				android:id="@+id/ActivityMainDateSpanDisplayerFromDate"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenFromPicker" />
+
+			<Button
+				android:id="@+id/ActivityMainDateSpanDisplayerOpenFromPicker"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
+				android:text="📅"/>
+
 			<TextView
+				android:id="@+id/ActivityMainDateSpanDisplayerAlignmentPoint"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="~"
@@ -32,6 +47,20 @@
 				app:layout_constraintHorizontal_bias="0.5"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent" />
+
+			<EditText
+				android:id="@+id/ActivityMainDateSpanDisplayerToDate"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				app:layout_constraintLeft_toRightOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
+				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenToPicker" />
+
+			<Button
+				android:id="@+id/ActivityMainDateSpanDisplayerOpenToPicker"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				app:layout_constraintRight_toRightOf="parent"
+				android:text="📅"/>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
