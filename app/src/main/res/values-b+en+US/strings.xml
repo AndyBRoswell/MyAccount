@@ -1,3 +1,7 @@
 <resources>
 	<string name="app_name">MyAccount</string>
+	<string name="account_browser">Account Browser</string>
+	<string name="account_search">Account Search</string>
+	<string name="account_stat">Analysis and Statistics of Accounts</string>
+	<string name="settings">Settings</string>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/NavDrawerAccountBrowser"
+		android:title="@string/account_browser" />
+	<item
+		android:id="@+id/NavDrawerAccountSearch"
+		android:title="@string/account_search" />
+</menu>
