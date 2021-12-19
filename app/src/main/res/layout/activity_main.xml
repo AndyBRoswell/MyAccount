@@ -34,8 +34,8 @@
 				android:id="@+id/ActivityMainDateSpanDisplayerOpenFromPicker"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
-				android:text="📅"/>
+				android:text="📅"
+				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint" />
 
 			<TextView
 				android:id="@+id/ActivityMainDateSpanDisplayerAlignmentPoint"
@@ -60,8 +60,8 @@
 				android:id="@+id/ActivityMainDateSpanDisplayerOpenToPicker"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				app:layout_constraintRight_toRightOf="parent"
-				android:text="📅"/>
+				android:text="📅"
+				app:layout_constraintRight_toRightOf="parent" />
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
