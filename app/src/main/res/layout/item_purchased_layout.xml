@@ -18,9 +18,8 @@
 			android:id="@+id/ItemPurchasedLayoutDateTime"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutName"
 			app:layout_constraintStart_toStartOf="parent"
-			/>
+			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutName" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutSite"
