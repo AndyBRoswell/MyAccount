@@ -39,4 +39,10 @@ open class AccountBook {
     private val IDByAccount: MutableMap<AccountID, IDCollection> = HashMap()            // Index item ID by account.
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
     private val IDByLabel: MutableMap<LabelType, IDCollection> = HashMap()              // Index item ID by label.
+
+    private fun GenerateItemID(): ItemID = System.nanoTime()
+
+    fun GetItems(): Map<ItemID, Item> = ItemByID
+
+    fun GetDefaultCurrenciesOfAccounts(): Map<AccountID, Currency> = DefaultCurrency
 }
