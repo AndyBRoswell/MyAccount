@@ -44,5 +44,5 @@ open class AccountBook {
 
     fun GetItems(): Map<ItemID, Item> = ItemByID
 
-    fun GetDefaultCurrenciesOfAccounts(): Map<AccountID, Currency> = DefaultCurrency
+    fun GetAccountDefaultCurrencies(): Map<AccountID, Currency> = DefaultCurrency
 }
