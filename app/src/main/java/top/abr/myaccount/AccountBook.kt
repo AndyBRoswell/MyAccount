@@ -8,7 +8,7 @@ import kotlin.collections.HashMap
 typealias ItemID = Long
 typealias IDCollection = TreeSet<ItemID>
 typealias AccountID = Long
-typealias Label = String
+typealias LabelID = Long
 
 open class AccountBook {
     open class Item {
@@ -40,9 +40,9 @@ open class AccountBook {
     private val LabelSynonym: SynonymDictionary = SynonymDictionary()                   // Synonym dict for labels
     private val SiteSynonym: SynonymDictionary = SynonymDictionary()                    // Synonym dict for sites
     // Extra indices for quick search
-    private val IDByAccount: MutableMap<AccountID, IDCollection> = HashMap()            // Index item ID by account.
+    private val IDByAccount: MutableMap<AccountID, IDCollection> = TreeMap()            // Index item ID by account.
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
-    private val IDByLabel: MutableMap<Label, IDCollection> = HashMap()                  // Index item ID by label.
+    private val IDByLabel: MutableMap<LabelID, IDCollection> = TreeMap()                // Index item ID by label.
 
     private fun GenerateItemID(): ItemID = System.nanoTime()
 
