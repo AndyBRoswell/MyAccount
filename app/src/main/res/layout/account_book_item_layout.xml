@@ -29,7 +29,7 @@
 			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
-			android:id="@+id/AccountBookItemLayoutDateTime"
+			android:id="@+id/AccountBookItemLayoutTime"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
@@ -41,7 +41,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV075"
-			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutDateTime"
+			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutTime"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
 
 		<TextView
@@ -58,7 +58,7 @@
 			android:layout_height="wrap_content"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutDateTime" />
+			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutTime" />
 
 		<TextView
 			android:id="@+id/AccountBookItemLayoutPrice"

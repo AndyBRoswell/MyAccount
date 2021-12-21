@@ -14,4 +14,6 @@
 	<string name="open_nav_drawer">打开滑动导航菜单</string>
 	<string name="close_nav_drawer">关闭滑动导航菜单</string>
 	<!--	-->
+	<!-- 错误信息 -->
+	<!--	-->
 </resources>

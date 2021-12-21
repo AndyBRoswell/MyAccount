@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
         val NameView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutName)
-        val DateTimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDateTime)
+        val DateTimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutTime)
         val SiteView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutSite)
         val AccountView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutAccount)
         val OriginalPriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutOriginalPrice)
