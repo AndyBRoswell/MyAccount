@@ -9,11 +9,18 @@
 		android:layout_height="wrap_content">
 
 		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/ItemPurchasedLayoutVerticalMedian"
+			android:id="@+id/ItemPurchasedLayoutGuidelineV05"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			app:layout_constraintGuide_percent="0.5" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/ItemPurchasedLayoutGuidelineV075"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_percent="0.75" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutName"
@@ -25,31 +32,40 @@
 			android:id="@+id/ItemPurchasedLayoutDateTime"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="@id/ItemPurchasedLayoutGuidelineV05"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutName" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutSite"
-			android:layout_width="match_parent"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="@id/ItemPurchasedLayoutGuidelineV075"
+			app:layout_constraintStart_toEndOf="@id/ItemPurchasedLayoutDateTime"
 			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutName" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutAccount"
-			android:layout_width="match_parent"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/ItemPurchasedLayoutSite"
 			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutName" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutOriginalPrice"
-			android:layout_width="match_parent"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="@id/ItemPurchasedLayoutGuidelineV05"
+			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutDateTime" />
 
 		<TextView
 			android:id="@+id/ItemPurchasedLayoutPrice"
-			android:layout_width="match_parent"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/ItemPurchasedLayoutOriginalPrice"
 			app:layout_constraintTop_toBottomOf="@id/ItemPurchasedLayoutSite" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
