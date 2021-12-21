@@ -218,7 +218,7 @@ open class SynonymDictionary {
     /**
      * Return all synonyms of the word with the specified <code>CanonicalID</code>.
      */
-    fun GetSynonyms(CanonicalID: Long) = Synonyms[CanonicalID]
+    fun GetSynonyms(CanonicalID: Long): Set<String>? = Synonyms[CanonicalID]
 
     /**
      * Return the number of synonyms of <code>Word</code>. If the word doesn't exist in this dictionary, return -1.
@@ -256,5 +256,5 @@ open class SynonymDictionary {
 
     private fun GenerateCanonicalID(): Long = System.nanoTime()
 
-    fun AllSynonyms() = Synonyms
+    fun AllSynonyms(): Map<Long, Set<String>> = Synonyms
 }

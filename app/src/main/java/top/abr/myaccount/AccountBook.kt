@@ -1,6 +1,5 @@
 package top.abr.myaccount
 
-import android.content.res.Resources
 import java.util.Currency
 import java.time.ZonedDateTime
 import java.util.*
@@ -9,7 +8,7 @@ import kotlin.collections.HashMap
 typealias ItemID = Long
 typealias IDCollection = TreeSet<ItemID>
 typealias AccountID = Long
-typealias LabelType = String
+typealias Label = String
 
 open class AccountBook {
     open class Item {
@@ -37,11 +36,13 @@ open class AccountBook {
     private val DefaultCurrency: MutableMap<AccountID, Currency> = HashMap()            // Default currency of accounts
     // Synonym dict for fields which may have synonyms
     private val AccountSynonym: SynonymDictionary = SynonymDictionary()                 // Synonym dict for accounts
+    private val CurrencySynonym: SynonymDictionary = SynonymDictionary()                // Synonym dict for currencies
     private val LabelSynonym: SynonymDictionary = SynonymDictionary()                   // Synonym dict for labels
+    private val SiteSynonym: SynonymDictionary = SynonymDictionary()                    // Synonym dict for sites
     // Extra indices for quick search
     private val IDByAccount: MutableMap<AccountID, IDCollection> = HashMap()            // Index item ID by account.
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
-    private val IDByLabel: MutableMap<LabelType, IDCollection> = HashMap()              // Index item ID by label.
+    private val IDByLabel: MutableMap<Label, IDCollection> = HashMap()                  // Index item ID by label.
 
     private fun GenerateItemID(): ItemID = System.nanoTime()
 
