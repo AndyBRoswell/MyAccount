@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-open class AccountBookAdapter(): RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
+open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
         val NameView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutName)
         val DateTimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDateTime)
@@ -25,6 +25,6 @@ open class AccountBookAdapter(): RecyclerView.Adapter<AccountBookAdapter.ItemVie
     }
 
     override fun getItemCount(): Int {
-
+        return 0
     }
 }
