@@ -28,6 +28,7 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:autofillHints="@string/from_date"
+				android:inputType="date"
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenFromPicker" />
 
@@ -55,6 +56,7 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:autofillHints="@string/to_date"
+				android:inputType="date"
 				app:layout_constraintLeft_toRightOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
 				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenToPicker" />
 
