@@ -27,6 +27,7 @@
 				android:id="@+id/ActivityMainDateSpanDisplayerFromDate"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
+				android:autofillHints="@string/from_date"
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenFromPicker" />
 
@@ -53,6 +54,7 @@
 				android:id="@+id/ActivityMainDateSpanDisplayerToDate"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
+				android:autofillHints="@string/to_date"
 				app:layout_constraintLeft_toRightOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
 				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenToPicker" />
 
