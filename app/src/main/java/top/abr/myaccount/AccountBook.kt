@@ -35,6 +35,9 @@ open class AccountBook {
     // Main records
     private val ItemByID: MutableMap<ItemID, Item> = TreeMap()                          // ID as primary key for each item
     private val DefaultCurrency: MutableMap<AccountID, Currency> = HashMap()            // Default currency of accounts
+    // Synonym dict for fields which may have synonyms
+    private val AccountSynonym: SynonymDictionary = SynonymDictionary()                 // Synonym dict for accounts
+    private val LabelSynonym: SynonymDictionary = SynonymDictionary()                   // Synonym dict for labels
     // Extra indices for quick search
     private val IDByAccount: MutableMap<AccountID, IDCollection> = HashMap()            // Index item ID by account.
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
@@ -45,4 +48,9 @@ open class AccountBook {
     fun GetItems(): Map<ItemID, Item> = ItemByID
 
     fun GetAccountDefaultCurrencies(): Map<AccountID, Currency> = DefaultCurrency
+
+    fun AddItem(Item: Item) {
+        val ItemID = GenerateItemID()
+        ItemByID[ItemID] = Item
+    }
 }
