@@ -34,20 +34,20 @@ class MainActivity : AppCompatActivity() {
         // Theme
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
 
-        //  Demo data
+        // Demo data
         val A = AccountBook()
         A.apply {
             AddItem(
                 AccountBook.Item(
                     Name = "12900K",
-                    Site="京东",
-                    Account="微信",
+                    Site = "京东",
+                    Account = "微信",
                     OriginalCurrency = Currency.getInstance("CNY"),
                     OriginalPrice = 4999.00
                 )
             )
         }
-        AccountView = findViewById(R.id.AccountView)
+        AccountView = ActivityMain.AccountView
         AccountView.adapter = AccountBookAdapter(A)
         AccountView.layoutManager = LinearLayoutManager(this)
     }

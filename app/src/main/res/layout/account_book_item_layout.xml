@@ -26,12 +26,15 @@
 			android:id="@+id/AccountBookItemLayoutName"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:text="-"
 			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
 			android:id="@+id/AccountBookItemLayoutTime"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:text="-"
+			android:textAlignment="viewStart"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
@@ -40,6 +43,8 @@
 			android:id="@+id/AccountBookItemLayoutSite"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:text="-"
+			android:textAlignment="center"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV075"
 			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutTime"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
@@ -48,6 +53,8 @@
 			android:id="@+id/AccountBookItemLayoutAccount"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:text="-"
+			android:textAlignment="center"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutSite"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
@@ -56,6 +63,8 @@
 			android:id="@+id/AccountBookItemLayoutOriginalPrice"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:text="-"
+			android:textAlignment="viewEnd"
 			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutTime" />
@@ -64,6 +73,8 @@
 			android:id="@+id/AccountBookItemLayoutPrice"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:text="-"
+			android:textAlignment="viewEnd"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutOriginalPrice"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutSite" />
