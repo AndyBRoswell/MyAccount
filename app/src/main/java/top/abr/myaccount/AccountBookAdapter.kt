@@ -16,7 +16,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
         val PriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutPrice)
     }
 
-    val ItemIDArrayForDisplay = ArrayList<ItemID>()
+    private val ItemIDArrayForDisplay = ArrayList<ItemID>()
 
     init {
         for (Entry in AccountBook.GetItemsByTime()) {
