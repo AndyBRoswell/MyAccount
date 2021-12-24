@@ -37,11 +37,8 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
             SiteView.text = Item.Site
             AccountView.text = Item.Account
             OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.displayName
-            PriceView.text = (Item.OriginalPrice * Item.ExchangeRate).toString() + ' ' +
         }
     }
 
-    override fun getItemCount(): Int {
-        return 0
-    }
+    override fun getItemCount() = ItemIDArrayForDisplay.size
 }
