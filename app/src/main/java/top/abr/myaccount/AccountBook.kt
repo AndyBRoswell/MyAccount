@@ -22,7 +22,7 @@ open class AccountBook {
         var ExchangeRate: Double = 1.0                                                  // The exchange rate from the original currency to the default currency of the account used
         var Labels: MutableSet<String> = HashSet()                                      // The labels of this item. These labels are used for quick search.
         var Details: String = ""                                                        // The details of this item
-        
+
         constructor(Name: String = "", Time: ZonedDateTime = ZonedDateTime.now(), Site: String = "", Account: String = "", OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault()), OriginalPrice: Double = 0.0, ExchangeRate: Double = 1.0, Labels: MutableSet<String> = HashSet(), Details: String = "") {
             if (Name == "" && Labels.isEmpty() && Details == "") {
                 throw IllegalArgumentException("Item name, labels and details cannot be empty at the same time in this constructor.")
@@ -75,5 +75,9 @@ open class AccountBook {
         // TODO: Maintain indices
         IDByTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
         IDByTime[Item.Time]!!.add(ItemID)
+    }
+
+    fun AddItems(vararg Items: Item) {
+        for (Item in Items) AddItem(Item)
     }
 }

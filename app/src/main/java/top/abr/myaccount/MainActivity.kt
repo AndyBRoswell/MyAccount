@@ -37,13 +37,35 @@ class MainActivity : AppCompatActivity() {
         // Demo data
         val A = AccountBook()
         A.apply {
-            AddItem(
+            AddItems(
                 AccountBook.Item(
                     Name = "12900K",
                     Site = "京东",
                     Account = "微信",
                     OriginalCurrency = Currency.getInstance("CNY"),
-                    OriginalPrice = 4999.00
+                    OriginalPrice = 4999.00,
+                    Details = "Intel Core i9-12900K CPU"
+                ),
+                AccountBook.Item(
+                    Name = "1DX Mark 3",
+                    Site = "Canon Online Store (USA)",
+                    Account = "PayPal",
+                    OriginalCurrency = Currency.getInstance("USD"),
+                    OriginalPrice = 6499.00,
+                    ExchangeRate = 6.37,
+                    Details = "Canon 1DX Mark III DSLR Camera, 5.5K@59.94 RAW (1.90:1)"
+                ),
+                AccountBook.Item(
+                    Name = "fripSide专辑",
+                    Site="OTOTOY",
+                    Account = "PayPal",
+                    OriginalCurrency = Currency.getInstance("JPY"),
+                    OriginalPrice = 9900.00,
+                    ExchangeRate = 0.056,
+                    Details = """
+                        the very best of fripSide 2009-2020
+                        the very best of fripSide -moving ballads-
+                    """.trimIndent()
                 )
             )
         }
