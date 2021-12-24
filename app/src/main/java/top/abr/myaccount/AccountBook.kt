@@ -1,5 +1,6 @@
 package top.abr.myaccount
 
+import android.accounts.Account
 import java.util.Currency
 import java.time.ZonedDateTime
 import java.util.*
@@ -9,6 +10,7 @@ typealias ItemID = Long
 typealias IDCollection = TreeSet<ItemID>
 typealias AccountID = Long
 typealias LabelID = Long
+typealias SiteID = Long
 
 open class AccountBook {
     open class Item {
@@ -43,6 +45,7 @@ open class AccountBook {
     private val IDByAccount: MutableMap<AccountID, IDCollection> = TreeMap()            // Index item ID by account.
     private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
     private val IDByLabel: MutableMap<LabelID, IDCollection> = TreeMap()                // Index item ID by label.
+    private val IDBySite: MutableMap<SiteID, IDCollection> = TreeMap()                  // Index item ID by site.
 
     private fun GenerateItemID(): ItemID = System.nanoTime()
 
@@ -51,7 +54,27 @@ open class AccountBook {
     fun GetAccountDefaultCurrencies(): Map<AccountID, Currency> = DefaultCurrency
 
     fun AddItem(Item: Item) {
+        // Main procedure
         val ItemID = GenerateItemID()
         ItemByID[ItemID] = Item
+
+        // Maintain indices
+        var AccountID = AccountSynonym.GetCanonicalID(Item.Account)
+        if (AccountID == null) {
+            AccountSynonym.Insert(listOf(Item.Account))
+            AccountID = AccountSynonym.GetCanonicalID(Item.Account)
+        }
+        IDByAccount.putIfAbsent(AccountID!!, sortedSetOf(ItemID))
+        IDByAccount[AccountID]!!.add(ItemID)
+
+        IDByDateTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
+        IDByDateTime[Item.Time]!!.add(ItemID)
+
+        for (Label in Item.Labels) {
+            var LabelID = LabelSynonym.GetCanonicalID(Label)
+            if (LabelID == null) {
+                
+            }
+        }
     }
 }
