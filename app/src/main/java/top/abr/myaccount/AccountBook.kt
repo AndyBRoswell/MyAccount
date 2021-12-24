@@ -1,6 +1,5 @@
 package top.abr.myaccount
 
-import android.accounts.Account
 import java.util.Currency
 import java.time.ZonedDateTime
 import java.util.*
@@ -43,7 +42,7 @@ open class AccountBook {
     private val SiteSynonym: SynonymDictionary = SynonymDictionary()                    // Synonym dict for sites
     // Extra indices for quick search
     private val IDByAccount: MutableMap<AccountID, IDCollection> = TreeMap()            // Index item ID by account.
-    private val IDByDateTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()       // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
+    private val IDByTime: MutableMap<ZonedDateTime, IDCollection> = TreeMap()           // Index item ID by the time of the transaction. Typically for the single purchase of multiple items.
     private val IDByLabel: MutableMap<LabelID, IDCollection> = TreeMap()                // Index item ID by label.
     private val IDBySite: MutableMap<SiteID, IDCollection> = TreeMap()                  // Index item ID by site.
 
@@ -51,30 +50,23 @@ open class AccountBook {
 
     fun GetItems(): Map<ItemID, Item> = ItemByID
 
+    fun GetItemsByTime(): Map<ZonedDateTime, IDCollection> = IDByTime
+
+    fun GetItemsByTime(Time: ZonedDateTime) = IDByTime[Time]
+
     fun GetAccountDefaultCurrencies(): Map<AccountID, Currency> = DefaultCurrency
+
+    fun GetAccountDefaultCurrency(Account: String) = DefaultCurrency[]
+
+    fun GetItem(ID: ItemID) = ItemByID[ID]
 
     fun AddItem(Item: Item) {
         // Main procedure
         val ItemID = GenerateItemID()
         ItemByID[ItemID] = Item
 
-        // Maintain indices
-        var AccountID = AccountSynonym.GetCanonicalID(Item.Account)
-        if (AccountID == null) {
-            AccountSynonym.Insert(listOf(Item.Account))
-            AccountID = AccountSynonym.GetCanonicalID(Item.Account)
-        }
-        IDByAccount.putIfAbsent(AccountID!!, sortedSetOf(ItemID))
-        IDByAccount[AccountID]!!.add(ItemID)
-
-        IDByDateTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
-        IDByDateTime[Item.Time]!!.add(ItemID)
-
-        for (Label in Item.Labels) {
-            var LabelID = LabelSynonym.GetCanonicalID(Label)
-            if (LabelID == null) {
-                
-            }
-        }
+        // TODO: Maintain indices
+        IDByTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
+        IDByTime[Item.Time]!!.add(ItemID)
     }
 }
