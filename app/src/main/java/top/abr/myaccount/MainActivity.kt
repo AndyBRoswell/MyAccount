@@ -6,12 +6,17 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
 import top.abr.myaccount.databinding.ActivityMainBinding
+import java.time.ZonedDateTime
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var ActivityMain: ActivityMainBinding
     lateinit var MainDrawerLayout: DrawerLayout
     lateinit var NavDrawerListener: ActionBarDrawerToggle
+
+    lateinit var AccountView: RecyclerView
 
     override fun onCreate(SavedInstanceState: Bundle?) {
         super.onCreate(SavedInstanceState)
@@ -25,8 +30,25 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar!!.setDisplayHomeAsUpEnabled(true) // To make the navigation drawer icon always appear on the action bar
 
+        AccountView = ActivityMain.AccountView
+
         // Theme
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
+
+        // Demo data
+        val A = AccountBook()
+        A.apply {
+            AddItem(
+                AccountBook.Item(
+                    Name = "12900K",
+                    Site="京东",
+                    Account="微信",
+                    OriginalCurrency = Currency.getInstance("CNY"),
+                    OriginalPrice = 4999.00
+                )
+            )
+        }
+        AccountView.adapter = AccountBookAdapter(A)
     }
 
     override fun onPostCreate(SavedInstanceState: Bundle?) {
