@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import top.abr.myaccount.databinding.ActivityMainBinding
 import java.time.ZonedDateTime
@@ -21,21 +22,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(SavedInstanceState: Bundle?) {
         super.onCreate(SavedInstanceState)
 
-        // Inflate
-        ActivityMain = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(ActivityMain.root)
-        MainDrawerLayout = ActivityMain.MainDrawerLayout.apply {
-            NavDrawerListener = ActionBarDrawerToggle(this@MainActivity, this, R.string.open_nav_drawer, R.string.close_nav_drawer)
-            addDrawerListener(NavDrawerListener) // Pass the Open and Close toggle for the drawer layout listener to toggle the button
-        }
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true) // To make the navigation drawer icon always appear on the action bar
+        // Something must be processed in advance
 
-        AccountView = ActivityMain.AccountView
-
-        // Theme
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
-
-        // Demo data
+        //  Demo data
         val A = AccountBook()
         A.apply {
             AddItem(
@@ -48,7 +37,23 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
+
+        //  Display
+        AccountView = findViewById(R.id.AccountView)
         AccountView.adapter = AccountBookAdapter(A)
+        AccountView.layoutManager = LinearLayoutManager(this)
+
+        // Inflate
+        ActivityMain = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(ActivityMain.root)
+        MainDrawerLayout = ActivityMain.MainDrawerLayout.apply {
+            NavDrawerListener = ActionBarDrawerToggle(this@MainActivity, this, R.string.open_nav_drawer, R.string.close_nav_drawer)
+            addDrawerListener(NavDrawerListener) // Pass the Open and Close toggle for the drawer layout listener to toggle the button
+        }
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true) // To make the navigation drawer icon always appear on the action bar
+
+        // Theme
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
     }
 
     override fun onPostCreate(SavedInstanceState: Bundle?) {
