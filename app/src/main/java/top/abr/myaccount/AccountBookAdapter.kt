@@ -36,7 +36,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
             TimeView.text = Item.Time.toString()
             SiteView.text = Item.Site
             AccountView.text = Item.Account
-            OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.displayName
+            OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.currencyCode
         }
     }
 
