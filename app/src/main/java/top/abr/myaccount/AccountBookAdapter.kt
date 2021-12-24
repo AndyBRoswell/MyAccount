@@ -33,7 +33,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
         val Item = AccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
-            TimeView.text = Item.Time.toString()
+            TimeView.text = Item.Time.toLocalDateTime().toString()
             SiteView.text = Item.Site
             AccountView.text = Item.Account
             OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.currencyCode
