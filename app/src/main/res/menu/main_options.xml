@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<item
+			android:id="@+id/MainOptionsOrderByTime"
+			android:title="@string/order_by_time_asc" />
+	</group>
+	<group>
+		<item
+			android:id="@+id/MainOptionsAddAccountBookItem"
+			android:title="@string/add_account_book_item" />
+	</group>
+</menu>

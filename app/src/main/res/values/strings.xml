@@ -14,6 +14,11 @@
 	<string name="open_nav_drawer">打开滑动导航菜单</string>
 	<string name="close_nav_drawer">关闭滑动导航菜单</string>
 	<!--	-->
+	<!-- 菜单 -->
+	<string name="order_by_time_asc">按时间升序排列</string>
+	<string name="order_by_time_desc">按时间降序排列</string>
+	<string name="add_account_book_item">添加账目</string>
+	<!--	-->
 	<!-- 错误信息 -->
 	<!--	-->
 </resources>

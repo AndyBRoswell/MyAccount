@@ -2,6 +2,7 @@ package top.abr.myaccount
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
@@ -86,6 +87,11 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(SavedInstanceState: Bundle?) {
         super.onPostCreate(SavedInstanceState)
         NavDrawerListener.syncState() // Synchronize the indicator with the state of the linked DrawerLayout after onRestoreInstanceState has occurred.
+    }
+
+    override fun onCreateOptionsMenu(M: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_options, M)
+        return true
     }
 
     // Open and close the navigation drawer when the ≡ icon is clicked

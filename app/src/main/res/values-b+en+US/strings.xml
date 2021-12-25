@@ -14,6 +14,9 @@
 	<string name="open_nav_drawer">Open Navigation Drawer</string>
 	<string name="close_nav_drawer">Close Navigation Drawer</string>
 	<!--	-->
+	<string name="order_by_time_asc">Order by time ASC</string>
+	<string name="order_by_time_desc">Order by time DESC</string>
+	<string name="add_account_book_item">Add account item</string>
 	<!-- Error Information -->
 	<!--	-->
 </resources>
