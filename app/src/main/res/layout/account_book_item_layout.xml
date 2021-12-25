@@ -1,100 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
-
-	<!-- Guidelines -->
-	<androidx.constraintlayout.widget.Guideline
-		android:id="@+id/AccountBookItemLayoutGuidelineV5"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		app:layout_constraintGuide_percent="0.5" />
-	<androidx.constraintlayout.widget.Guideline
-		android:id="@+id/AccountBookItemLayoutGuidelineV75"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		app:layout_constraintGuide_percent="0.75" />
-	<!---->
-
-	<!-- Components -->
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 	<TextView
 		android:id="@+id/AccountBookItemLayoutName"
-		android:textAppearance="@style/TextAppearance.AppCompat.Large"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/text_view_border"
 		android:text="-"
+		android:textAppearance="@style/TextAppearance.AppCompat.Large"
+		android:textColor="@color/default_dark_text"
 		app:layout_constraintTop_toTopOf="parent" />
-	<!---->
-	<TextView
-		android:id="@+id/AccountBookItemLayoutTime"
-		android:layout_width="0dp"
+	<LinearLayout
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/text_view_border"
-		android:text="-"
-		android:textAlignment="viewStart"
-		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutSite"
-		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-	<TextView
-		android:id="@+id/AccountBookItemLayoutSite"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:background="@drawable/text_view_border"
-		android:text="-"
-		android:textAlignment="center"
-		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutAccount"
-		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV75"
-		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutTime"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-	<TextView
-		android:id="@+id/AccountBookItemLayoutAccount"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:background="@drawable/text_view_border"
-		android:text="-"
-		android:textAlignment="center"
-		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutTime"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutSite"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-	<!---->
-	<TextView
-		android:id="@+id/AccountBookItemLayoutOriginalPrice"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:background="@drawable/text_view_border"
-		android:text="-"
-		android:textAlignment="viewEnd"
-		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutTime" />
-	<TextView
-		android:id="@+id/AccountBookItemLayoutPrice"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:background="@drawable/text_view_border"
-		android:text="-"
-		android:textAlignment="viewEnd"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutOriginalPrice"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutSite" />
-	<!---->
+		android:orientation="horizontal"
+		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName">
+		<TextView
+			android:id="@+id/AccountBookItemLayoutTime"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="2"
+			android:background="@drawable/text_view_border"
+			android:text="-"
+			android:textAlignment="viewStart" />
+		<TextView
+			android:id="@+id/AccountBookItemLayoutSite"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/text_view_border"
+			android:text="-"
+			android:textAlignment="center" />
+		<TextView
+			android:id="@+id/AccountBookItemLayoutAccount"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/text_view_border"
+			android:text="-"
+			android:textAlignment="center" />
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+			android:id="@+id/AccountBookItemLayoutOriginalPrice"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/text_view_border"
+			android:text="-"
+			android:textAlignment="viewEnd"
+			app:layout_constraintStart_toStartOf="parent" />
+		<TextView
+			android:id="@+id/AccountBookItemLayoutPrice"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/text_view_border"
+			android:text="-"
+			android:textAlignment="viewEnd"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutOriginalPrice" />
+	</LinearLayout>
 	<TextView
 		android:id="@+id/AccountBookItemLayoutDetails"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/text_view_border"
 		android:maxHeight="100sp"
-		android:text="-"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutOriginalPrice" />
+		android:text="-" />
 	<View
 		style="@style/DarkHorizontalGap"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutDetails" />
-	<!--	-->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
