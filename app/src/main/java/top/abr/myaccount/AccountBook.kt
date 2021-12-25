@@ -80,4 +80,8 @@ open class AccountBook {
     fun AddItems(vararg Items: Item) {
         for (Item in Items) AddItem(Item)
     }
+
+    fun DeleteItem(ID: ItemID) {
+        
+    }
 }

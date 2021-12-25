@@ -65,4 +65,15 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
     }
 
     override fun getItemCount() = ItemIDArrayForDisplay.size
+
+    fun AddAccountItem(Item: AccountBook.Item) {
+
+    }
+
+    fun DeleteAccountItem(Position: Int) {
+        val TargetedItemID = ItemIDArrayForDisplay[Position]
+        AccountBook.DeleteItem(TargetedItemID)
+        ItemIDArrayForDisplay.removeAt(Position)
+        notifyItemRemoved(Position)
+    }
 }
