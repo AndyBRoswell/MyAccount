@@ -14,6 +14,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
         val AccountView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutAccount)
         val OriginalPriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutOriginalPrice)
         val PriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutPrice)
+        val DetailsView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDetails)
     }
 
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
@@ -37,6 +38,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
             SiteView.text = Item.Site
             AccountView.text = Item.Account
             OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.currencyCode
+            DetailsView.text = Item.Details
         }
     }
 
