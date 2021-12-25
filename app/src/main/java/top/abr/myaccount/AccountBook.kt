@@ -82,6 +82,11 @@ open class AccountBook {
     }
 
     fun DeleteItem(ID: ItemID) {
-        
+        // TODO: Maintain indices
+        val Item = ItemByID[ID] ?: return
+        IDByTime.remove(Item.Time)
+
+        // Main procedure
+        ItemByID.remove(ID)
     }
 }
