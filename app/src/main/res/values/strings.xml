@@ -26,8 +26,10 @@
 	<string name="time">时间</string>
 	<string name="site">地点 / 站点</string>
 	<string name="account">使用的帐户</string>
-	<string name="original_currency">交易使用的货币</string>
-	<string name="original_price"></string>
+	<string name="currency_used_by_the_txn">交易使用的货币</string>
+	<string name="amount_of_the_txn">交易金额</string>
+	<string name="exchange_rate">汇率</string>
+	
 	<!--	-->
 	<!-- 错误信息 -->
 	<!--	-->

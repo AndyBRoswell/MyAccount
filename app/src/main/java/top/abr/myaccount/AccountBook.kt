@@ -18,12 +18,12 @@ open class AccountBook {
         var Site: String = ""                                                           // The site (typically bricks and mortar, or websites) where the transaction related to this item happened
         var Account: String = ""                                                        // The account used for this item
         var OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault())      // The currency used by the transaction of this item
-        var OriginalPrice: Double = 0.0                                                 // The nominal price given by the vendor using the specific (original) currency
+        var OriginalAmount: Double = 0.0                                                // The amount of this transaction using the specific (original) currency
         var ExchangeRate: Double = 1.0                                                  // The exchange rate from the original currency to the default currency of the account used
         var Labels: MutableSet<String> = HashSet()                                      // The labels of this item. These labels are used for quick search.
         var Details: String = ""                                                        // The details of this item
 
-        constructor(Name: String = "", Time: ZonedDateTime = ZonedDateTime.now(), Site: String = "", Account: String = "", OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault()), OriginalPrice: Double = 0.0, ExchangeRate: Double = 1.0, Labels: MutableSet<String> = HashSet(), Details: String = "") {
+        constructor(Name: String = "", Time: ZonedDateTime = ZonedDateTime.now(), Site: String = "", Account: String = "", OriginalCurrency: Currency = Currency.getInstance(Locale.getDefault()), OriginalAmount: Double = 0.0, ExchangeRate: Double = 1.0, Labels: MutableSet<String> = HashSet(), Details: String = "") {
             if (Name == "" && Labels.isEmpty() && Details == "") {
                 throw IllegalArgumentException("Item name, labels and details cannot be empty at the same time in this constructor.")
             }
@@ -32,7 +32,7 @@ open class AccountBook {
             this.Site = Site
             this.Account = Account
             this.OriginalCurrency = OriginalCurrency
-            this.OriginalPrice = OriginalPrice
+            this.OriginalAmount = OriginalAmount
             this.ExchangeRate = ExchangeRate
             this.Labels = Labels
             this.Details = Details
