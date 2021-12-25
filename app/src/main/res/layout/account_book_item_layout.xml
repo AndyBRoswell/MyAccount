@@ -4,28 +4,31 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
+	<!-- Guidelines -->
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/AccountBookItemLayoutGuidelineV5"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		app:layout_constraintGuide_percent="0.5" />
-
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/AccountBookItemLayoutGuidelineV75"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		app:layout_constraintGuide_percent="0.75" />
+	<!---->
 
+	<!-- Components -->
 	<TextView
 		android:id="@+id/AccountBookItemLayoutName"
+		android:textAppearance="@style/TextAppearance.AppCompat.Large"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/text_view_border"
 		android:text="-"
 		app:layout_constraintTop_toTopOf="parent" />
-
+	<!---->
 	<TextView
 		android:id="@+id/AccountBookItemLayoutTime"
 		android:layout_width="0dp"
@@ -33,10 +36,10 @@
 		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="viewStart"
+		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutSite"
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-
 	<TextView
 		android:id="@+id/AccountBookItemLayoutSite"
 		android:layout_width="0dp"
@@ -44,10 +47,10 @@
 		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="center"
+		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutAccount"
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV75"
 		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutTime"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-
 	<TextView
 		android:id="@+id/AccountBookItemLayoutAccount"
 		android:layout_width="0dp"
@@ -55,10 +58,11 @@
 		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="center"
+		app:layout_constraintBottom_toBottomOf="@id/AccountBookItemLayoutTime"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutSite"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
-
+	<!---->
 	<TextView
 		android:id="@+id/AccountBookItemLayoutOriginalPrice"
 		android:layout_width="0dp"
@@ -69,7 +73,6 @@
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutTime" />
-
 	<TextView
 		android:id="@+id/AccountBookItemLayoutPrice"
 		android:layout_width="0dp"
@@ -80,7 +83,7 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutOriginalPrice"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutSite" />
-
+	<!---->
 	<TextView
 		android:id="@+id/AccountBookItemLayoutDetails"
 		android:layout_width="match_parent"
@@ -89,9 +92,9 @@
 		android:maxHeight="100sp"
 		android:text="-"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutOriginalPrice" />
-
 	<View
-		style="@style/ItemHorizontalSeparator"
+		style="@style/DarkHorizontalGap"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutDetails" />
+	<!--	-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
