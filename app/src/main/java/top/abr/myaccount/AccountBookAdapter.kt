@@ -62,7 +62,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
             TimeView.text = Item.Time.toLocalDateTime().toString()
             SiteView.text = Item.Site
             AccountView.text = Item.Account
-            OriginalPriceView.text = Item.OriginalPrice.toString() + ' ' + Item.OriginalCurrency.currencyCode
+            OriginalPriceView.text = Item.OriginalAmount.toString() + ' ' + Item.OriginalCurrency.currencyCode
             DetailsView.text = Item.Details
         }
     }
