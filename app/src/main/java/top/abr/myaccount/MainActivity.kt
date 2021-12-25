@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                     8P16T @ 3.20 GHz / 5.10 GHz
                     8E8T @ 2.40 GHz / 3.20 GHz
                     L2: 14 MB
-                    Pwr: 125W/241W
+                    Pwr: 125 W / 241 W
                     Litro: Intel 7 (10ESF)
                     Mem: 2CH DDR4 3200 (51.2 GB/s), 2CH DDR5 4800 (76.8 GB/s)
                     PCI-E 4.0/5.0 (20 Lanes)
