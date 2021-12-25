@@ -3,6 +3,7 @@ package top.abr.myaccount
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 
 open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
@@ -19,18 +20,26 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
             ItemView.apply {
                 setOnCreateContextMenuListener { TargetedContextMenu, _, _ ->
                     ActivityContext.menuInflater.inflate(R.menu.account_book_context, TargetedContextMenu)
-                }
-                setOnLongClickListener {
-                    ClickPosition = layoutPosition
-                    false
+                    for (i in 0 until TargetedContextMenu.size) {
+                        val CurrentMenuItem = TargetedContextMenu.getItem(i)
+                        when (CurrentMenuItem.title) {
+                            ActivityContext.resources.getString(R.string.add_account_book_item) -> {
+
+                            }
+                            ActivityContext.resources.getString(R.string.modify_account_book_item) -> {
+
+                            }
+                            ActivityContext.resources.getString(R.string.delete_account_book_item) -> {
+
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
-
-    private var ClickPosition: Int = -1
 
     init {
         for (Entry in AccountBook.GetItemsByTime()) {
