@@ -22,6 +22,7 @@
 		android:id="@+id/AccountBookItemLayoutName"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +30,7 @@
 		android:id="@+id/AccountBookItemLayoutTime"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="viewStart"
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
@@ -39,6 +41,7 @@
 		android:id="@+id/AccountBookItemLayoutSite"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="center"
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV75"
@@ -49,6 +52,7 @@
 		android:id="@+id/AccountBookItemLayoutAccount"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="center"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +63,7 @@
 		android:id="@+id/AccountBookItemLayoutOriginalPrice"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="viewEnd"
 		app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
@@ -69,6 +74,7 @@
 		android:id="@+id/AccountBookItemLayoutPrice"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:text="-"
 		android:textAlignment="viewEnd"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -79,8 +85,13 @@
 		android:id="@+id/AccountBookItemLayoutDetails"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="@drawable/text_view_border"
 		android:maxHeight="100sp"
 		android:text="-"
 		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutOriginalPrice" />
+
+	<View
+		style="@style/ItemHorizontalSeparator"
+		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

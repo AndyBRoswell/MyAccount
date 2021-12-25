@@ -17,12 +17,12 @@
 	<style name="InternalHorizontalSeparator">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">1dp</item>
-		<item name="android:background">@android:color/darker_gray</item>
+		<item name="android:background">@color/default_dark_border</item>
 	</style>
 	<!-- Style for views used as item separator -->
 	<style name="ItemHorizontalSeparator">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">2dp</item>
-		<item name="android:background">@android:color/darker_gray</item>
+		<item name="android:background">@color/default_dark_border</item>
 	</style>
 </resources>
