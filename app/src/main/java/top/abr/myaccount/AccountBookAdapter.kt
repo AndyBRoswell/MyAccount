@@ -30,7 +30,10 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
                             }
                             ActivityContext.resources.getString(R.string.delete_account_book_item) -> {
-                                DeleteAccountItem(layoutPosition)
+                                CurrentMenuItem.setOnMenuItemClickListener {
+                                    DeleteAccountItem(layoutPosition)
+                                    true
+                                }
                             }
                         }
                     }
