@@ -12,8 +12,7 @@
 		android:maxLines="2"
 		android:text="-"
 		android:textAppearance="@style/TextAppearance.AppCompat.Large"
-		android:textColor="@color/default_dark_text"
-		app:layout_constraintTop_toTopOf="parent" />
+		android:textColor="@color/default_dark_text" />
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -60,8 +59,7 @@
 			android:background="@drawable/text_view_border"
 			android:maxLines="1"
 			android:text="-"
-			android:textAlignment="viewEnd"
-			app:layout_constraintStart_toStartOf="parent" />
+			android:textAlignment="viewEnd" />
 		<TextView
 			android:id="@+id/AccountBookItemLayoutPrice"
 			android:layout_width="0dp"
@@ -70,9 +68,7 @@
 			android:background="@drawable/text_view_border"
 			android:maxLines="1"
 			android:text="-"
-			android:textAlignment="viewEnd"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutOriginalPrice" />
+			android:textAlignment="viewEnd" />
 	</LinearLayout>
 	<TextView
 		android:id="@+id/AccountBookItemLayoutDetails"
@@ -81,7 +77,5 @@
 		android:background="@drawable/text_view_border"
 		android:maxLines="10"
 		android:text="-" />
-	<View
-		style="@style/DarkHorizontalGap"
-		app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutDetails" />
+	<View style="@style/DarkHorizontalGap" />
 </LinearLayout>
