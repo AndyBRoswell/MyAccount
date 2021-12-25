@@ -6,17 +6,17 @@
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="100dp">
 
 		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/AccountBookItemLayoutGuidelineV05"
+			android:id="@+id/AccountBookItemLayoutGuidelineV5"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			app:layout_constraintGuide_percent="0.5" />
 
 		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/AccountBookItemLayoutGuidelineV075"
+			android:id="@+id/AccountBookItemLayoutGuidelineV75"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
@@ -35,7 +35,7 @@
 			android:layout_height="wrap_content"
 			android:text="-"
 			android:textAlignment="viewStart"
-			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
+			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
 
@@ -45,7 +45,7 @@
 			android:layout_height="wrap_content"
 			android:text="-"
 			android:textAlignment="center"
-			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV075"
+			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV75"
 			app:layout_constraintStart_toEndOf="@id/AccountBookItemLayoutTime"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutName" />
 
@@ -65,7 +65,7 @@
 			android:layout_height="wrap_content"
 			android:text="-"
 			android:textAlignment="viewEnd"
-			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV05"
+			app:layout_constraintEnd_toEndOf="@id/AccountBookItemLayoutGuidelineV5"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutTime" />
 
@@ -80,6 +80,5 @@
 			app:layout_constraintTop_toBottomOf="@id/AccountBookItemLayoutSite" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </LinearLayout>
