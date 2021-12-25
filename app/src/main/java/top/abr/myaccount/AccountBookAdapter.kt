@@ -30,7 +30,7 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(Holder: ItemViewHolder, Position: Int) {
-        val ItemID = ItemIDArrayForDisplay[Position]
+        val ItemID = ItemIDArrayForDisplay[ItemIDArrayForDisplay.size - 1 - Position]       // Display in reverse order (later items are close to the top)
         val Item = AccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
