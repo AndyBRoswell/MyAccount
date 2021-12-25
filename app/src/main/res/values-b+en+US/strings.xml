@@ -16,7 +16,9 @@
 	<!--	-->
 	<string name="order_by_time_asc">Order by time ASC</string>
 	<string name="order_by_time_desc">Order by time DESC</string>
-	<string name="add_account_book_item">Add account item</string>
+	<string name="add_account_book_item">Add account book item</string>
+	<string name="modify_account_book_item">Modify account book item</string>
+	<string name="delete_account_book_item">Delete account book item</string>
 	<!-- Error Information -->
 	<!--	-->
 </resources>

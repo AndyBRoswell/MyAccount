@@ -1,13 +1,12 @@
 package top.abr.myaccount
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
-open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
-    open inner class ItemViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
+open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
+    open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val NameView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutName)
         val TimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutTime)
         val SiteView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutSite)
@@ -15,9 +14,23 @@ open class AccountBookAdapter(var AccountBook: AccountBook): RecyclerView.Adapte
         val OriginalPriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutOriginalPrice)
         val PriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutPrice)
         val DetailsView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDetails)
+
+        init {
+            ItemView.apply {
+                setOnCreateContextMenuListener { TargetedContextMenu, _, _ ->
+                    ActivityContext.menuInflater.inflate(R.menu.account_book_context, TargetedContextMenu)
+                }
+                setOnLongClickListener {
+                    ClickPosition = layoutPosition
+                    false
+                }
+            }
+        }
     }
 
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
+
+    private var ClickPosition: Int = -1
 
     init {
         for (Entry in AccountBook.GetItemsByTime()) {

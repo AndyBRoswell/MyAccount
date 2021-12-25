@@ -18,6 +18,8 @@
 	<string name="order_by_time_asc">按时间升序排列</string>
 	<string name="order_by_time_desc">按时间降序排列</string>
 	<string name="add_account_book_item">添加账目</string>
+	<string name="modify_account_book_item">修改账目</string>
+	<string name="delete_account_book_item">删除账目</string>
 	<!--	-->
 	<!-- 错误信息 -->
 	<!--	-->

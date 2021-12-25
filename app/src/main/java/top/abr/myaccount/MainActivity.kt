@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
 
         AccountView = ActivityMain.AccountView
-        AccountView.adapter = AccountBookAdapter(DemoAccountBook)
+        AccountView.adapter = AccountBookAdapter(this, DemoAccountBook)
         AccountView.layoutManager = LinearLayoutManager(this)
     }
 

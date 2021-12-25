@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/AccountBookContextAdd"
+		android:title="@string/add_account_book_item" />
+	<item
+		android:id="@+id/AccounBookContextModify"
+		android:title="@string/modify_account_book_item" />
+	<item
+		android:id="@+id/AccountBookContextDelete"
+		android:title="@string/delete_account_book_item" />
+</menu>
