@@ -17,7 +17,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
         val DetailsView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDetails)
 
         init {
-            ItemView.apply {
+            ItemView.apply { // Add context menu and the corresponding event handlers for the view of each item.
                 setOnCreateContextMenuListener { TargetedContextMenu, _, _ ->
                     ActivityContext.menuInflater.inflate(R.menu.account_book_context, TargetedContextMenu)
                     for (i in 0 until TargetedContextMenu.size) {
@@ -55,7 +55,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
     }
 
     override fun onBindViewHolder(Holder: ItemViewHolder, Position: Int) {
-        val ItemID = ItemIDArrayForDisplay[ItemIDArrayForDisplay.size - 1 - Position]       // Display in reverse order (later items are close to the top)
+        val ItemID = ItemIDArrayForDisplay[ItemIDArrayForDisplay.size - 1 - Position] // Display in reverse order (later items are close to the top)
         val Item = AccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
