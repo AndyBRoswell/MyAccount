@@ -13,4 +13,16 @@
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 		<!-- Customize your theme here. -->
 	</style>
+	<!-- Style for views used as internal separator -->
+	<style name="InternalHorizontalSeparator">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<item name="android:background">@android:color/darker_gray</item>
+	</style>
+	<!-- Style for views used as item separator -->
+	<style name="ItemHorizontalSeparator">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">2dp</item>
+		<item name="android:background">@android:color/darker_gray</item>
+	</style>
 </resources>
