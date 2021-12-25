@@ -21,6 +21,14 @@
 	<string name="modify_account_book_item">修改账目</string>
 	<string name="delete_account_book_item">删除账目</string>
 	<!--	-->
+	<!-- 编辑账目 -->
+	<string name="name">名称</string>
+	<string name="time">时间</string>
+	<string name="site">地点 / 站点</string>
+	<string name="account">使用的帐户</string>
+	<string name="original_currency">交易使用的货币</string>
+	<string name="original_price"></string>
+	<!--	-->
 	<!-- 错误信息 -->
 	<!--	-->
 </resources>
