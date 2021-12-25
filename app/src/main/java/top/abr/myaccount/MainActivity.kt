@@ -12,6 +12,7 @@ import top.abr.myaccount.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    // UI components
     lateinit var ActivityMain: ActivityMainBinding
     lateinit var MainDrawerLayout: DrawerLayout
     lateinit var NavDrawerListener: ActionBarDrawerToggle
@@ -27,7 +28,16 @@ class MainActivity : AppCompatActivity() {
                 Account = "微信",
                 OriginalCurrency = Currency.getInstance("CNY"),
                 OriginalPrice = 4999.00,
-                Details = "Intel Core i9-12900K CPU"
+                Details = """
+                    Intel Core i9-12900K CPU
+                    8P16T @ 3.20 GHz / 5.10 GHz
+                    8E8T @ 2.40 GHz / 3.20 GHz
+                    L2: 14 MB
+                    Pwr: 125W/241W
+                    Litro: Intel 7 (10ESF)
+                    Mem: 2CH DDR4 3200 (51.2 GB/s), 2CH DDR5 4800 (76.8 GB/s)
+                    PCI-E 4.0/5.0 (20 Lanes)
+                """.trimIndent()
             ),
             AccountBook.Item(
                 Name = "1DX Mark 3",
@@ -39,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 Details = "Canon 1DX Mark III DSLR Camera, 5.5K@59.94 RAW (1.90:1)"
             ),
             AccountBook.Item(
-                Name = "fripSide专辑",
+                Name = "fripSide专辑 24/96",
                 Site="OTOTOY",
                 Account = "PayPal",
                 OriginalCurrency = Currency.getInstance("JPY"),
