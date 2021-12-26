@@ -33,7 +33,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "New")
                                     }
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, null))
                                     true
                                 }
                             }
@@ -59,13 +59,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         }
     }
 
-    open inner class EditAccountBookItemContract : ActivityResultContract<Pair<Bundle, AccountBook.Item>, Pair<Bundle, AccountBook.Item>>() {
-        override fun createIntent(Context: Context, Input: Pair<Bundle, AccountBook.Item>) =
+    open inner class EditAccountBookItemContract : ActivityResultContract<Pair<Bundle, AccountBook.Item?>, Pair<Bundle, AccountBook.Item>>() {
+        override fun createIntent(Context: Context, Input: Pair<Bundle, AccountBook.Item?>) =
             Intent(ActivityContext, EditAccountBookItemActivity::class.java).apply {
                 val EditParams = Input.first
                 putExtra("EditParams", EditParams)
                 if (EditParams.getString("Mode") == "Edit") {
-                    val Item = Input.second
+                    val Item = Input.second!!
                     putExtra("Item", JSONProcessor.Serialize(Item))
 //                    val ItemParams = Bundle().apply {
 //                        putString("Name", Item.Name)
