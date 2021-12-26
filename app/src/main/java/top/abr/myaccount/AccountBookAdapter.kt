@@ -29,10 +29,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                         val CurrentMenuItem = TargetedContextMenu.getItem(i)
                         when (CurrentMenuItem.title) {
                             ActivityContext.resources.getString(R.string.add_account_book_item) -> {
-                                val EditParams = Bundle().apply {
-                                    putString("Mode", "New")
+                                CurrentMenuItem.setOnMenuItemClickListener {
+                                    val EditParams = Bundle().apply {
+                                        putString("Mode", "New")
+                                    }
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    true
                                 }
-                                EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
                             }
                             ActivityContext.resources.getString(R.string.modify_account_book_item) -> {
 
