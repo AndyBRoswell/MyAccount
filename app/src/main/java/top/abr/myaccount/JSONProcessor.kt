@@ -15,9 +15,9 @@ open class JSONProcessor {
             return OStream.toString()
         }
 
-        fun <T> Deserialize(Manif: Class<T>, Str: String) {
+        fun <T> Deserialize(Manif: Class<T>, Str: String): T? {
             val IStream = ByteArrayInputStream(Str.toByteArray())
-            Core.deserialize(Manif, IStream)
+            return Core.deserialize(Manif, IStream)
         }
     }
 }
