@@ -16,20 +16,31 @@ typealias LabelID = Long
 typealias SiteID = Long
 
 open class AccountBook {
-    companion object {
-        @JsonConverter(target = ZonedDateTime::class)
-        object ZonedDateTimeConverter {
-            val JSON_READER = JsonReader.ReadObject {
-                ZonedDateTime.parse(it.readSimpleString())
-            }
-            val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: ZonedDateTime? ->
-                JSONWriter.writeString(Value.toString())
-            }
-        }
-    }
-
     @CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
     open class Item {
+        companion object {
+            @JsonConverter(target = ZonedDateTime::class)
+            object ZonedDateTimeConverter {
+                val JSON_READER = JsonReader.ReadObject {
+                    ZonedDateTime.parse(it.readSimpleString())
+                }
+                val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: ZonedDateTime? ->
+                    JSONWriter.writeString(Value.toString())
+                }
+            }
+
+            @JsonConverter(target = Currency::class)
+            object CurrencyConverter {
+                val JSON_READER = JsonReader.ReadObject {
+                    Currency.getInstance(it.readSimpleString())
+                }
+                val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: Currency? ->
+                    if (Value != null) JSONWriter.writeString(Value.currencyCode)
+                    else JSONWriter.writeNull()
+                }
+            }
+        }
+
         var Name: String = ""                                                           // The name of the item
         var Time: ZonedDateTime = ZonedDateTime.now()                                   // The time when the transaction related to this item happened
         var Site: String = ""                                                           // The site (typically bricks and mortar, or websites) where the transaction related to this item happened
