@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
+import java.util.logging.Logger
 
 open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -42,7 +44,8 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "Edit")
                                     }
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    val Item = MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, Item))
                                     true
                                 }
                             }
@@ -66,7 +69,8 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 putExtra("EditParams", EditParams)
                 if (EditParams.getString("Mode") == "Edit") {
                     val Item = Input.second!!
-                    putExtra("Item", JSONProcessor.Serialize(Item))
+                    val SerializationResult = JSONProcessor.Serialize(Item)
+                    putExtra("Item", SerializationResult)
 //                    val ItemParams = Bundle().apply {
 //                        putString("Name", Item.Name)
 //                        putString("Time", Item.Time.toString())
