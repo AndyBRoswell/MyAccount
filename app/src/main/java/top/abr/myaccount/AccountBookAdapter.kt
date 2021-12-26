@@ -10,8 +10,9 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
+import java.time.ZonedDateTime
 
-open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
+open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountData: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val NameView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutName)
         val TimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutTime)
@@ -70,6 +71,16 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
         override fun parseResult(ResultCode: Int, Intent: Intent?): Pair<Bundle, AccountBook.Item>? {
             if (ResultCode != Activity.RESULT_OK) return null
+            val EditParams = Intent!!.extras!!.getBundle("EditParams")!!
+            val ItemParams = Intent.extras!!.getBundle("ItemParams")!!
+            val Item = AccountBook.Item(
+                Name = ItemParams.getString("Name")!!,
+                Time = ZonedDateTime.parse(ItemParams.getString("Time")),
+                Site = ItemParams.getString("Site")!!,
+                Account = ItemParams.getString("Account")!!,
+
+            )
+            return Pair(EditParams, Item)
         }
     }
 
@@ -80,7 +91,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
     }
 
     init {
-        for (Entry in AccountBook.GetItemsByTime()) {
+        for (Entry in AccountData.GetItemsByTime()) {
             for (ID in Entry.value) ItemIDArrayForDisplay.add(ID)
         }
     }
@@ -91,7 +102,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
     override fun onBindViewHolder(Holder: ItemViewHolder, Position: Int) {
         val ItemID = ItemIDArrayForDisplay[ItemIDArrayForDisplay.size - 1 - Position] // Display in reverse order (later items are close to the top)
-        val Item = AccountBook.GetItem(ItemID)!!
+        val Item = AccountData.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
             TimeView.text = Item.Time.toLocalDateTime().toString()
@@ -110,7 +121,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
     fun DeleteAccountItem(Position: Int) {
         val TargetedItemID = ItemIDArrayForDisplay[Position]
-        AccountBook.DeleteItem(TargetedItemID)
+        AccountData.DeleteItem(TargetedItemID)
         ItemIDArrayForDisplay.removeAt(Position)
         notifyItemRemoved(Position)
     }
