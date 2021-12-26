@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 
-open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountData: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
+open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val NameView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutName)
         val TimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutTime)
@@ -33,7 +33,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "New")
                                     }
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
                                     true
                                 }
                             }
@@ -42,7 +42,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "Edit")
                                     }
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
                                     true
                                 }
                             }
@@ -112,7 +112,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
     }
 
     init {
-        for (Entry in AccountData.GetItemsByTime()) {
+        for (Entry in MAccountBook.GetItemsByTime()) {
             for (ID in Entry.value) ItemIDArrayForDisplay.add(ID)
         }
     }
@@ -123,7 +123,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
     override fun onBindViewHolder(Holder: ItemViewHolder, Position: Int) {
         val ItemID = ItemIDArrayForDisplay[ItemIDArrayForDisplay.size - 1 - Position] // Display in reverse order (later items are close to the top)
-        val Item = AccountData.GetItem(ItemID)!!
+        val Item = MAccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
             TimeView.text = Item.Time.toLocalDateTime().toString()
@@ -142,7 +142,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
     fun DeleteAccountItem(Position: Int) {
         val TargetedItemID = ItemIDArrayForDisplay[Position]
-        AccountData.DeleteItem(TargetedItemID)
+        MAccountBook.DeleteItem(TargetedItemID)
         ItemIDArrayForDisplay.removeAt(Position)
         notifyItemRemoved(Position)
     }
