@@ -1,7 +1,9 @@
 package top.abr.myaccount
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContract
@@ -45,13 +47,16 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
         }
     }
 
-    open inner class EditAccountBookItemContract : ActivityResultContract<AccountBook.Item, AccountBook.Item>() {
-        override fun createIntent(Context: Context, Input: AccountBook.Item?): Intent {
-            
-        }
+    open inner class EditAccountBookItemContract : ActivityResultContract<Pair<Bundle, AccountBook.Item>, Pair<Bundle, AccountBook.Item>>() {
+        override fun createIntent(Context: Context, Input: Pair<Bundle, AccountBook.Item>) =
+            Intent(ActivityContext, EditAccountBookItemActivity::class.java).apply {
+                val EditParams = Input.first
+                putExtra("EditParams", EditParams)
+                
+            }
 
-        override fun parseResult(ResultCode: Int, Intent: Intent?): AccountBook.Item {
-
+        override fun parseResult(ResultCode: Int, Intent: Intent?): Pair<Bundle, AccountBook.Item>? {
+            if (ResultCode != Activity.RESULT_OK) return null
         }
     }
 
