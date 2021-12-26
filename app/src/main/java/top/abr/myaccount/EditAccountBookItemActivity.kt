@@ -1,5 +1,6 @@
 package top.abr.myaccount
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -38,14 +39,29 @@ class EditAccountBookItemActivity : AppCompatActivity() {
         ExchangeRateEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemExchangeRate
         DetailsEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemDetails
 
-        val EditParams = intent.extras!!.getBundle("EditParams")!!
+        // Load data
+        val Params = intent.extras!!
+        val EditParams = Params.getBundle("EditParams")!!
         when (EditParams.getString("Mode")) {
             "New" -> {
 
             }
             "Edit" -> {
-
+                val Item = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("Item")!!)!!
+                NameEdit.setText(Item.Name)
+                TimeEdit.setText(Item.Time.toString())
+                SiteEdit.setText(Item.Site)
+                AccountEdit.setText(Item.Account)
+                OriginalAmountEdit.setText(Item.OriginalAmount.toString())
+                OriginalCurrencyEdit.setText(Item.OriginalCurrency.toString())
+                ExchangeRateEdit.setText(Item.ExchangeRate.toString())
+                DetailsEdit.setText(Item.Details)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 }

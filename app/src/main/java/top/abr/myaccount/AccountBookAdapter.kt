@@ -81,6 +81,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
 
                 }
             }
+            return null
 //            val ItemParams = Intent.extras!!.getBundle("ItemParams")!!
 //            val Item = AccountBook.Item(
 //                Name = ItemParams.getString("Name")!!,
