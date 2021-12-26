@@ -5,17 +5,83 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".EditAccountBookItemActivity">
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
-
 		<EditText
+			android:id="@+id/ActivityEditAccountBookItemName"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:autofillHints="@string/name"
+			android:hint="@string/name"
+			android:inputType="text"
 			android:maxLines="2" />
-
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<EditText
+				android:id="@+id/ActivityEditAccountBookItemTime"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:autofillHints="@string/time"
+				android:hint="@string/time"
+				android:inputType="datetime"
+				android:maxLines="1"
+				app:layout_constraintEnd_toStartOf="@id/ActivityEditAccountBookItemDateTimePicker"
+				app:layout_constraintTop_toTopOf="parent" />
+			<Button
+				android:id="@+id/ActivityEditAccountBookItemDateTimePicker"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="📅🕒"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<EditText
+				android:id="@+id/ActivityEditAccountBookItemSite"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:autofillHints="@string/site"
+				android:hint="@string/site"
+				android:inputType="text"
+				android:maxLines="1" />
+			<EditText
+				android:id="@+id/ActivityEditAccountBookItemAccount"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:autofillHints="@string/account"
+				android:hint="@string/account"
+				android:inputType="text"
+				android:maxLines="1" />
+		</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<EditText
+				android:id="@+id/ActivityEditAccountBookItemOriginalAmount"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="4"
+				android:autofillHints="@string/amount_of_the_txn"
+				android:hint="@string/amount_of_the_txn"
+				android:inputType="numberDecimal"
+				android:maxLines="1" />
+			<EditText
+				android:id="@+id/ActivityEditAccountBookItemOriginalCurrency"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:autofillHints="@string/currency_used_by_the_txn"
+				android:hint="@string/currency_used_by_the_txn"
+				android:inputType="textCapCharacters"
+				android:maxLines="1" />
+		</LinearLayout>
 	</LinearLayout>
-
 </ScrollView>

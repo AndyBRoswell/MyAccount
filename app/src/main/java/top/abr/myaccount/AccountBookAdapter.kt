@@ -12,8 +12,8 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
         val TimeView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutTime)
         val SiteView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutSite)
         val AccountView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutAccount)
-        val OriginalPriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutOriginalPrice)
-        val PriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutPrice)
+        val OriginalPriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutOriginalAmount)
+        val PriceView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutAmount)
         val DetailsView: TextView = ItemView.findViewById(R.id.AccountBookItemLayoutDetails)
 
         init {
