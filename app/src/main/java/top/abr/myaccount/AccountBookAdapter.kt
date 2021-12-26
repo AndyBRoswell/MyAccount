@@ -1,7 +1,10 @@
 package top.abr.myaccount
 
+import android.content.Context
+import android.content.Intent
 import android.view.*
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +45,21 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
         }
     }
 
+    open inner class EditAccountBookItemContract : ActivityResultContract<AccountBook.Item, AccountBook.Item>() {
+        override fun createIntent(Context: Context, Input: AccountBook.Item?): Intent {
+            
+        }
+
+        override fun parseResult(ResultCode: Int, Intent: Intent?): AccountBook.Item {
+
+        }
+    }
+
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
+
+    private val EditAccountBookItemActivityLauncher = ActivityContext.registerForActivityResult(EditAccountBookItemContract()) {
+
+    }
 
     init {
         for (Entry in AccountBook.GetItemsByTime()) {
