@@ -38,7 +38,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                                 }
                             }
                             ActivityContext.resources.getString(R.string.modify_account_book_item) -> {
-
+                                CurrentMenuItem.setOnMenuItemClickListener {
+                                    val EditParams = Bundle().apply {
+                                        putString("Mode", "Edit")
+                                    }
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
+                                    true
+                                }
                             }
                             ActivityContext.resources.getString(R.string.delete_account_book_item) -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
