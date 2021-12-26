@@ -29,7 +29,7 @@
 	<string name="currency_used_by_the_txn">交易使用的货币</string>
 	<string name="amount_of_the_txn">交易金额</string>
 	<string name="exchange_rate">汇率</string>
-
+	<string name="details">详细说明</string>
 	<!--	-->
 	<!-- 错误信息 -->
 	<!--	-->

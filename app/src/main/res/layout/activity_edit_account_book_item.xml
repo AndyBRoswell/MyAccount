@@ -15,7 +15,7 @@
 			android:layout_height="wrap_content"
 			android:autofillHints="@string/name"
 			android:hint="@string/name"
-			android:inputType="text"
+			android:inputType="textMultiLine"
 			android:maxLines="2" />
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
@@ -83,5 +83,20 @@
 				android:inputType="textCapCharacters"
 				android:maxLines="1" />
 		</LinearLayout>
+		<EditText
+			android:id="@+id/ActivityEditAccountBookItemExchangeRate"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:autofillHints="@string/exchange_rate"
+			android:hint="@string/exchange_rate"
+			android:inputType="numberDecimal"
+			android:maxLines="1" />
+		<EditText
+			android:id="@+id/ActivityEditAccountBookItemDetails"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:autofillHints="@string/details"
+			android:hint="@string/details"
+			android:inputType="textMultiLine" />
 	</LinearLayout>
 </ScrollView>
