@@ -52,7 +52,20 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
             Intent(ActivityContext, EditAccountBookItemActivity::class.java).apply {
                 val EditParams = Input.first
                 putExtra("EditParams", EditParams)
-                
+                if (EditParams.getString("Mode") == "Edit") {
+                    val Item = Input.second
+                    val ItemParams = Bundle().apply {
+                        putString("Name", Item.Name)
+                        putString("Time", Item.Time.toString())
+                        putString("Site", Item.Site)
+                        putString("Account", Item.Account)
+                        putString("Currency", Item.OriginalCurrency.currencyCode)
+                        putDouble("OriginalAmount", Item.OriginalAmount)
+                        putDouble("ExchangeRate", Item.ExchangeRate)
+                        putString("Details", Item.Details)
+                    }
+                    putExtra("ItemParams", ItemParams)
+                }
             }
 
         override fun parseResult(ResultCode: Int, Intent: Intent?): Pair<Bundle, AccountBook.Item>? {
