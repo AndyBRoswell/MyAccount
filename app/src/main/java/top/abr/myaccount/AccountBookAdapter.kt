@@ -72,6 +72,14 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
         override fun parseResult(ResultCode: Int, Intent: Intent?): Pair<Bundle, AccountBook.Item>? {
             if (ResultCode != Activity.RESULT_OK) return null
             val EditParams = Intent!!.extras!!.getBundle("EditParams")!!
+            when (EditParams.getString("Mode")) {
+                "New" -> {
+
+                }
+                "Edit" -> {
+
+                }
+            }
             val ItemParams = Intent.extras!!.getBundle("ItemParams")!!
             val Item = AccountBook.Item(
                 Name = ItemParams.getString("Name")!!,
@@ -79,7 +87,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                 Site = ItemParams.getString("Site")!!,
                 Account = ItemParams.getString("Account")!!,
 
-            )
+                )
             return Pair(EditParams, Item)
         }
     }
