@@ -1,6 +1,9 @@
 package top.abr.myaccount
 
 import com.dslplatform.json.CompiledJson
+import com.dslplatform.json.JsonConverter
+import com.dslplatform.json.JsonReader
+import com.dslplatform.json.JsonWriter
 import java.util.Currency
 import java.time.ZonedDateTime
 import java.util.*
@@ -13,6 +16,18 @@ typealias LabelID = Long
 typealias SiteID = Long
 
 open class AccountBook {
+    companion object {
+        @JsonConverter(target = ZonedDateTime::class)
+        object ZonedDateTimeConverter {
+            val JSON_READER = JsonReader.ReadObject {
+                ZonedDateTime.parse(it.readSimpleString())
+            }
+            val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: ZonedDateTime? ->
+                JSONWriter.writeString(Value.toString())
+            }
+        }
+    }
+
     @CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
     open class Item {
         var Name: String = ""                                                           // The name of the item
