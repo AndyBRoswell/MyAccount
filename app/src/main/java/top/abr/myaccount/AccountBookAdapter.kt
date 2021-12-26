@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
-import java.time.ZonedDateTime
 
 open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var AccountData: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -30,7 +29,10 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                         val CurrentMenuItem = TargetedContextMenu.getItem(i)
                         when (CurrentMenuItem.title) {
                             ActivityContext.resources.getString(R.string.add_account_book_item) -> {
-
+                                val EditParams = Bundle().apply {
+                                    putString("Mode", "New")
+                                }
+                                EditAccountBookItemActivityLauncher.launch(Pair(EditParams, AccountData.GetItem(ItemIDArrayForDisplay[layoutPosition])!!))
                             }
                             ActivityContext.resources.getString(R.string.modify_account_book_item) -> {
 
