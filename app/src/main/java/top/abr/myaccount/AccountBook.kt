@@ -1,5 +1,6 @@
 package top.abr.myaccount
 
+import com.dslplatform.json.CompiledJson
 import java.util.Currency
 import java.time.ZonedDateTime
 import java.util.*
@@ -12,6 +13,7 @@ typealias LabelID = Long
 typealias SiteID = Long
 
 open class AccountBook {
+    @CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
     open class Item {
         var Name: String = ""                                                           // The name of the item
         var Time: ZonedDateTime = ZonedDateTime.now()                                   // The time when the transaction related to this item happened
