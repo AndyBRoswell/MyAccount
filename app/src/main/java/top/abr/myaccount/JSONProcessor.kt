@@ -2,6 +2,7 @@ package top.abr.myaccount
 
 import com.dslplatform.json.DslJson
 import com.dslplatform.json.runtime.Settings
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 open class JSONProcessor {
@@ -9,9 +10,14 @@ open class JSONProcessor {
         private val Core: DslJson<Any> = DslJson(Settings.withRuntime<Any>().includeServiceLoader().allowArrayFormat(true))
 
         fun Serialize(Instance: Any): String {
-            val ostream = ByteArrayOutputStream()
-            Core.serialize(Instance, ostream)
-            return ostream.toString()
+            val OStream = ByteArrayOutputStream()
+            Core.serialize(Instance, OStream)
+            return OStream.toString()
+        }
+
+        fun <T> Deserialize(Manif: Class<T>, Str: String) {
+            val IStream = ByteArrayInputStream(Str.toByteArray())
+            Core.deserialize(Manif, IStream)
         }
     }
 }
