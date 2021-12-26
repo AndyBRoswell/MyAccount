@@ -4,7 +4,7 @@ import com.dslplatform.json.DslJson
 import com.dslplatform.json.runtime.Settings
 import java.io.ByteArrayOutputStream
 
-class JSONProcessor {
+open class JSONProcessor {
     companion object {
         private val Core: DslJson<Any> = DslJson(Settings.withRuntime<Any>().includeServiceLoader().allowArrayFormat(true))
 

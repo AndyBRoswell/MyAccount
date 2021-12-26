@@ -55,6 +55,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var Accoun
                 putExtra("EditParams", EditParams)
                 if (EditParams.getString("Mode") == "Edit") {
                     val Item = Input.second
+                    putExtra("Item", JSONProcessor.Serialize(Item))
 //                    val ItemParams = Bundle().apply {
 //                        putString("Name", Item.Name)
 //                        putString("Time", Item.Time.toString())
