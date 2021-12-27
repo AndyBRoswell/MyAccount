@@ -1,11 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt' // THIS PLUGIN IS INDISPENSABLE
 }
 
 android {
     compileSdk 31
-
+    buildToolsVersion '32.0.0'
     defaultConfig {
         applicationId "top.abr.myaccount"
         minSdk 21
@@ -13,21 +14,29 @@ android {
         versionCode 1
         versionName "1.0"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //disable @javax.annotation.Generated("dsl_json")
+                arguments = ['dsljson.generatedmarker': '']
+            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     dataBinding {
         enabled true
     }
     viewBinding {
         enabled true
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        abortOnError false
     }
     compileOptions {
         // Flag to enable support for the new language APIs
@@ -39,7 +48,6 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    buildToolsVersion '32.0.0'
 }
 
 dependencies {
@@ -51,6 +59,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.dslplatform:dsl-json-java8:1.9.9'
     annotationProcessor 'com.dslplatform:dsl-json-java8:1.9.9'
+    kapt 'com.dslplatform:dsl-json-java8:1.9.9'
     compileOnly 'javax.json.bind:javax.json.bind-api:1.0'
 
     testImplementation 'junit:junit:4.+'

@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import top.abr.myaccount.databinding.ActivityMainBinding
+import java.time.ZonedDateTime
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,10 +26,13 @@ class MainActivity : AppCompatActivity() {
         AddItems(
             AccountBook.Item(
                 Name = "12900K",
+                Time = ZonedDateTime.now(),
                 Site = "京东",
                 Account = "微信",
                 OriginalCurrency = Currency.getInstance("CNY"),
                 OriginalAmount = 4999.00,
+                ExchangeRate = 1.0,
+                Labels = HashSet(),
                 Details = """
                     Intel Core i9-12900K CPU
                     8P16T @ 3.20 GHz / 5.10 GHz
@@ -42,20 +46,24 @@ class MainActivity : AppCompatActivity() {
             ),
             AccountBook.Item(
                 Name = "1DX Mark 3",
+                Time = ZonedDateTime.now(),
                 Site = "Canon Online Store (USA)",
                 Account = "PayPal",
                 OriginalCurrency = Currency.getInstance("USD"),
                 OriginalAmount = 6499.00,
                 ExchangeRate = 6.37,
+                Labels = HashSet(),
                 Details = "Canon 1DX Mark III DSLR Camera, 5.5K@59.94 RAW (1.90:1)"
             ),
             AccountBook.Item(
                 Name = "fripSide专辑 24/96",
+                Time = ZonedDateTime.now(),
                 Site="OTOTOY",
                 Account = "PayPal",
                 OriginalCurrency = Currency.getInstance("JPY"),
                 OriginalAmount = 9900.00,
                 ExchangeRate = 0.056,
+                Labels = HashSet(),
                 Details = """
                         the very best of fripSide 2009-2020
                         the very best of fripSide -moving ballads-
