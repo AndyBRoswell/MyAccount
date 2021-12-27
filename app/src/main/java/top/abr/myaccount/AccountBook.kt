@@ -28,6 +28,27 @@ open class AccountBook {
         var Labels: MutableSet<String> = HashSet(),                                     // The labels of this item. These labels are used for quick search.
         var Details: String = ""                                                        // The details of this item
     ) {
+        @JsonConverter(target = ZonedDateTime::class)
+        object ZonedDateTimeConverter {
+            val JSON_READER = JsonReader.ReadObject {
+                ZonedDateTime.parse(it.readSimpleString())
+            }
+            val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: ZonedDateTime? ->
+                JSONWriter.writeString(Value.toString())
+            }
+        }
+
+        @JsonConverter(target = Currency::class)
+        object CurrencyConverter {
+            val JSON_READER = JsonReader.ReadObject {
+                Currency.getInstance(it.readSimpleString())
+            }
+            val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: Currency? ->
+                if (Value != null) JSONWriter.writeString(Value.currencyCode)
+                else JSONWriter.writeNull()
+            }
+        }
+        // If enable this constraint, serialization will fail due to unknown reasons. Thus leaving it commented.
 //        init {
 //            if (Name == "" && Labels.isEmpty() && Details == "") {
 //                throw IllegalArgumentException("Item name, labels and details cannot be empty at the same time in this constructor.")
@@ -35,26 +56,7 @@ open class AccountBook {
 //        }
     }
 
-    @JsonConverter(target = ZonedDateTime::class)
-    object ZonedDateTimeConverter {
-        val JSON_READER = JsonReader.ReadObject {
-            ZonedDateTime.parse(it.readSimpleString())
-        }
-        val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: ZonedDateTime? ->
-            JSONWriter.writeString(Value.toString())
-        }
-    }
 
-    @JsonConverter(target = Currency::class)
-    object CurrencyConverter {
-        val JSON_READER = JsonReader.ReadObject {
-            Currency.getInstance(it.readSimpleString())
-        }
-        val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: Currency? ->
-            if (Value != null) JSONWriter.writeString(Value.currencyCode)
-            else JSONWriter.writeNull()
-        }
-    }
 
     // Main records
     private val ItemByID: MutableMap<ItemID, Item> = TreeMap()                          // ID as primary key for each item
