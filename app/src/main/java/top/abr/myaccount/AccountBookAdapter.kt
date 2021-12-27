@@ -107,7 +107,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     }
 
     override fun onBindViewHolder(Holder: ItemViewHolder, Position: Int) {
-        val ItemID = ItemIDArrayForDisplay[Position] // Display in reverse order (later items are close to the top)
+        val ItemID = ItemIDArrayForDisplay[Position]
         val Item = MAccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
