@@ -16,8 +16,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                //disable @javax.annotation.Generated("dsl_json")
-                arguments = ['dsljson.generatedmarker': '']
+                arguments = ['dsljson.generatedmarker': '']     // Disable @javax.annotation.Generated("dsl_json")
             }
         }
 
@@ -39,10 +38,8 @@ android {
         abortOnError false
     }
     compileOptions {
-        // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
-        // Sets Java compatibility to Java 8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true               // Flag to enable support for the new language APIs
+        sourceCompatibility JavaVersion.VERSION_1_8     // Sets Java compatibility to Java 8
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
