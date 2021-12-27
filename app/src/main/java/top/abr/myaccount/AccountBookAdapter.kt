@@ -99,7 +99,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         for (Entry in MAccountBook.GetItemsByTime()) {
             for (ID in Entry.value) ItemIDArrayForDisplay.add(ID)
         }
-        ItemIDArrayForDisplay.reverse()
+        ItemIDArrayForDisplay.reverse()     // Default order: In descending order of time
     }
 
     override fun onCreateViewHolder(Parent: ViewGroup, ViewType: Int): ItemViewHolder {
