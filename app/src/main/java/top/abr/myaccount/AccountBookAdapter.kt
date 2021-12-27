@@ -62,7 +62,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         }
     }
 
-    open inner class EditAccountBookItemContract : ActivityResultContract<Pair<Bundle, AccountBook.Item?>, Pair<Bundle, AccountBook.Item>>() {
+    open inner class EditAccountBookItemContract : ActivityResultContract<Pair<Bundle, AccountBook.Item?>, Bundle?>() {
         override fun createIntent(Context: Context, Input: Pair<Bundle, AccountBook.Item?>) =
             Intent(ActivityContext, EditAccountBookItemActivity::class.java).apply {
                 val EditParams = Input.first
@@ -74,25 +74,27 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 }
             }
 
-        override fun parseResult(ResultCode: Int, Intent: Intent?): Pair<Bundle, AccountBook.Item>? {
+        override fun parseResult(ResultCode: Int, Intent: Intent?): Bundle? {
             if (ResultCode != Activity.RESULT_OK) return null
-            val EditParams = Intent!!.extras!!.getBundle("EditParams")!!
-            when (EditParams.getString("Mode")) {
-                "New" -> {
-
-                }
-                "Edit" -> {
-
-                }
-            }
-            return null
+            return Intent!!.extras!!
         }
     }
 
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
 
     private val EditAccountBookItemActivityLauncher = ActivityContext.registerForActivityResult(EditAccountBookItemContract()) {
-
+        if (it != null) {
+            val EditParams = it.getBundle("EditParams")!!
+            when (EditParams.getString("Mode")) {
+                "New" -> {
+                    val NewItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, it.getString("Item")!!)!!
+                    MAccountBook.AddItem(NewItem)
+                }
+                "Edit" -> {
+                    
+                }
+            }
+        }
     }
 
     init {
