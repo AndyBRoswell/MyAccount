@@ -14,11 +14,25 @@
 	<string name="open_nav_drawer">Open Navigation Drawer</string>
 	<string name="close_nav_drawer">Close Navigation Drawer</string>
 	<!--	-->
+	<!-- Menu -->
 	<string name="order_by_time_asc">Order by time ASC</string>
 	<string name="order_by_time_desc">Order by time DESC</string>
 	<string name="add_account_book_item">Add account book item</string>
 	<string name="modify_account_book_item">Modify account book item</string>
 	<string name="delete_account_book_item">Delete account book item</string>
+	<!--	-->
+	<!-- 编辑账目 -->
+	<string name="name">Name</string>
+	<string name="time">Time</string>
+	<string name="site">Site</string>
+	<string name="account">Account</string>
+	<string name="currency_used_by_the_txn">Currency used by the transaction</string>
+	<string name="amount_of_the_txn">Amount of the transaction</string>
+	<string name="exchange_rate">Exchange rate</string>
+	<string name="details">Details</string>
+	<string name="OK">OK</string>
+	<string name="cancel">Cancel</string>
+	<!--	-->
 	<!-- Error Information -->
 	<!--	-->
 </resources>

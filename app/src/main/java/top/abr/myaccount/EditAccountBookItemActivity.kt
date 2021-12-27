@@ -3,6 +3,8 @@ package top.abr.myaccount
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import top.abr.myaccount.databinding.ActivityEditAccountBookItemBinding
@@ -62,5 +64,21 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     override fun onBackPressed() {
         setResult(Activity.RESULT_CANCELED)
         finish()
+    }
+
+    override fun onCreateOptionsMenu(M: Menu?): Boolean {
+        menuInflater.inflate(R.menu.edit_account_book_item_options, M)
+        return true
+    }
+
+    override fun onOptionsItemSelected(Item: MenuItem) = when (Item.itemId) {
+        R.id.ActivityEditAccountBookItemDone -> {
+            true
+        }
+        R.id.ActivityEditAccountBookItemCancel -> {
+            onBackPressed()
+            true
+        }
+        else -> super.onOptionsItemSelected(Item)
     }
 }

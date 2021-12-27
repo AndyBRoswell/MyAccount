@@ -29,8 +29,8 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                     ActivityContext.menuInflater.inflate(R.menu.account_book_context, TargetedContextMenu)
                     for (i in 0 until TargetedContextMenu.size) {
                         val CurrentMenuItem = TargetedContextMenu.getItem(i)
-                        when (CurrentMenuItem.title) {
-                            ActivityContext.resources.getString(R.string.add_account_book_item) -> {
+                        when (CurrentMenuItem.itemId) {
+                            R.id.AccountBookContextAdd -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "New")
@@ -39,7 +39,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                                     true
                                 }
                             }
-                            ActivityContext.resources.getString(R.string.modify_account_book_item) -> {
+                            R.id.AccounBookContextModify -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "Edit")
@@ -49,7 +49,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                                     true
                                 }
                             }
-                            ActivityContext.resources.getString(R.string.delete_account_book_item) -> {
+                            R.id.AccountBookContextDelete -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
                                     DeleteAccountItem(layoutPosition)
                                     true
