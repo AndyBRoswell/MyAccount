@@ -71,17 +71,6 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                     val Item = Input.second!!
                     val SerializationResult = JSONProcessor.Serialize(Item)
                     putExtra("Item", SerializationResult)
-//                    val ItemParams = Bundle().apply {
-//                        putString("Name", Item.Name)
-//                        putString("Time", Item.Time.toString())
-//                        putString("Site", Item.Site)
-//                        putString("Account", Item.Account)
-//                        putString("Currency", Item.OriginalCurrency.currencyCode)
-//                        putDouble("OriginalAmount", Item.OriginalAmount)
-//                        putDouble("ExchangeRate", Item.ExchangeRate)
-//                        putString("Details", Item.Details)
-//                    }
-//                    putExtra("ItemParams", ItemParams)
                 }
             }
 
@@ -97,15 +86,6 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 }
             }
             return null
-//            val ItemParams = Intent.extras!!.getBundle("ItemParams")!!
-//            val Item = AccountBook.Item(
-//                Name = ItemParams.getString("Name")!!,
-//                Time = ZonedDateTime.parse(ItemParams.getString("Time")),
-//                Site = ItemParams.getString("Site")!!,
-//                Account = ItemParams.getString("Account")!!,
-//
-//                )
-//            return Pair(EditParams, Item)
         }
     }
 
