@@ -80,8 +80,6 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         }
     }
 
-    private val ItemIDArrayForDisplay = ArrayList<ItemID>()
-
     private val EditAccountBookItemActivityLauncher = ActivityContext.registerForActivityResult(EditAccountBookItemContract()) {
         if (it != null) {
             val EditParams = it.getBundle("EditParams")!!
@@ -91,11 +89,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                     MAccountBook.AddItem(NewItem)
                 }
                 "Edit" -> {
-                    
+
                 }
             }
         }
     }
+
+    private val ItemIDArrayForDisplay = ArrayList<ItemID>()
 
     init {
         for (Entry in MAccountBook.GetItemsByTime()) {
