@@ -14,7 +14,6 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     lateinit var ActivityEditAccountBookItem: ActivityEditAccountBookItemBinding
 
     lateinit var NameEdit: EditText
-    lateinit var TimeEdit: EditText
     lateinit var DateTimePickerButton: Button
     lateinit var SiteEdit: EditText
     lateinit var AccountEdit: EditText
@@ -31,7 +30,6 @@ class EditAccountBookItemActivity : AppCompatActivity() {
         setContentView(ActivityEditAccountBookItem.root)
 
         NameEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemName
-        TimeEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTime
         DateTimePickerButton = ActivityEditAccountBookItem.ActivityEditAccountBookItemDateTimePicker
         SiteEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemSite
         AccountEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemAccount
@@ -50,7 +48,6 @@ class EditAccountBookItemActivity : AppCompatActivity() {
             "Edit" -> {
                 val Item = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("Item")!!)!!
                 NameEdit.setText(Item.Name)
-                TimeEdit.setText(Item.Time.toString())
                 SiteEdit.setText(Item.Site)
                 AccountEdit.setText(Item.Account)
                 OriginalAmountEdit.setText(Item.OriginalAmount.toString())
