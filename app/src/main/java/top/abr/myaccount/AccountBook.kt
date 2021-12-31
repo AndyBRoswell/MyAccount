@@ -56,8 +56,6 @@ open class AccountBook {
 //        }
     }
 
-
-
     // Main records
     private val ItemByID: MutableMap<ItemID, Item> = TreeMap()                          // ID as primary key for each item
     private val DefaultCurrency: MutableMap<AccountID, Currency> = HashMap()            // Default currency of accounts
@@ -86,7 +84,10 @@ open class AccountBook {
 
     fun GetItem(ID: ItemID) = ItemByID[ID]
 
-    fun AddItem(Item: Item) {
+    /**
+     * Add an item and return its ID.
+     */
+    fun AddItem(Item: Item): ItemID {
         // Main procedure
         val ItemID = GenerateItemID()
         ItemByID[ItemID] = Item
@@ -94,18 +95,27 @@ open class AccountBook {
         // TODO: Maintain indices
         IDByTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
         IDByTime[Item.Time]!!.add(ItemID)
+        return ItemID
     }
 
-    fun AddItems(vararg Items: Item) {
-        for (Item in Items) AddItem(Item)
+    /**
+     * Add items and return their IDs.
+     */
+    fun AddItems(vararg Items: Item): Set<ItemID> {
+        val IDs = IDCollection()
+        for (Item in Items) IDs.add(AddItem(Item))
+        return IDs
     }
 
-    fun DeleteItem(ID: ItemID) {
+    /**
+     * Delete an item with the specified ID and return the deleted item.
+     */
+    fun DeleteItem(ID: ItemID): Item? {
         // TODO: Maintain indices
-        val Item = ItemByID[ID] ?: return
+        val Item = ItemByID[ID] ?: return null
         IDByTime.remove(Item.Time)
 
         // Main procedure
-        ItemByID.remove(ID)
+        return ItemByID.remove(ID)
     }
 }

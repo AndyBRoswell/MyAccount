@@ -86,7 +86,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
             when (EditParams.getString("Mode")) {
                 "New" -> {
                     val NewItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, it.getString("Item")!!)!!
-                    MAccountBook.AddItem(NewItem)
+                    AddAccountItem(NewItem)
                 }
                 "Edit" -> {
 
@@ -124,7 +124,8 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     override fun getItemCount() = ItemIDArrayForDisplay.size
 
     fun AddAccountItem(Item: AccountBook.Item) {
-
+        MAccountBook.AddItem(Item)
+        notifyItemInserted()
     }
 
     fun DeleteAccountItem(Position: Int) {
