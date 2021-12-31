@@ -25,11 +25,12 @@
 				android:id="@+id/ActivityEditAccountBookItemTimeOff"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_weight="3"
+				android:layout_weight="5"
 				android:autofillHints="@string/zone_offset"
 				android:hint="@string/zone_offset"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeYr"
 				android:layout_width="0dp"
@@ -38,7 +39,8 @@
 				android:autofillHints="@string/year"
 				android:hint="@string/year"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeMon"
 				android:layout_width="0dp"
@@ -47,7 +49,8 @@
 				android:autofillHints="@string/month"
 				android:hint="@string/month"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeDay"
 				android:layout_width="0dp"
@@ -56,7 +59,8 @@
 				android:autofillHints="@string/day"
 				android:hint="@string/day"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeHr"
 				android:layout_width="0dp"
@@ -65,7 +69,8 @@
 				android:autofillHints="@string/hour"
 				android:hint="@string/hour"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeMin"
 				android:layout_width="0dp"
@@ -74,7 +79,8 @@
 				android:autofillHints="@string/minute"
 				android:hint="@string/minute"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<EditText
 				android:id="@+id/ActivityEditAccountBookItemTimeSec"
 				android:layout_width="0dp"
@@ -83,7 +89,8 @@
 				android:autofillHints="@string/second"
 				android:hint="@string/second"
 				android:inputType="number"
-				android:maxLines="1" />
+				android:maxLines="1"
+				android:textAlignment="center" />
 			<Button
 				android:id="@+id/ActivityEditAccountBookItemDateTimePicker"
 				android:layout_width="wrap_content"
