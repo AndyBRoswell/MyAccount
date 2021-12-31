@@ -124,7 +124,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     override fun getItemCount() = ItemIDArrayForDisplay.size
 
     fun AddAccountItem(Item: AccountBook.Item) {
-        MAccountBook.AddItem(Item)
+        val ID = MAccountBook.AddItem(Item)
         notifyItemInserted()
     }
 
