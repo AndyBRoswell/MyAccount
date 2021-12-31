@@ -11,7 +11,9 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 import java.util.logging.Logger
+import kotlin.collections.ArrayList
 
 open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
     open inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -125,7 +127,9 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
 
     fun AddAccountItem(Item: AccountBook.Item) {
         val ID = MAccountBook.AddItem(Item)
-        notifyItemInserted()
+        val Pos = -(Collections.binarySearch(ItemIDArrayForDisplay, ID) + 1)
+        ItemIDArrayForDisplay.add(Pos, ID)
+        notifyItemInserted(Pos)
     }
 
     fun DeleteAccountItem(Position: Int) {
