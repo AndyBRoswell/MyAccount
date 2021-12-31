@@ -28,7 +28,7 @@
 				android:layout_weight="5"
 				android:autofillHints="@string/zone_offset"
 				android:hint="@string/zone_offset"
-				android:inputType="number"
+				android:inputType="text"
 				android:maxLines="1"
 				android:textAlignment="center" />
 			<EditText
