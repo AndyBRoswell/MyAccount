@@ -1,6 +1,7 @@
 package top.abr.myaccount
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +9,9 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import top.abr.myaccount.databinding.ActivityEditAccountBookItemBinding
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.util.*
 
 class EditAccountBookItemActivity : AppCompatActivity() {
     // UI components
@@ -26,7 +30,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     lateinit var AccountEdit: EditText
     lateinit var OriginalAmountEdit: EditText
     lateinit var OriginalCurrencyEdit: EditText
-    lateinit var ExchangeRateEdit: EditText
+    //    lateinit var ExchangeRateEdit: EditText
     lateinit var DetailsEdit: EditText
 
     override fun onCreate(SavedInstanceState: Bundle?) {
@@ -49,7 +53,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
         AccountEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemAccount
         OriginalAmountEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemOriginalAmount
         OriginalCurrencyEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemOriginalCurrency
-        ExchangeRateEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemExchangeRate
+//        ExchangeRateEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemExchangeRate
         DetailsEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemDetails
 
         // Load data
@@ -74,7 +78,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
                 AccountEdit.setText(Item.Account)
                 OriginalAmountEdit.setText(Item.OriginalAmount.toString())
                 OriginalCurrencyEdit.setText(Item.OriginalCurrency.toString())
-                ExchangeRateEdit.setText(Item.ExchangeRate.toString())
+//                ExchangeRateEdit.setText(Item.ExchangeRate.toString())
                 DetailsEdit.setText(Item.Details)
             }
         }
@@ -90,14 +94,39 @@ class EditAccountBookItemActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(Item: MenuItem) = when (Item.itemId) {
+    override fun onOptionsItemSelected(SelectedItem: MenuItem) = when (SelectedItem.itemId) {
         R.id.ActivityEditAccountBookItemDone -> {
+            val IntentWithResult = Intent().apply {
+                putExtra("EditParams", intent.getBundleExtra("EditParams"))
+                val T = ZonedDateTime.of(
+                    TimeYrEdit.text.toString().toInt(),
+                    TimeMonEdit.text.toString().toInt(),
+                    TimeDayEdit.text.toString().toInt(),
+                    TimeHrEdit.text.toString().toInt(),
+                    TimeMinEdit.text.toString().toInt(),
+                    TimeSecEdit.text.toString().toInt(),
+                    0,
+                    ZoneId.of(TimeOffEdit.text.toString())
+                )
+                val NewItem = AccountBook.Item(
+                    Name = NameEdit.text.toString(),
+                    Time = T,
+                    Site = SiteEdit.text.toString(),
+                    Account = AccountEdit.text.toString(),
+                    OriginalCurrency = Currency.getInstance(OriginalCurrencyEdit.text.toString()),
+                    OriginalAmount = OriginalAmountEdit.text.toString().toDouble(),
+                    Details = DetailsEdit.text.toString()
+                )
+                putExtra("Item", JSONProcessor.Serialize(NewItem))
+            }
+            setResult(Activity.RESULT_OK, IntentWithResult)
+            finish()
             true
         }
         R.id.ActivityEditAccountBookItemCancel -> {
             onBackPressed()
             true
         }
-        else -> super.onOptionsItemSelected(Item)
+        else -> super.onOptionsItemSelected(SelectedItem)
     }
 }
