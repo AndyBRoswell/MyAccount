@@ -24,6 +24,7 @@
 	<!-- 编辑账目 -->
 	<string name="name">Name</string>
 	<string name="time">Time</string>
+	<string name="zone_offset">Zone offset</string>
 	<string name="year">Year</string>
 	<string name="month">Month</string>
 	<string name="day">Day</string>

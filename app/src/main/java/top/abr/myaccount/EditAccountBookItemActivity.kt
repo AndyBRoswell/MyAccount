@@ -14,6 +14,13 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     lateinit var ActivityEditAccountBookItem: ActivityEditAccountBookItemBinding
 
     lateinit var NameEdit: EditText
+    lateinit var TimeOffEdit: EditText
+    lateinit var TimeYrEdit: EditText
+    lateinit var TimeMonEdit: EditText
+    lateinit var TimeDayEdit: EditText
+    lateinit var TimeHrEdit: EditText
+    lateinit var TimeMinEdit: EditText
+    lateinit var TimeSecEdit: EditText
     lateinit var DateTimePickerButton: Button
     lateinit var SiteEdit: EditText
     lateinit var AccountEdit: EditText
@@ -30,6 +37,13 @@ class EditAccountBookItemActivity : AppCompatActivity() {
         setContentView(ActivityEditAccountBookItem.root)
 
         NameEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemName
+        TimeOffEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeOff
+        TimeYrEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeYr
+        TimeMonEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeMon
+        TimeDayEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeDay
+        TimeHrEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeHr
+        TimeMinEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeMin
+        TimeSecEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemTimeSec
         DateTimePickerButton = ActivityEditAccountBookItem.ActivityEditAccountBookItemDateTimePicker
         SiteEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemSite
         AccountEdit = ActivityEditAccountBookItem.ActivityEditAccountBookItemAccount
@@ -48,6 +62,14 @@ class EditAccountBookItemActivity : AppCompatActivity() {
             "Edit" -> {
                 val Item = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("Item")!!)!!
                 NameEdit.setText(Item.Name)
+                val T = Item.Time
+                TimeOffEdit.setText(T.offset.toString())
+                TimeYrEdit.setText(T.year)
+                TimeMonEdit.setText(T.monthValue)
+                TimeDayEdit.setText(T.dayOfMonth)
+                TimeHrEdit.setText(T.hour)
+                TimeMinEdit.setText(T.minute)
+                TimeSecEdit.setText(T.second)
                 SiteEdit.setText(Item.Site)
                 AccountEdit.setText(Item.Account)
                 OriginalAmountEdit.setText(Item.OriginalAmount.toString())
