@@ -24,6 +24,12 @@
 	<!-- 编辑账目 -->
 	<string name="name">名称</string>
 	<string name="time">时间</string>
+	<string name="year">年</string>
+	<string name="month">月</string>
+	<string name="day">日</string>
+	<string name="hour">时</string>
+	<string name="minute">分</string>
+	<string name="second">秒</string>
 	<string name="site">地点 / 站点</string>
 	<string name="account">使用的帐户</string>
 	<string name="currency_used_by_the_txn">交易使用的货币</string>

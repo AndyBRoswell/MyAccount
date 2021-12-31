@@ -24,6 +24,12 @@
 	<!-- 编辑账目 -->
 	<string name="name">Name</string>
 	<string name="time">Time</string>
+	<string name="year">Year</string>
+	<string name="month">Month</string>
+	<string name="day">Day</string>
+	<string name="hour">Hour</string>
+	<string name="minute">Minute</string>
+	<string name="second">Second</string>
 	<string name="site">Site</string>
 	<string name="account">Account</string>
 	<string name="currency_used_by_the_txn">Currency used by the transaction</string>
