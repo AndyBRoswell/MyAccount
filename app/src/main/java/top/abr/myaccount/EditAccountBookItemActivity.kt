@@ -100,7 +100,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(SelectedItem: MenuItem) = when (SelectedItem.itemId) {
         R.id.ActivityEditAccountBookItemDone -> {
             IntentWithResult.apply {
-                putExtra("EditParams", intent.getBundleExtra("EditParams"))     // Pass the edit params without modifying them
+                putExtra("EditParams", intent.getBundleExtra("EditParams"))     // Pass the edit params directly without modifying them
                 val T = ZonedDateTime.of(
                     TimeYrEdit.text.toString().toInt(),
                     TimeMonEdit.text.toString().toInt(),
