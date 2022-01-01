@@ -23,6 +23,7 @@
 	<string name="modify_account_book_item">Modify account book item</string>
 	<string name="delete_account_book_item">Delete account book item</string>
 	<string name="clear_account_book">Clear account book</string>
+	<string name="close_account_book">Close account book</string>
 	<string name="read_account_book_from_def_idir">Read account book from default internal directory</string>
 	<string name="read_account_book_from_def_edir">Read account book from default external directory</string>
 	<string name="read_account_book_from_cdir">Read account book from a custom directory</string>

@@ -157,6 +157,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         notifyItemRemoved(Position)
     }
 
+    fun ClearAccountItems() {
+        val Size = ItemIDArrayForDisplay.size
+        ItemIDArrayForDisplay.clear()
+        MAccountBook.ClearItems()
+        notifyItemRangeRemoved(0, Size)
+    }
+
     fun OnAccountBookContextAddClicked() {
         val EditParams = Bundle().apply {
             putString("Mode", "New")

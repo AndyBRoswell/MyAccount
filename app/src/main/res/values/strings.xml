@@ -23,6 +23,7 @@
 	<string name="modify_account_book_item">修改账目</string>
 	<string name="delete_account_book_item">删除账目</string>
 	<string name="clear_account_book">清空账簿</string>
+	<string name="close_account_book">关闭账簿</string>
 	<string name="read_account_book_from_def_idir">从内部存储的默认目录读取账簿</string>
 	<string name="read_account_book_from_def_edir">从外部存储的默认目录读取账簿</string>
 	<string name="read_account_book_from_cdir">从自定义目录读取账簿</string>

@@ -118,4 +118,11 @@ open class AccountBook {
         // Main procedure
         return ItemByID.remove(ID)
     }
+
+    fun ClearItems() {
+        ItemByID.clear()
+
+        // TODO: Clear indices
+        IDByTime.clear()
+    }
 }
