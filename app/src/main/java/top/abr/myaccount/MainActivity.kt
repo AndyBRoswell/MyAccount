@@ -1,5 +1,6 @@
 package top.abr.myaccount
 
+import android.accounts.Account
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var NavDrawerListener: ActionBarDrawerToggle
 
     lateinit var AccountView: RecyclerView
+    lateinit var AccountViewAdapter: AccountBookAdapter
 
     // Demo data
     val DemoAccountBook = AccountBook().apply {
@@ -95,7 +97,8 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme as default
 
         AccountView = ActivityMain.AccountView
-        AccountView.adapter = AccountBookAdapter(this, DemoAccountBook)
+        AccountViewAdapter = AccountBookAdapter(this, DemoAccountBook)
+        AccountView.adapter = AccountViewAdapter
         AccountView.layoutManager = LinearLayoutManager(this)
     }
 
@@ -114,9 +117,8 @@ class MainActivity : AppCompatActivity() {
         if (NavDrawerListener.onOptionsItemSelected(SelectedItem)) return true
         when (SelectedItem.itemId) {
             R.id.MainOptionsOrderByTime -> {}
-            R.id.MainOptionsAddAccountBookItem -> {
-                (AccountView.adapter as AccountBookAdapter).OnAccountBookContextAddClicked()
-            }
+            R.id.MainOptionsAddAccountBookItem -> { AccountViewAdapter.OnAccountBookContextAddClicked() }
+            R.id.MainOptionsClearAccountBookItem -> { AccountViewAdapter.ClearAccountItems() }
         }
         return super.onOptionsItemSelected(SelectedItem)
     }

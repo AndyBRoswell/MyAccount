@@ -58,7 +58,8 @@
 			android:background="@drawable/text_view_border"
 			android:maxLines="1"
 			android:text="-"
-			android:textAlignment="viewEnd" />
+			android:textAlignment="viewEnd"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 		<TextView
 			android:id="@+id/AccountBookItemLayoutAmount"
 			android:layout_width="0dp"
@@ -67,7 +68,8 @@
 			android:background="@drawable/text_view_border"
 			android:maxLines="1"
 			android:text="-"
-			android:textAlignment="viewEnd" />
+			android:textAlignment="viewEnd"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 	</LinearLayout>
 	<TextView
 		android:id="@+id/AccountBookItemLayoutDetails"
