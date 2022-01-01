@@ -93,11 +93,15 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
 
     private val ItemIDArrayForDisplay = ArrayList<ItemID>()
 
-    init {
+    private fun Init() {
         for (Entry in MAccountBook.GetItemsByTime()) {
             for (ID in Entry.value) ItemIDArrayForDisplay.add(ID)
         }
         ItemIDArrayForDisplay.reverse()     // Default order: In descending order of time
+    }
+
+    init {
+        Init()
     }
 
     override fun onCreateViewHolder(Parent: ViewGroup, ViewType: Int): ItemViewHolder {
@@ -176,5 +180,11 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
 
     fun OnAccountBookContextDeleteClicked(TargetedPosition: Int) {
         DeleteAccountItem(TargetedPosition)
+    }
+
+    fun Refresh() {
+        ItemIDArrayForDisplay.clear()
+        Init()
+        notifyItemRangeChanged(0, ItemIDArrayForDisplay.size)
     }
 }

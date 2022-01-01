@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
             R.id.MainOptionsAddAccountBookItem -> AccountViewAdapter.OnAccountBookContextAddClicked()
             R.id.MainOptionsClearAccountBookItem -> AccountViewAdapter.ClearAccountItems()
             R.id.MainOptionsReadFromDefIDir -> OnReadFromDefIDirSelected()
-            R.id.MainOptionsReadFromDefEDir -> {}
+            R.id.MainOptionsReadFromDefEDir -> OnReadFromDefEDirSelected()
             R.id.MainOptionsReadFromCustomDir -> {}
             R.id.MainOptionsSaveToDefIDir -> OnSaveToDefIDirSelected()
             R.id.MainOptionsSaveToDefEDir -> OnSaveToDefEDirSelected()
@@ -133,26 +133,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ReadAccountBook(PathName: String) {
+        // Failed to ser/deser instances of AccountBookFile with DSL JSON. Temporarily use org.json lib instead.
         val AccountBookFileReader = BufferedReader(FileReader(File(PathName)))
         val AccountBookBuilder = StringBuilder()
         while (true) {
             val CurrentLine = AccountBookFileReader.readLine() ?: break
             AccountBookBuilder.append(CurrentLine).append(System.lineSeparator())
         }
-        val Root = JSONTokener(AccountBookBuilder.toString()).nextValue()
-        
+        val Root = JSONTokener(AccountBookBuilder.toString()).nextValue() as JSONObject
+        val SerializedItems = Root.getString("Items")
+        val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!! as Map<ItemID, AccountBook.Item>
+        for (Entry in Items) {
+            AccountViewAdapter.MAccountBook.AddItem(Entry.key, Entry.value)
+        }
+        AccountViewAdapter.Refresh()
     }
 
     fun OnReadFromDefIDirSelected() {
-
+        val PathName = "$DefIDir/AccountBook.json"
+        ReadAccountBook(PathName)
     }
 
     fun OnReadFromDefEDirSelected() {
-
+        val PathName = "$DefEDir/AccountBook.json"
+        ReadAccountBook(PathName)
     }
 
     private fun SaveAccountBook(PathName: String) {
-        // Failed to serialize instances of AccountBookFile with DSL JSON. Temporarily use org.json lib instead.
+        // Failed to ser/deser instances of AccountBookFile with DSL JSON. Temporarily use org.json lib instead.
         val Items = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetItems())
         val DefaultCurrencies = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetAccountDefaultCurrencies())
         val JSONO = JSONObject().apply {
