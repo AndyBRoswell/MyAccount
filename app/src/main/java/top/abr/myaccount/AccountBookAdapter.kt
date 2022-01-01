@@ -70,7 +70,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 if (EditParams.getString("Mode") == "Edit") {
                     val Item = Input.second!!
                     val SerializationResult = JSONProcessor.Serialize(Item)
-                    putExtra("OldItem", SerializationResult)
+                    putExtra("TargetedItem", SerializationResult)
                 }
             }
 
@@ -136,7 +136,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
 
     fun EditAccountItem(Position: Int, ID: ItemID, ModifiedItem: AccountBook.Item) {
         val TargetedItem = MAccountBook.GetItem(ID)
-        
+
         notifyItemChanged(Position)
     }
 
