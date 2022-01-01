@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
                 Account = "微信",
                 OriginalCurrency = Currency.getInstance("CNY"),
                 OriginalAmount = 4999.00,
-                ExchangeRate = 1.0,
-                Labels = HashSet(),
                 Details = """
                     Intel Core i9-12900K CPU
                     8P16T @ 3.20 GHz / 5.10 GHz
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 Details = "Canon 1DX Mark III DSLR Camera, 5.5K@59.94 RAW (1.90:1)"
             ),
             AccountBook.Item(
-                Name = "fripSide专辑 24/96",
+                Name = "fripSide 24/96",
                 Time = ZonedDateTime.now(),
                 Site="OTOTOY",
                 Account = "PayPal",
@@ -103,8 +101,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Open and close the navigation drawer when the ≡ icon is clicked
-    override fun onOptionsItemSelected(MenuItem: MenuItem): Boolean {
-        if (NavDrawerListener.onOptionsItemSelected(MenuItem)) return true
-        return super.onOptionsItemSelected(MenuItem)
+    override fun onOptionsItemSelected(SelectedItem: MenuItem): Boolean {
+        if (NavDrawerListener.onOptionsItemSelected(SelectedItem)) return true
+        when (SelectedItem.itemId) {
+            R.id.MainOptionsOrderByTime -> {}
+            R.id.MainOptionsAddAccountBookItem -> {
+                (AccountView.adapter as AccountBookAdapter).OnAccountBookContextAddClicked()
+            }
+        }
+        return super.onOptionsItemSelected(SelectedItem)
     }
 }

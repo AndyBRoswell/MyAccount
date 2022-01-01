@@ -32,10 +32,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                         when (CurrentMenuItem.itemId) {
                             R.id.AccountBookContextAdd -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
-                                    val EditParams = Bundle().apply {
-                                        putString("Mode", "New")
-                                    }
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, null))
+                                    OnAccountBookContextAddClicked()
                                     true
                                 }
                             }
@@ -158,5 +155,12 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         MAccountBook.DeleteItem(TargetedItemID)
         ItemIDArrayForDisplay.removeAt(Position)
         notifyItemRemoved(Position)
+    }
+
+    fun OnAccountBookContextAddClicked() {
+        val EditParams = Bundle().apply {
+            putString("Mode", "New")
+        }
+        EditAccountBookItemActivityLauncher.launch(Pair(EditParams, null))
     }
 }
