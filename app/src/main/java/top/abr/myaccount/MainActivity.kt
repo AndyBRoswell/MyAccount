@@ -145,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         val Root = JSONTokener(AccountBookBuilder.toString()).nextValue() as JSONObject
         val SerializedItems = Root.getString("Items")
         val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!!
+        AccountViewAdapter.MAccountBook.ClearItems()
         for (Entry in Items) {
             val K = (Entry.key as String).toLong()
             val MV = Entry.value as LinkedHashMap<*, *>
