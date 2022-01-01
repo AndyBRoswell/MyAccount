@@ -6,76 +6,56 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".MainActivity">
-
 	<!-- This is the navigation view which draws and shows the navigation drawer -->
 	<com.google.android.material.navigation.NavigationView
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
 		app:menu="@menu/nav_drawer" />
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical">
-
-		<androidx.constraintlayout.widget.ConstraintLayout
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
-
 			<EditText
 				android:id="@+id/ActivityMainDateSpanDisplayerFromDate"
 				android:layout_width="0dp"
-				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:layout_height="wrap_content"
+				android:maxLines="1"
 				android:autofillHints="@string/from_date"
 				android:hint="@string/from_date"
-				android:inputType="date"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenFromPicker" />
-
+				android:inputType="date" />
 			<Button
 				android:id="@+id/ActivityMainDateSpanDisplayerOpenFromPicker"
 				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:text="📅"
-				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint" />
-
-			<TextView
-				android:id="@+id/ActivityMainDateSpanDisplayerAlignmentPoint"
-				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="～"
-				android:textAlignment="center"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintHorizontal_bias="0.5"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent" />
-
+				android:text="📅" />
 			<EditText
 				android:id="@+id/ActivityMainDateSpanDisplayerToDate"
 				android:layout_width="0dp"
-				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:layout_height="wrap_content"
+				android:maxLines="1"
 				android:autofillHints="@string/to_date"
 				android:hint="@string/to_date"
-				android:inputType="date"
-				app:layout_constraintLeft_toRightOf="@id/ActivityMainDateSpanDisplayerAlignmentPoint"
-				app:layout_constraintRight_toLeftOf="@id/ActivityMainDateSpanDisplayerOpenToPicker" />
-
+				android:inputType="date" />
 			<Button
 				android:id="@+id/ActivityMainDateSpanDisplayerOpenToPicker"
 				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:text="📅"
-				app:layout_constraintRight_toRightOf="parent" />
-
-		</androidx.constraintlayout.widget.ConstraintLayout>
-
+				android:layout_height="wrap_content"
+				android:text="📅" />
+			<Button
+				android:id="@+id/ActivityMainDateSpanDisplayerFilter"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="🔍" />
+		</LinearLayout>
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/AccountView"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />
-
 	</LinearLayout>
-
 </androidx.drawerlayout.widget.DrawerLayout>
