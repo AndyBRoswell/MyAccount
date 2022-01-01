@@ -185,7 +185,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     fun Refresh() {
         val OriginalSize = ItemIDArrayForDisplay.size
         ItemIDArrayForDisplay.clear()
-        notifyItemRangeRemoved(0, OriginalSize)
+        notifyItemRangeRemoved(0, OriginalSize) // If this step is skipped, then when the count of items of the account book shrinks, there will be an IndexOutOfBoundException.
         Init()
         notifyItemRangeChanged(0, ItemIDArrayForDisplay.size)
     }
