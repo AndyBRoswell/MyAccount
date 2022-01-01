@@ -146,15 +146,15 @@ class MainActivity : AppCompatActivity() {
         val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!!
         for (Entry in Items) {
             val K = (Entry.key as String).toLong()
-            val MV = Entry.value as LinkedHashMap<String, String>
+            val MV = Entry.value as LinkedHashMap<*, *>
             val V = AccountBook.Item(
-                Name = MV["name"]!!,
-                Time = ZonedDateTime.parse(MV["time"]!!),
-                Site = MV["site"]!!,
-                Account = MV["account"]!!,
-                OriginalAmount = MV["originalAmount"]!!.toDouble(),
-                OriginalCurrency = Currency.getInstance(MV["originalCurrency"]!!),
-                Details = MV["details"]!!
+                Name = MV["name"]!! as String,
+                Time = ZonedDateTime.parse(MV["time"]!! as CharSequence?),
+                Site = MV["site"]!! as String,
+                Account = MV["account"]!! as String,
+                OriginalAmount = MV["originalAmount"]!! as Double,
+                OriginalCurrency = Currency.getInstance(MV["originalCurrency"]!! as String),
+                Details = MV["details"]!! as String
             )
             AccountViewAdapter.MAccountBook.AddItem(K, V)
         }
