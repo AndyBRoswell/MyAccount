@@ -1,6 +1,5 @@
 package top.abr.myaccount
 
-import android.accounts.Account
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             AccountBook.Item(
                 Name = "fripSide 24/96",
                 Time = ZonedDateTime.now(),
-                Site="OTOTOY",
+                Site = "OTOTOY",
                 Account = "PayPal",
                 OriginalCurrency = Currency.getInstance("JPY"),
                 OriginalAmount = 9900.00,
@@ -116,9 +115,23 @@ class MainActivity : AppCompatActivity() {
         if (NavDrawerListener.onOptionsItemSelected(SelectedItem)) return true // Open and close the navigation drawer when the ≡ icon is clicked
         when (SelectedItem.itemId) {
             R.id.MainOptionsOrderByTime -> {}
-            R.id.MainOptionsAddAccountBookItem -> { AccountViewAdapter.OnAccountBookContextAddClicked() }
-            R.id.MainOptionsClearAccountBookItem -> { AccountViewAdapter.ClearAccountItems() }
+            R.id.MainOptionsAddAccountBookItem -> AccountViewAdapter.OnAccountBookContextAddClicked()
+            R.id.MainOptionsClearAccountBookItem -> AccountViewAdapter.ClearAccountItems()
+            R.id.MainOptionsReadFromDefaultInternalDirectory -> {}
+            R.id.MainOptionsReadFromDefaultExternalDirectory -> {}
+            R.id.MainOptionsReadFromCustomDirectory -> {}
+            R.id.MainOptionsSaveToDefaultInternalDirectory -> {}
+            R.id.MainOptionsSaveToDefaultExternalDirectory -> {}
+            R.id.MainOptionsSaveToCustomDirectory -> {}
         }
         return super.onOptionsItemSelected(SelectedItem)
+    }
+
+    fun OnReadFromDefIDirSelected() {
+        
+    }
+
+    fun OnSaveToDefIDirSelected() {
+
     }
 }
