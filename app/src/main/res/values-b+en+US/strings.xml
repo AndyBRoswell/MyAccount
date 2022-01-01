@@ -11,6 +11,8 @@
 	<!-- Account Browser UI（Main UI） -->
 	<string name="from_date">From this date</string>
 	<string name="to_date">To this date</string>
+	<string name="successfully_read">Successfully read</string>
+	<string name="successfully_saved_at">Successfully saved at</string>
 	<!--	-->
 	<!-- String resources must be provided to describe the open/close drawer actions for accessibility services. -->
 	<string name="open_nav_drawer">Open Navigation Drawer</string>
@@ -31,7 +33,7 @@
 	<string name="save_account_book_to_def_edir">Save account book to default external directory</string>
 	<string name="save_account_book_to_cdir">Save account book to a custom directory</string>
 	<!--	-->
-	<!-- 编辑账目 -->
+	<!-- Edit account items -->
 	<string name="name">Name</string>
 	<string name="time">Time</string>
 	<string name="zone_offset">Zone offset</string>

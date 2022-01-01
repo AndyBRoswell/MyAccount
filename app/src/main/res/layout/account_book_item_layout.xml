@@ -59,7 +59,8 @@
 			android:maxLines="1"
 			android:text="-"
 			android:textAlignment="viewEnd"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Large"
+			android:textColor="@color/default_dark_text" />
 		<TextView
 			android:id="@+id/AccountBookItemLayoutAmount"
 			android:layout_width="0dp"
@@ -69,7 +70,8 @@
 			android:maxLines="1"
 			android:text="-"
 			android:textAlignment="viewEnd"
-			android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+			android:textAppearance="@style/TextAppearance.AppCompat.Large"
+			android:textColor="@color/default_dark_text" />
 	</LinearLayout>
 	<TextView
 		android:id="@+id/AccountBookItemLayoutDetails"

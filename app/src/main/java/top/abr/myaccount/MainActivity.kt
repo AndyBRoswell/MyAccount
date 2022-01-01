@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
             AccountViewAdapter.MAccountBook.AddItem(K, V)
         }
         AccountViewAdapter.Refresh()
-        Toast.makeText(this, "Successfully read $PathName", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, resources.getString(R.string.successfully_read) + ' ' + PathName, Toast.LENGTH_SHORT).show()
     }
 
     fun OnReadFromDefIDirSelected() {
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
         val AccountBookSaver = BufferedWriter(FileWriter(File(PathName)))
         AccountBookSaver.write(JSONO.toString())
         AccountBookSaver.close()
-        Toast.makeText(this, "Successfully saved at $PathName", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, resources.getString(R.string.successfully_saved_at) + ' ' + PathName, Toast.LENGTH_SHORT).show()
     }
 
     fun OnSaveToDefIDirSelected() {

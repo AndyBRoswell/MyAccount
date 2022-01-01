@@ -11,6 +11,8 @@
 	<!-- 账目浏览界面（主界面） -->
 	<string name="from_date">从 此日期</string>
 	<string name="to_date">到 此日期</string>
+	<string name="successfully_read">成功读取</string>
+	<string name="successfully_saved_at">成功保存在</string>
 	<!--	-->
 	<!-- 按照 Google 官方的指示，必须提供这 2 个字符串，供无障碍服务使用 -->
 	<string name="open_nav_drawer">打开滑动导航菜单</string>
