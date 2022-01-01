@@ -16,6 +16,7 @@ import org.json.JSONTokener
 import top.abr.myaccount.databinding.ActivityMainBinding
 import java.io.*
 import java.lang.StringBuilder
+import java.math.BigDecimal
 import java.time.ZonedDateTime
 import java.util.*
 import kotlin.collections.LinkedHashMap
@@ -152,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                 Time = ZonedDateTime.parse(MV["time"]!! as CharSequence?),
                 Site = MV["site"]!! as String,
                 Account = MV["account"]!! as String,
-                OriginalAmount = MV["originalAmount"]!! as Double,
+                OriginalAmount = (MV["originalAmount"]!! as BigDecimal).toDouble(),
                 OriginalCurrency = Currency.getInstance(MV["originalCurrency"]!! as String),
                 Details = MV["details"]!! as String
             )
