@@ -141,3 +141,42 @@ open class AccountBook {
         IDByTime.clear()
     }
 }
+
+/**
+ * This class is used to serialize the contents of instances of AccountBook.
+ */
+// Compilation ERROR
+//@CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
+//open class AccountBookFile(MAccountBook: AccountBook) {
+//    var Items: Map<ItemID, AccountBook.Item> = MAccountBook.GetItems()
+//    var DefaultCurrencies: Map<AccountID, Currency> = MAccountBook.GetAccountDefaultCurrencies()
+//
+//    @JsonConverter(target = Currency::class)
+//    object CurrencyConverter {
+//        val JSON_READER = JsonReader.ReadObject {
+//            Currency.getInstance(it.readSimpleString())
+//        }
+//        val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: Currency? ->
+//            if (Value != null) JSONWriter.writeString(Value.currencyCode)
+//            else JSONWriter.writeNull()
+//        }
+//    }
+//}
+// End Compilation ERROR
+
+@CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
+open class AccountBookFile {
+    var Items: Map<ItemID, AccountBook.Item> = TreeMap()
+    var DefaultCurrencies: Map<AccountID, Currency> = TreeMap()
+
+    @JsonConverter(target = Currency::class)
+    object CurrencyConverter {
+        val JSON_READER = JsonReader.ReadObject {
+            Currency.getInstance(it.readSimpleString())
+        }
+        val JSON_WRITER = JsonWriter.WriteObject { JSONWriter, Value: Currency? ->
+            if (Value != null) JSONWriter.writeString(Value.currencyCode)
+            else JSONWriter.writeNull()
+        }
+    }
+}

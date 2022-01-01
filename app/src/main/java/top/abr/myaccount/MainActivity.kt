@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.json.JSONObject
 import top.abr.myaccount.databinding.ActivityMainBinding
 import java.io.BufferedWriter
 import java.io.File
@@ -135,7 +136,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnSaveToDefIDirSelected() {
-
-//        val AccountBookSaver = BufferedWriter(FileWriter(File(InternalFilesDir + ZonedDateTime.now())))
+        // Failed to serialize instances of AccountBookFile with DSL JSON. Temporarily use org.json lib instead.
+        val Items = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetItems())
+        val DefaultCurrencies = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetAccountDefaultCurrencies())
+        val JSONO = JSONObject().apply {
+            put("Items", Items)
+            put("DefaultCurrencies", DefaultCurrencies)
+        }
+        val PathName = InternalFilesDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+        val AccountBookSaver = BufferedWriter(FileWriter(File(PathName)))
+        AccountBookSaver.write(JSONO.toString())
+        AccountBookSaver.close()
     }
 }
