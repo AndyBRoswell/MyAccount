@@ -21,8 +21,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     // Essential vars
-    lateinit var InternalFilesDir: String
-    lateinit var ExternalFilesDir: String
+    lateinit var DefIDir: String
+    lateinit var DefEDir: String
 
     // UI components
     lateinit var ActivityMain: ActivityMainBinding
@@ -85,8 +85,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(SavedInstanceState)
 
         // Load essential vars
-        InternalFilesDir = filesDir.toString()
-        ExternalFilesDir = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) getExternalFilesDir(null).toString() else ""
+        DefIDir = filesDir.toString()
+        DefEDir = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) getExternalFilesDir(null).toString() else ""
 
         // Inflate
         ActivityMain = ActivityMainBinding.inflate(layoutInflater)
@@ -151,7 +151,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnSaveToDefIDirSelected() {
-        val PathName = InternalFilesDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+        val PathName = DefIDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+        SaveAccountBook(PathName)
+    }
+
+    fun OnSaveToDefEDirSelected() {
+        val PathName = DefEDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
         SaveAccountBook(PathName)
     }
 }
