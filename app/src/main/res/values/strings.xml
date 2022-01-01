@@ -1,5 +1,7 @@
 <resources>
 	<string name="app_name">我要记账</string>
+	<!-- 通用 -->
+	<string name="not_implemented_yet">尚未实现</string>
 	<!-- 导航滑动菜单（主菜单） -->
 	<string name="account_browser">账目浏览</string>
 	<string name="account_search">账目搜索</string>
@@ -20,6 +22,13 @@
 	<string name="add_account_book_item">添加账目</string>
 	<string name="modify_account_book_item">修改账目</string>
 	<string name="delete_account_book_item">删除账目</string>
+	<string name="clear_account_book">清空账簿</string>
+	<string name="read_account_book_from_def_idir">从内部存储的默认目录读取账簿</string>
+	<string name="read_account_book_from_def_edir">从外部存储的默认目录读取账簿</string>
+	<string name="read_account_book_from_cdir">从自定义目录读取账簿</string>
+	<string name="save_account_book_from_def_idir">保存账簿到内部存储的默认目录</string>
+	<string name="save_account_book_from_def_edir">保存账簿到外部存储的默认目录</string>
+	<string name="save_account_book_from_cdir">保存账簿到自定义目录</string>
 	<!--	-->
 	<!-- 编辑账目 -->
 	<string name="name">名称</string>

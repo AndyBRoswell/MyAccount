@@ -1,5 +1,7 @@
 <resources>
 	<string name="app_name">MyAccount</string>
+	<!-- General -->
+	<string name="not_implemented_yet">Not implemented yet</string>
 	<!-- Main navigation drawer menu (Main menu) -->
 	<string name="account_browser">Account Browser</string>
 	<string name="account_search">Account Search</string>
@@ -20,6 +22,13 @@
 	<string name="add_account_book_item">Add account book item</string>
 	<string name="modify_account_book_item">Modify account book item</string>
 	<string name="delete_account_book_item">Delete account book item</string>
+	<string name="clear_account_book">Clear account book</string>
+	<string name="read_account_book_from_def_idir">Read account book from default internal directory</string>
+	<string name="read_account_book_from_def_edir">Read account book from default external directory</string>
+	<string name="read_account_book_from_cdir">Read account book from a custom directory</string>
+	<string name="save_account_book_from_def_idir">Save account book to default internal directory</string>
+	<string name="save_account_book_from_def_edir">Save account book to default external directory</string>
+	<string name="save_account_book_from_cdir">Save account book to a custom directory</string>
 	<!--	-->
 	<!-- 编辑账目 -->
 	<string name="name">Name</string>
