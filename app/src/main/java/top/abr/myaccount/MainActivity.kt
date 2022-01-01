@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
@@ -135,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun OnSaveToDefIDirSelected() {
+    private fun SaveAccountBook(PathName: String) {
         // Failed to serialize instances of AccountBookFile with DSL JSON. Temporarily use org.json lib instead.
         val Items = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetItems())
         val DefaultCurrencies = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook.GetAccountDefaultCurrencies())
@@ -143,9 +144,14 @@ class MainActivity : AppCompatActivity() {
             put("Items", Items)
             put("DefaultCurrencies", DefaultCurrencies)
         }
-        val PathName = InternalFilesDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
         val AccountBookSaver = BufferedWriter(FileWriter(File(PathName)))
         AccountBookSaver.write(JSONO.toString())
         AccountBookSaver.close()
+        Toast.makeText(this, "Successfully saved at $PathName", Toast.LENGTH_SHORT).show()
+    }
+
+    fun OnSaveToDefIDirSelected() {
+        val PathName = InternalFilesDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+        SaveAccountBook(PathName)
     }
 }
