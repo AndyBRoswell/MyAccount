@@ -18,6 +18,7 @@ import java.io.*
 import java.lang.StringBuilder
 import java.time.ZonedDateTime
 import java.util.*
+import kotlin.collections.LinkedHashMap
 
 class MainActivity : AppCompatActivity() {
     // Essential vars
@@ -142,9 +143,15 @@ class MainActivity : AppCompatActivity() {
         }
         val Root = JSONTokener(AccountBookBuilder.toString()).nextValue() as JSONObject
         val SerializedItems = Root.getString("Items")
-        val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!! as Map<String, AccountBook.Item>
+        val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!!
         for (Entry in Items) {
-            AccountViewAdapter.MAccountBook.AddItem(Entry.key.toLong(), Entry.value)
+            val K = (Entry.key as String).toLong()
+            val MV = Entry.value as LinkedHashMap<String, String>
+            val V = AccountBook.Item(
+                Name = MV["name"]!!,
+                
+            )
+            AccountViewAdapter.MAccountBook.AddItem(K, V)
         }
         AccountViewAdapter.Refresh()
         Toast.makeText(this, "Successfully read $PathName", Toast.LENGTH_SHORT).show()
