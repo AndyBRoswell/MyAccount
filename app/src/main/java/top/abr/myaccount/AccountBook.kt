@@ -15,7 +15,6 @@ typealias AccountID = Long
 typealias LabelID = Long
 typealias SiteID = Long
 
-@CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE)
 open class AccountBook {
     @CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) // Ignore unknown properties (default for objects) to disallow unknown properties in JSON set it to FAIL which will result in exception instead
     open class Item(

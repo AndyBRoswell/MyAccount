@@ -11,6 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import top.abr.myaccount.databinding.ActivityMainBinding
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
 import java.time.ZonedDateTime
 import java.util.*
 
@@ -117,10 +120,10 @@ class MainActivity : AppCompatActivity() {
             R.id.MainOptionsOrderByTime -> {}
             R.id.MainOptionsAddAccountBookItem -> AccountViewAdapter.OnAccountBookContextAddClicked()
             R.id.MainOptionsClearAccountBookItem -> AccountViewAdapter.ClearAccountItems()
-            R.id.MainOptionsReadFromDefIDir -> {}
+            R.id.MainOptionsReadFromDefIDir -> OnReadFromDefIDirSelected()
             R.id.MainOptionsReadFromDefEDir -> {}
             R.id.MainOptionsReadFromCustomDir -> {}
-            R.id.MainOptionsSaveToDefIDir -> {}
+            R.id.MainOptionsSaveToDefIDir -> OnSaveToDefIDirSelected()
             R.id.MainOptionsSaveToDefEDir -> {}
             R.id.MainOptionsSaveToCustomDir -> {}
         }
@@ -132,6 +135,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnSaveToDefIDirSelected() {
-
+        val SerializationResult = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook)
+//        val AccountBookSaver = BufferedWriter(FileWriter(File(InternalFilesDir + ZonedDateTime.now())))
     }
 }
