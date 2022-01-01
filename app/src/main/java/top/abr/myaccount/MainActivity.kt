@@ -151,12 +151,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnSaveToDefIDirSelected() {
-        val PathName = DefIDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+//        val PathName = DefIDir + """/AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat) + ".json"
+        val PathName = "$DefIDir/AccountBook.json"
         SaveAccountBook(PathName)
     }
 
     fun OnSaveToDefEDirSelected() {
-        val PathName = DefEDir + """\AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat)
+//        val PathName = DefEDir + """/AccountBook-""" + ZonedDateTime.now().format(DefaultShortDateTimeFormat) + ".json"
+        val PathName = "$DefEDir/AccountBook.json"
         SaveAccountBook(PathName)
     }
 }
