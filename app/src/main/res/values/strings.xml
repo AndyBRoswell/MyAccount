@@ -26,9 +26,9 @@
 	<string name="read_account_book_from_def_idir">从内部存储的默认目录读取账簿</string>
 	<string name="read_account_book_from_def_edir">从外部存储的默认目录读取账簿</string>
 	<string name="read_account_book_from_cdir">从自定义目录读取账簿</string>
-	<string name="save_account_book_from_def_idir">保存账簿到内部存储的默认目录</string>
-	<string name="save_account_book_from_def_edir">保存账簿到外部存储的默认目录</string>
-	<string name="save_account_book_from_cdir">保存账簿到自定义目录</string>
+	<string name="save_account_book_to_def_idir">保存账簿到内部存储的默认目录</string>
+	<string name="save_account_book_to_def_edir">保存账簿到外部存储的默认目录</string>
+	<string name="save_account_book_to_cdir">保存账簿到自定义目录</string>
 	<!--	-->
 	<!-- 编辑账目 -->
 	<string name="name">名称</string>

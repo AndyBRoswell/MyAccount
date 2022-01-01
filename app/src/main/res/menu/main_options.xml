@@ -16,5 +16,23 @@
 	<group>
 		<item
 			android:id="@+id/MainOptionsReadFromDefaultInternalLocation"
+			android:title="@string/read_account_book_from_def_edir" />
+		<item
+			android:id="@+id/MainOptionsReadFromDefaultExternalLocation"
+			android:title="@string/read_account_book_from_def_edir" />
+		<item
+			android:id="@+id/MainOptionsReadFromCustomLocation"
+			android:title="@string/read_account_book_from_cdir" />
+	</group>
+	<group>
+		<item
+			android:id="@+id/MainOptionsSaveToDefaultInternalLocation"
+			android:title="@string/save_account_book_to_def_idir" />
+		<item
+			android:id="@+id/MainOptionsSaveToDefaultExternalLocation"
+			android:title="@string/save_account_book_to_def_edir" />
+		<item
+			android:id="@+id/MainOptionsSaveToCustomLocation"
+			android:title="@string/save_account_book_to_cdir" />
 	</group>
 </menu>

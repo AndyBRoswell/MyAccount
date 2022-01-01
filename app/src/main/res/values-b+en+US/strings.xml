@@ -26,9 +26,9 @@
 	<string name="read_account_book_from_def_idir">Read account book from default internal directory</string>
 	<string name="read_account_book_from_def_edir">Read account book from default external directory</string>
 	<string name="read_account_book_from_cdir">Read account book from a custom directory</string>
-	<string name="save_account_book_from_def_idir">Save account book to default internal directory</string>
-	<string name="save_account_book_from_def_edir">Save account book to default external directory</string>
-	<string name="save_account_book_from_cdir">Save account book to a custom directory</string>
+	<string name="save_account_book_to_def_idir">Save account book to default internal directory</string>
+	<string name="save_account_book_to_def_edir">Save account book to default external directory</string>
+	<string name="save_account_book_to_cdir">Save account book to a custom directory</string>
 	<!--	-->
 	<!-- 编辑账目 -->
 	<string name="name">Name</string>
