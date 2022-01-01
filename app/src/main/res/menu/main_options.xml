@@ -15,24 +15,24 @@
 	</group>
 	<group>
 		<item
-			android:id="@+id/MainOptionsReadFromDefaultInternalDirectory"
+			android:id="@+id/MainOptionsReadFromDefIDir"
 			android:title="@string/read_account_book_from_def_edir" />
 		<item
-			android:id="@+id/MainOptionsReadFromDefaultExternalDirectory"
+			android:id="@+id/MainOptionsReadFromDefEDir"
 			android:title="@string/read_account_book_from_def_edir" />
 		<item
-			android:id="@+id/MainOptionsReadFromCustomDirectory"
+			android:id="@+id/MainOptionsReadFromCustomDir"
 			android:title="@string/read_account_book_from_cdir" />
 	</group>
 	<group>
 		<item
-			android:id="@+id/MainOptionsSaveToDefaultInternalDirectory"
+			android:id="@+id/MainOptionsSaveToDefIDir"
 			android:title="@string/save_account_book_to_def_idir" />
 		<item
-			android:id="@+id/MainOptionsSaveToDefaultExternalDirectory"
+			android:id="@+id/MainOptionsSaveToDefEDir"
 			android:title="@string/save_account_book_to_def_edir" />
 		<item
-			android:id="@+id/MainOptionsSaveToCustomDirectory"
+			android:id="@+id/MainOptionsSaveToCustomDir"
 			android:title="@string/save_account_book_to_cdir" />
 	</group>
 </menu>

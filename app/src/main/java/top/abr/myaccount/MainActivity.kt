@@ -117,18 +117,18 @@ class MainActivity : AppCompatActivity() {
             R.id.MainOptionsOrderByTime -> {}
             R.id.MainOptionsAddAccountBookItem -> AccountViewAdapter.OnAccountBookContextAddClicked()
             R.id.MainOptionsClearAccountBookItem -> AccountViewAdapter.ClearAccountItems()
-            R.id.MainOptionsReadFromDefaultInternalDirectory -> {}
-            R.id.MainOptionsReadFromDefaultExternalDirectory -> {}
-            R.id.MainOptionsReadFromCustomDirectory -> {}
-            R.id.MainOptionsSaveToDefaultInternalDirectory -> {}
-            R.id.MainOptionsSaveToDefaultExternalDirectory -> {}
-            R.id.MainOptionsSaveToCustomDirectory -> {}
+            R.id.MainOptionsReadFromDefIDir -> {}
+            R.id.MainOptionsReadFromDefEDir -> {}
+            R.id.MainOptionsReadFromCustomDir -> {}
+            R.id.MainOptionsSaveToDefIDir -> {}
+            R.id.MainOptionsSaveToDefEDir -> {}
+            R.id.MainOptionsSaveToCustomDir -> {}
         }
         return super.onOptionsItemSelected(SelectedItem)
     }
 
     fun OnReadFromDefIDirSelected() {
-        
+
     }
 
     fun OnSaveToDefIDirSelected() {
