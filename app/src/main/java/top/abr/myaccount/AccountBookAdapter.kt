@@ -183,7 +183,9 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     }
 
     fun Refresh() {
+        val OriginalSize = ItemIDArrayForDisplay.size
         ItemIDArrayForDisplay.clear()
+        notifyItemRangeRemoved(0, OriginalSize)
         Init()
         notifyItemRangeChanged(0, ItemIDArrayForDisplay.size)
     }
