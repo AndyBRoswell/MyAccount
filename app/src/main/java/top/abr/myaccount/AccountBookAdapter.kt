@@ -93,7 +93,10 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                     AddAccountItem(NewItem)
                 }
                 "Edit" -> {
-
+                    val TargetedPosition = EditParams.getInt("TargetedPosition")
+                    val TargetedItemID = EditParams.getLong("TargetedItemID")
+                    val ModifiedItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, it.getString("NewItem")!!)!!
+                    EditAccountItem(TargetedPosition, TargetedItemID, ModifiedItem)
                 }
             }
         }
