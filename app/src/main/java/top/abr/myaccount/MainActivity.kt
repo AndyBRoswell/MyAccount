@@ -144,7 +144,9 @@ class MainActivity : AppCompatActivity() {
         val SerializedItems = Root.getString("Items")
         val Items = JSONProcessor.Deserialize(Map::class.java, SerializedItems)!! as Map<ItemID, AccountBook.Item>
         for (Entry in Items) {
-            AccountViewAdapter.MAccountBook.AddItem(Entry.key, Entry.value)
+            AccountViewAdapter.MAccountBook.AddItem(
+                Entry.key,
+                Entry.value)
         }
         AccountViewAdapter.Refresh()
     }
