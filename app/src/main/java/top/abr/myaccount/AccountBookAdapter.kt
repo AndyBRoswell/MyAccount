@@ -134,8 +134,10 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         notifyItemInserted(Pos)
     }
 
-    fun EditAccountItem(Position: Int) {
-
+    fun EditAccountItem(Position: Int, ID: ItemID, ModifiedItem: AccountBook.Item) {
+        val TargetedItem = MAccountBook.GetItem(ID)
+        
+        notifyItemChanged(Position)
     }
 
     fun DeleteAccountItem(Position: Int) {
