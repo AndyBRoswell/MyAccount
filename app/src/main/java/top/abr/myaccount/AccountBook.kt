@@ -99,6 +99,21 @@ open class AccountBook {
     }
 
     /**
+     * Add an item whose ID is specified manually.
+     * @return Return true if succeeded and false if failed.
+     */
+    fun AddItem(ItemID: ItemID, Item: Item): Boolean {
+        // Main Procedure
+        if (ItemByID.contains(ItemID)) return false
+        ItemByID[ItemID] = Item
+
+        // TODO: Maintain indices
+        IDByTime.putIfAbsent(Item.Time, sortedSetOf(ItemID))
+        IDByTime[Item.Time]!!.add(ItemID)
+        return true
+    }
+
+    /**
      * Add items and return their IDs.
      */
     fun AddItems(vararg Items: Item): Set<ItemID> {

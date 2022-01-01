@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnSaveToDefIDirSelected() {
-        val SerializationResult = JSONProcessor.Serialize(AccountViewAdapter.MAccountBook)
+
 //        val AccountBookSaver = BufferedWriter(FileWriter(File(InternalFilesDir + ZonedDateTime.now())))
     }
 }
