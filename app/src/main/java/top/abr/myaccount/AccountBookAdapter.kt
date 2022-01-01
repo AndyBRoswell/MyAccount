@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
-import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccountBook: AccountBook) : RecyclerView.Adapter<AccountBookAdapter.ItemViewHolder>() {
@@ -71,7 +70,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 if (EditParams.getString("Mode") == "Edit") {
                     val Item = Input.second!!
                     val SerializationResult = JSONProcessor.Serialize(Item)
-                    putExtra("Item", SerializationResult)
+                    putExtra("OldItem", SerializationResult)
                 }
             }
 
@@ -86,7 +85,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
             val EditParams = it.getBundle("EditParams")!!
             when (EditParams.getString("Mode")) {
                 "New" -> {
-                    val NewItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, it.getString("Item")!!)!!
+                    val NewItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, it.getString("NewItem")!!)!!
                     AddAccountItem(NewItem)
                 }
                 "Edit" -> {
@@ -133,6 +132,10 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         }) + 1)
         ItemIDArrayForDisplay.add(Pos, ID)
         notifyItemInserted(Pos)
+    }
+
+    fun EditAccountItem(Position: Int) {
+
     }
 
     fun DeleteAccountItem(Position: Int) {

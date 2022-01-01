@@ -33,6 +33,9 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     //    lateinit var ExchangeRateEdit: EditText
     lateinit var DetailsEdit: EditText
 
+    // Result
+    val IntentWithResult = Intent()
+
     override fun onCreate(SavedInstanceState: Bundle?) {
         super.onCreate(SavedInstanceState)
 
@@ -64,9 +67,10 @@ class EditAccountBookItemActivity : AppCompatActivity() {
 
             }
             "Edit" -> {
-                val Item = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("Item")!!)!!
-                NameEdit.setText(Item.Name)
-                val T = Item.Time
+                val OldItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("OldItem")!!)!!
+                IntentWithResult.putExtra("OldItem", JSONProcessor.Serialize(OldItem))
+                NameEdit.setText(OldItem.Name)
+                val T = OldItem.Time
                 TimeOffEdit.setText(T.offset.toString())
                 TimeYrEdit.setText(T.year.toString())
                 TimeMonEdit.setText(String.format("%02d", T.monthValue))
@@ -74,12 +78,12 @@ class EditAccountBookItemActivity : AppCompatActivity() {
                 TimeHrEdit.setText(String.format("%02d", T.hour))
                 TimeMinEdit.setText(String.format("%02d", T.minute))
                 TimeSecEdit.setText(String.format("%02d", T.second))
-                SiteEdit.setText(Item.Site)
-                AccountEdit.setText(Item.Account)
-                OriginalAmountEdit.setText(Item.OriginalAmount.toString())
-                OriginalCurrencyEdit.setText(Item.OriginalCurrency.toString())
+                SiteEdit.setText(OldItem.Site)
+                AccountEdit.setText(OldItem.Account)
+                OriginalAmountEdit.setText(OldItem.OriginalAmount.toString())
+                OriginalCurrencyEdit.setText(OldItem.OriginalCurrency.toString())
 //                ExchangeRateEdit.setText(Item.ExchangeRate.toString())
-                DetailsEdit.setText(Item.Details)
+                DetailsEdit.setText(OldItem.Details)
             }
         }
     }
@@ -96,7 +100,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(SelectedItem: MenuItem) = when (SelectedItem.itemId) {
         R.id.ActivityEditAccountBookItemDone -> {
-            val IntentWithResult = Intent().apply {
+            IntentWithResult.apply {
                 putExtra("EditParams", intent.getBundleExtra("EditParams"))
                 val T = ZonedDateTime.of(
                     TimeYrEdit.text.toString().toInt(),
@@ -117,7 +121,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
                     OriginalAmount = OriginalAmountEdit.text.toString().toDouble(),
                     Details = DetailsEdit.text.toString()
                 )
-                putExtra("Item", JSONProcessor.Serialize(NewItem))
+                putExtra("NewItem", JSONProcessor.Serialize(NewItem))
             }
             setResult(Activity.RESULT_OK, IntentWithResult)
             finish()
