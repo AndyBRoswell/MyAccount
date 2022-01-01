@@ -67,7 +67,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
 
             }
             "Edit" -> {
-                val OldItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("TargetedItem")!!)!!
+                val OldItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("OldItem")!!)!!
                 NameEdit.setText(OldItem.Name)
                 val T = OldItem.Time
                 TimeOffEdit.setText(T.offset.toString())

@@ -41,11 +41,15 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                             }
                             R.id.AccounBookContextModify -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
+                                    val TargetedPosition = layoutPosition
+                                    val TargetedItemID = ItemIDArrayForDisplay[layoutPosition]
                                     val EditParams = Bundle().apply {
                                         putString("Mode", "Edit")
+                                        putInt("TargetedPosition", TargetedPosition)
+                                        putLong("TargetedItemID", TargetedItemID)
                                     }
-                                    val Item = MAccountBook.GetItem(ItemIDArrayForDisplay[layoutPosition])!!
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, Item))
+                                    val OldItem = MAccountBook.GetItem(TargetedItemID)!!
+                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, OldItem))
                                     true
                                 }
                             }
@@ -70,7 +74,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                 if (EditParams.getString("Mode") == "Edit") {
                     val Item = Input.second!!
                     val SerializationResult = JSONProcessor.Serialize(Item)
-                    putExtra("TargetedItem", SerializationResult)
+                    putExtra("OldItem", SerializationResult)
                 }
             }
 
