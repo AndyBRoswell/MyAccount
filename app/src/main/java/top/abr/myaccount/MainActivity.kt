@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             R.id.MainOptionsReadFromDefEDir -> {}
             R.id.MainOptionsReadFromCustomDir -> {}
             R.id.MainOptionsSaveToDefIDir -> OnSaveToDefIDirSelected()
-            R.id.MainOptionsSaveToDefEDir -> {}
+            R.id.MainOptionsSaveToDefEDir -> OnSaveToDefEDirSelected()
             R.id.MainOptionsSaveToCustomDir -> {}
         }
         return super.onOptionsItemSelected(SelectedItem)
