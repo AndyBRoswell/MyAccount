@@ -68,7 +68,6 @@ class EditAccountBookItemActivity : AppCompatActivity() {
             }
             "Edit" -> {
                 val OldItem = JSONProcessor.Deserialize(AccountBook.Item::class.java, Params.getString("OldItem")!!)!!
-                IntentWithResult.putExtra("OldItem", JSONProcessor.Serialize(OldItem))
                 NameEdit.setText(OldItem.Name)
                 val T = OldItem.Time
                 TimeOffEdit.setText(T.offset.toString())
@@ -101,7 +100,7 @@ class EditAccountBookItemActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(SelectedItem: MenuItem) = when (SelectedItem.itemId) {
         R.id.ActivityEditAccountBookItemDone -> {
             IntentWithResult.apply {
-                putExtra("EditParams", intent.getBundleExtra("EditParams"))
+                putExtra("EditParams", intent.getBundleExtra("EditParams"))     // Pass the edit params without modifying them
                 val T = ZonedDateTime.of(
                     TimeYrEdit.text.toString().toInt(),
                     TimeMonEdit.text.toString().toInt(),
