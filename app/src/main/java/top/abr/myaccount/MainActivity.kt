@@ -2,6 +2,7 @@ package top.abr.myaccount
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,6 +15,10 @@ import java.time.ZonedDateTime
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    // Essential vars
+    lateinit var InternalFilesDir: String
+    lateinit var ExternalFilesDir: String
+
     // UI components
     lateinit var ActivityMain: ActivityMainBinding
     lateinit var MainDrawerLayout: DrawerLayout
@@ -72,6 +77,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(SavedInstanceState: Bundle?) {
         super.onCreate(SavedInstanceState)
+
+        // Load essential vars
+        InternalFilesDir = filesDir.toString()
+        ExternalFilesDir = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) getExternalFilesDir(null).toString() else ""
 
         // Inflate
         ActivityMain = ActivityMainBinding.inflate(layoutInflater)
