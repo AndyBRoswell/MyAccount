@@ -149,7 +149,12 @@ class MainActivity : AppCompatActivity() {
             val MV = Entry.value as LinkedHashMap<String, String>
             val V = AccountBook.Item(
                 Name = MV["name"]!!,
-                
+                Time = ZonedDateTime.parse(MV["time"]!!),
+                Site = MV["site"]!!,
+                Account = MV["account"]!!,
+                OriginalAmount = MV["originalAmount"]!!.toDouble(),
+                OriginalCurrency = Currency.getInstance(MV["originalCurrency"]!!),
+                Details = MV["details"]!!
             )
             AccountViewAdapter.MAccountBook.AddItem(K, V)
         }
