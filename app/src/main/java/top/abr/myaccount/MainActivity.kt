@@ -112,9 +112,8 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    // Open and close the navigation drawer when the ≡ icon is clicked
     override fun onOptionsItemSelected(SelectedItem: MenuItem): Boolean {
-        if (NavDrawerListener.onOptionsItemSelected(SelectedItem)) return true
+        if (NavDrawerListener.onOptionsItemSelected(SelectedItem)) return true // Open and close the navigation drawer when the ≡ icon is clicked
         when (SelectedItem.itemId) {
             R.id.MainOptionsOrderByTime -> {}
             R.id.MainOptionsAddAccountBookItem -> { AccountViewAdapter.OnAccountBookContextAddClicked() }

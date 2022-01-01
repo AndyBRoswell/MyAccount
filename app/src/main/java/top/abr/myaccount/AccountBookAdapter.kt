@@ -38,21 +38,13 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
                             }
                             R.id.AccounBookContextModify -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
-                                    val TargetedPosition = layoutPosition
-                                    val TargetedItemID = ItemIDArrayForDisplay[layoutPosition]
-                                    val EditParams = Bundle().apply {
-                                        putString("Mode", "Edit")
-                                        putInt("TargetedPosition", TargetedPosition)
-                                        putLong("TargetedItemID", TargetedItemID)
-                                    }
-                                    val OldItem = MAccountBook.GetItem(TargetedItemID)!!
-                                    EditAccountBookItemActivityLauncher.launch(Pair(EditParams, OldItem))
+                                    OnAccountBookContextModifyClicked(layoutPosition)
                                     true
                                 }
                             }
                             R.id.AccountBookContextDelete -> {
                                 CurrentMenuItem.setOnMenuItemClickListener {
-                                    DeleteAccountItem(layoutPosition)
+                                    OnAccountBookContextDeleteClicked(layoutPosition)
                                     true
                                 }
                             }
@@ -169,5 +161,20 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
             putString("Mode", "New")
         }
         EditAccountBookItemActivityLauncher.launch(Pair(EditParams, null))
+    }
+
+    fun OnAccountBookContextModifyClicked(TargetedPosition: Int) {
+        val TargetedItemID = ItemIDArrayForDisplay[TargetedPosition]
+        val EditParams = Bundle().apply {
+            putString("Mode", "Edit")
+            putInt("TargetedPosition", TargetedPosition)
+            putLong("TargetedItemID", TargetedItemID)
+        }
+        val OldItem = MAccountBook.GetItem(TargetedItemID)!!
+        EditAccountBookItemActivityLauncher.launch(Pair(EditParams, OldItem))
+    }
+
+    fun OnAccountBookContextDeleteClicked(TargetedPosition: Int) {
+        DeleteAccountItem(TargetedPosition)
     }
 }
