@@ -16,7 +16,7 @@
 	<group>
 		<item
 			android:id="@+id/MainOptionsReadFromDefIDir"
-			android:title="@string/read_account_book_from_def_edir" />
+			android:title="@string/read_account_book_from_def_idir" />
 		<item
 			android:id="@+id/MainOptionsReadFromDefEDir"
 			android:title="@string/read_account_book_from_def_edir" />
