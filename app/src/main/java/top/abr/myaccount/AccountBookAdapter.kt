@@ -129,7 +129,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         val Pos = -(Collections.binarySearch(ItemIDArrayForDisplay, ID, { ID1, ID2 ->
             val I1 = MAccountBook.GetItem(ID1)!!
             val I2 = MAccountBook.GetItem(ID2)!!
-            -I1.Time.compareTo(I2.Time)
+            -I1.Time.compareTo(I2.Time)             // In reverse order of time
         }) + 1)
         ItemIDArrayForDisplay.add(Pos, ID)
         notifyItemInserted(Pos)
