@@ -12,10 +12,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
+import org.json.JSONTokener
 import top.abr.myaccount.databinding.ActivityMainBinding
-import java.io.BufferedWriter
-import java.io.File
-import java.io.FileWriter
+import java.io.*
+import java.lang.StringBuilder
 import java.time.ZonedDateTime
 import java.util.*
 
@@ -132,7 +132,22 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(SelectedItem)
     }
 
+    private fun ReadAccountBook(PathName: String) {
+        val AccountBookFileReader = BufferedReader(FileReader(File(PathName)))
+        val AccountBookBuilder = StringBuilder()
+        while (true) {
+            val CurrentLine = AccountBookFileReader.readLine() ?: break
+            AccountBookBuilder.append(CurrentLine).append(System.lineSeparator())
+        }
+        val Root = JSONTokener(AccountBookBuilder.toString()).nextValue()
+        
+    }
+
     fun OnReadFromDefIDirSelected() {
+
+    }
+
+    fun OnReadFromDefEDirSelected() {
 
     }
 
