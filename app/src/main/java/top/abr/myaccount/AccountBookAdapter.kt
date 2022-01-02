@@ -135,14 +135,15 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
     }
 
     fun EditAccountItem(Position: Int, ID: ItemID, ModifiedItem: AccountBook.Item) {
-        val TargetedItem = MAccountBook.GetItem(ID) ?: return
-        TargetedItem.Name = ModifiedItem.Name
-        TargetedItem.Time = ModifiedItem.Time
-        TargetedItem.Site = ModifiedItem.Site
-        TargetedItem.Account = ModifiedItem.Account
-        TargetedItem.OriginalAmount = ModifiedItem.OriginalAmount
-        TargetedItem.OriginalCurrency = ModifiedItem.OriginalCurrency
-        TargetedItem.Details = ModifiedItem.Details
+//        val TargetedItem = MAccountBook.GetItem(ID) ?: return
+//        TargetedItem.Name = ModifiedItem.Name
+//        TargetedItem.Time = ModifiedItem.Time
+//        TargetedItem.Site = ModifiedItem.Site
+//        TargetedItem.Account = ModifiedItem.Account
+//        TargetedItem.OriginalAmount = ModifiedItem.OriginalAmount
+//        TargetedItem.OriginalCurrency = ModifiedItem.OriginalCurrency
+//        TargetedItem.Details = ModifiedItem.Details
+        MAccountBook.EditItem(ID, ModifiedItem)
         notifyItemChanged(Position)
     }
 

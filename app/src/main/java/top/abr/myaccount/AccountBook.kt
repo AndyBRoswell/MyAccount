@@ -123,6 +123,25 @@ open class AccountBook {
     }
 
     /**
+     * Edit a specified item.
+     */
+    fun EditItem(ID: ItemID, ModifiedItem: Item) {
+        // Main Procedure
+        // TODO: Maintain indices
+        val TargetedItem = GetItem(ID) ?: return
+        if (TargetedItem.Name != ModifiedItem.Name) TargetedItem.Name = ModifiedItem.Name
+        if (TargetedItem.Time != ModifiedItem.Time) {
+            TargetedItem.Time = ModifiedItem.Time
+            
+        }
+        if (TargetedItem.Site != ModifiedItem.Site) TargetedItem.Site = ModifiedItem.Site
+        if (TargetedItem.Account != ModifiedItem.Account) TargetedItem.Account = ModifiedItem.Account
+        if (TargetedItem.OriginalAmount != ModifiedItem.OriginalAmount) TargetedItem.OriginalAmount = ModifiedItem.OriginalAmount
+        if (TargetedItem.OriginalCurrency != ModifiedItem.OriginalCurrency) TargetedItem.OriginalCurrency = ModifiedItem.OriginalCurrency
+        if (TargetedItem.Details != ModifiedItem.Details) TargetedItem.Details = ModifiedItem.Details
+    }
+
+    /**
      * Delete an item with the specified ID and return the deleted item.
      */
     fun DeleteItem(ID: ItemID): Item? {
