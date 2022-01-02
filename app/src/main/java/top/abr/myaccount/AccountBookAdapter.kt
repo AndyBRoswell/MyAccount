@@ -113,7 +113,7 @@ open class AccountBookAdapter(val ActivityContext: AppCompatActivity, var MAccou
         val Item = MAccountBook.GetItem(ItemID)!!
         Holder.apply {
             NameView.text = Item.Name
-            TimeView.text = Item.Time.toLocalDateTime().toString()
+            TimeView.text = Item.Time.toString()
             SiteView.text = Item.Site
             AccountView.text = Item.Account
             OriginalPriceView.text = Item.OriginalAmount.toString() + ' ' + Item.OriginalCurrency.currencyCode
