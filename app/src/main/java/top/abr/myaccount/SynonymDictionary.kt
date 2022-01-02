@@ -148,7 +148,7 @@ open class SynonymDictionary {
      * @param Word The word you want to delete a synonym for.
      * @param Synonym The synonym you want to add for <code>Word</code>.
      * <code>Word</code> and <code>Synonym</code> can be the same.
-     * And if <code>Word</code> or <code>Synonym</code> doesn't exist in this dictionary, this function does nothing.
+     * And if <code>Word</code> or <code>Synonym</code> doesn't exist in this dictionary, or <code>Synonym</code> is not a synonym of <code>Word</code>, this function does nothing.
      * @return The original canonical ID of <code>Word</code> if all of its synonyms are deleted from this dictionary.
      * This ID won't exist in this dictionary any more.
      * You may use this return value to modify other data indexed by the original canonical ID, e.g., use a new ID to index them instead.
@@ -156,7 +156,8 @@ open class SynonymDictionary {
      */
     fun Delete(Word: String, Synonym: String): Long {
         val IW = CanonicalID[Word] ?: return NO_ID
-        CanonicalID[Synonym] ?: return NO_ID
+        val IS = CanonicalID[Synonym]
+        if (IW != IS) return NO_ID                  // Reject to delete when Synonym is not a synonym of Word.
         CanonicalID.remove(Synonym)
         val ExistedSynonyms = Synonyms[IW]!!
         ExistedSynonyms.remove(Synonym)
