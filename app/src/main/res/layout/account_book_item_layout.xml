@@ -78,7 +78,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/text_view_border"
-		android:maxLines="10"
 		android:text="-" />
 	<View style="@style/DarkHorizontalGap" />
 </LinearLayout>
