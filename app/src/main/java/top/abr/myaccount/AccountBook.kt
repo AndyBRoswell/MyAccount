@@ -126,13 +126,19 @@ open class AccountBook {
      * Edit a specified item.
      */
     fun EditItem(ID: ItemID, ModifiedItem: Item) {
-        // Main Procedure
-        // TODO: Maintain indices
         val TargetedItem = GetItem(ID) ?: return
+        // Main procedure
+        // TODO: Maintain indices
         if (TargetedItem.Name != ModifiedItem.Name) TargetedItem.Name = ModifiedItem.Name
         if (TargetedItem.Time != ModifiedItem.Time) {
+            // Maintain indices
+            val IndexTarget: TreeSet<ItemID> = IDByTime[TargetedItem.Time]!!
+            IndexTarget.remove(ID)
+            if (IndexTarget.isEmpty()) IDByTime.remove(TargetedItem.Time)
+            IDByTime.putIfAbsent(ModifiedItem.Time, IDCollection().apply { add(ID) })
+            IDByTime[ModifiedItem.Time]!!.add(ID)
+            // Main procedure
             TargetedItem.Time = ModifiedItem.Time
-            
         }
         if (TargetedItem.Site != ModifiedItem.Site) TargetedItem.Site = ModifiedItem.Site
         if (TargetedItem.Account != ModifiedItem.Account) TargetedItem.Account = ModifiedItem.Account
